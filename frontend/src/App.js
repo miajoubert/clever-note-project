@@ -1,6 +1,17 @@
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+
+import LoginFormPage from './components/LoginFormPage'
+
 function App() {
   return (
-    <h1>Hello from App</h1>
+    <div>
+      <Switch>
+        <Route path='/login'>
+          <LoginFormPage />
+        </Route>
+      </Switch>
+    </div>
   );
 }
 
