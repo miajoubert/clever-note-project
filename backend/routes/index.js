@@ -35,8 +35,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 router.get('/', (req, res) => {
-  console.log("Welcome to Clever Note!")
-  console.log("Navigate to clever-notes.herokuapp.com/login to Log In.")
 });
 
 module.exports = router;

@@ -5,13 +5,14 @@ import LoginFormPage from './components/LoginFormPage'
 
 function App() {
   return (
-    <div>
+    <nav>
+      <div>Welcome to Clever Note!</div> {/*remember to remove*/}
       <Switch>
         <Route path='/login'>
           <LoginFormPage />
         </Route>
       </Switch>
-    </div>
+    </nav>
   );
 }
 
