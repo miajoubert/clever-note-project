@@ -9,16 +9,22 @@ body {
 .loginForm {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
+  justify-content: space-around;
+  align-items: center;
   margin: 1rem;
   padding-right: 10rem;
-  width: 50vw;
 }
 
 .title {
-  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: right;
   font-weight: bolder;
+}
+
+.line {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
 
 input {
@@ -27,14 +33,14 @@ input {
   border-radius: 10px;
 }
 
-button {
+.nav {
   background-color: white;
-  margin: 10px 0px 20px 90px;
+  margin: 0px 10px 0px 80px;
   border: black solid 2px;
   border-radius: 10px;
   padding: 5px;
-  font-size: 18px;
+  font-size: 15px;
 }
-button:hover {
+.nav:hover {
   background-color: #00a82b;
 }

@@ -24,12 +24,13 @@ function LoginForm() {
 
   return (
     <form className="loginForm" onSubmit={handleSubmit}>
+      <div className="title">Log in...</div>
       <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
+        {errors.map((error, i) => (
+          <li key={i}>{error}</li>
         ))}
       </ul>
-      <label>
+      <label className="line">
         Username or Email
         <input
           type="text"
@@ -38,7 +39,7 @@ function LoginForm() {
           required
         />
       </label>
-      <label>
+      <label className="line">
         Password
         <input
           type="password"
@@ -47,7 +48,7 @@ function LoginForm() {
           required
         />
       </label>
-      <button className="nav1" type="submit">Log In</button>
+      <button id="loginButton" type="submit">Log In</button>
     </form>
   );
 }

@@ -19,13 +19,13 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <LoginFormModal className="nav1" />
-        <NavLink className="nav2" to="/signup">Sign Up</NavLink>
+        <NavLink className='signup' to="/signup">Sign Up</NavLink>
       </>
     );
   }
 
   return (
-    <ul>
+    <ul className='navLinks'>
       <li>
         <NavLink to="/" exact>
           <a className='bar' >
