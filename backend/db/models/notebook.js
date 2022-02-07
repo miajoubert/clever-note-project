@@ -2,7 +2,7 @@
 const { Validator } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  const Notebook = sequelize.define('Note', {
+  const Notebook = sequelize.define('Notebook', {
     title: {
       allowNull: false,
       type: DataTypes.STRING(30),
@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
 
   Notebook.associate = function (models) {
-    Notebook.hasMany(models.Note, { foreignKey: 'notebookId' })
+    Notebook.belongsTo(models.User, { foreignKey: 'userId' });
+    Notebook.hasMany(models.Note, { foreignKey: 'notebookId' });
   };
 
   return Notebook;
