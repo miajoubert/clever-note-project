@@ -1,4 +1,6 @@
 /* TODO Add site wide styles */
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@700&display=swap');
+
 .logo {
   height: 4rem;
   width: 4rem;
@@ -10,7 +12,7 @@
   flex-direction: row;
   align-items: center;
   /* color: #00a82b; */
-  font-family: Soleil ;
+  font-family:'Source Serif Pro', serif;
   font-size: 2rem;
   font-weight: bold;
 }

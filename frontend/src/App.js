@@ -1,24 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 
-import LoginFormPage from './components/LoginFormPage'
+import * as sessionActions from './store/session'
+import SignupFormPage from './components/SignUpFormPage';
+import Navigation from './components/Navigation';
 
 import './index.css';
 
 function App() {
-  return (
-    <Switch>
-      {/* <nav>
-        <a className='bar' >
-          <img href='/' className='logo' src='https://github.com/miajoubert/clever-note-project/blob/main/frontend/public/logo.png?raw=true' />
-          <span>Clevernote</span>
-        </a>
-      </nav> */}
+  const dispatch = useDispatch();
+  const [isLoaded, setIsLoaded] = useState(false);
 
-      <Route path='/login'>
-        <LoginFormPage />
-      </Route>
-    </Switch>
+  useEffect(() => {
+    dispatch(sessionActions.restoreSession()).then(() => setIsLoaded(true));
+  }, [dispatch]);
+
+  return (
+    <>
+      <Navigation isLoaded={isLoaded} />
+      {isLoaded && (
+        <Switch>
+          {/* <Route path="/login">
+            <LoginFormPage />
+          </Route> */}
+          <Route path="/signup">
+            <SignupFormPage />
+          </Route>
+        </Switch>
+      )}
+    </>
   );
 }
 

@@ -2,6 +2,7 @@ import { csrfFetch } from './csrf';
 
 const START_SESSION = "session/startSession";
 const END_SESSION = "session/endSession";
+const RESTORE_SESSION = "session/restoreSession"
 
 const startSession = (user) => {
   return {
@@ -16,6 +17,7 @@ const endSession = (user) => {
   }
 };
 
+
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
   const res = await csrfFetch('/api/session', {
@@ -28,6 +30,36 @@ export const login = (user) => async (dispatch) => {
   const data = await res.json();
   dispatch(startSession(data.user));
   return res;
+};
+
+export const restoreSession = () => async dispatch => {
+  const response = await csrfFetch('/api/session');
+  const data = await response.json();
+  dispatch(startSession(data.user));
+  return response;
+};
+
+export const signup = (user) => async (dispatch) => {
+  const { username, email, password } = user;
+  const response = await csrfFetch("/api/users", {
+    method: "POST",
+    body: JSON.stringify({
+      username,
+      email,
+      password,
+    }),
+  });
+  const data = await response.json();
+  dispatch(startSession(data.user));
+  return response;
+};
+
+export const logout = () => async (dispatch) => {
+  const response = await csrfFetch('/api/session', {
+    method: 'DELETE',
+  });
+  dispatch(endSession());
+  return response;
 };
 
 
