@@ -1,0 +1,13 @@
+.homeDiv {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.homePic {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 200px;
+}

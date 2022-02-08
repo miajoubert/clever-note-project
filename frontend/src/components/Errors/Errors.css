@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@700&display=swap');
+
+.homeDiv {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.homePic {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 200px;
+}
+
+.errors {
+  position: relative;
+  top: 6rem;
+  left: 36rem;
+  font-family:'Source Serif Pro', serif;
+  font-size: 42px;
+  height: 1rem;
+}
+.errors2 {
+  position: relative;
+  top: 9rem;
+  left: 31rem;
+  font-family:'Source Serif Pro', serif;
+  font-size: 35px;
+  height: 1rem;
+}

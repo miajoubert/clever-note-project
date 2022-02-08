@@ -5,6 +5,8 @@ import { Switch, Route } from 'react-router-dom';
 import * as sessionActions from './store/session'
 import Navigation from './components/Navigation';
 import SignupFormPage from './components/SignupForm';
+import LandingPage from './components/LandingPage';
+import Errors from './components/Errors';
 
 import './index.css';
 
@@ -21,15 +23,17 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path="/" exact>
+            <LandingPage />
+          </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="/">
+            <Errors />
+          </Route>
         </Switch>
       )}
-      <img
-        className='homePic'
-        src="https://txcatholic.org/wp-content/uploads/2019/03/Notebook-pen-and-coffee-for-web-white-background-300x200.jpg"
-      ></img>
     </>
   );
 }

@@ -16,11 +16,3 @@
   font-size: 2rem;
   font-weight: bold;
 }
-
-.homePic {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 0 200px;
-  width: 50vw;
-}
