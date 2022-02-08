@@ -62,7 +62,7 @@ function SignupFormPage() {
           required
         />
       </label>
-      <label>
+      <label className="confirmPass">
         Confirm Password
         <input
           type="password"

@@ -5,7 +5,7 @@ body {
 .loginForm {
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 250px;
   text-align: center;
   margin: 1rem;
   font-weight: bold;
