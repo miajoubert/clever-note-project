@@ -1,16 +1,20 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Notes } = require('../db/models/');
+const { Note } = require('../../db/models')
 
-const NotesRepository = require('../db/notes-repository');
+const NotesRepository = require('../../db/notes-repository');
 
 const router = express.Router();
 
 router.get('/',
   asyncHandler(async function (req, res) {
     console.log("YOU SHOULD SEE YOUR NOTES")
-    const notes = await NotesRepository.notesByUserId(req.body.user.id);
-    return res.json(notes)
+    const notes = await Note.findAll({
+      where: {
+        userId: req.body.user.id
+      }
+    })();
+    return res.json(notes, userId)
   })
 )
 

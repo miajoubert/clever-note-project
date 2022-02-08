@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 const apiRouter = require('./api');
-const notesRouter = require('./notes');
+// const notesRouter = require('./notes');
 
 router.use('/api', apiRouter)
-router.use('/notes', notesRouter);
+// router.use('/notes', notesRouter);
 
 if (process.env.NODE_ENV === 'production') {
   const path = require('path');

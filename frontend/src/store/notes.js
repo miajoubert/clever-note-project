@@ -58,25 +58,71 @@ export const deleteNote = (noteId) => async (dispatch) => {
   dispatch(remove(noteId));
 }
 
+let testNotes = [
+  {
+    id: 1,
+    title: "my note",
+    userId: 1,
+    notebookId: 1,
+    content: "this is my note!",
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    id: 2,
+    title: "my OTHER note",
+    userId: 1,
+    notebookId: 1,
+    content: "this is my note!",
+    createdAt: new Date(),
+    updatedAt: new Date()
+  }
+]
+
 
 const initialState = {};
 
 const notesReducer = (state = initialState, action) => {
   switch (action.type) {
     case LIST_NOTE:
-      const newNotes = ["note1", "note2"];
-      console.log('NEWNOTES in REDUCER', newNotes)
-      action.items.forEach((note) => {
-        newNotes[note.id] = note;
-      });
-      return {
-        ...state,
-        newNotes
+      const newState = {
+        1: {
+          id: 1,
+          title: "my note",
+          userId: 1,
+          notebookId: 1,
+          content: "this is my note!",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        2: {
+          id: 2,
+          title: "my OTHER note",
+          userId: 1,
+          notebookId: 1,
+          content: "this is my note!",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        }
       };
+      // testNotes.forEach(note => {
+      //   newState[note.id] = note
+      // });
+      console.log("MY CURRENT STATE", newState)
+      return newState
+    // const newNotes = { ...testNotes };
+    // console.log('NEWNOTES in REDUCER', newNotes)
+    // action.items.forEach((note) => {
+    //   newNotes[note.id] = note;
+    // });
+    // return {
+    //   ...state,
+    //   newNotes
+    // };
     case ADD_NOTE:
-      const newState = { ...state };
-      newState[action.noteId] = action.note;
-      return newState;
+      const addState = { ...state };
+      addState[action.noteId] = action.note;
+      return addState;
     case UPDATE_NOTE:
       return {
         ...state,

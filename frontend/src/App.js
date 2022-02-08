@@ -4,9 +4,13 @@ import { Switch, Route } from 'react-router-dom';
 
 import * as sessionActions from './store/session'
 import Navigation from './components/Navigation';
-import SignupFormPage from './components/SignupForm';
 import LandingPage from './components/LandingPage';
+import SignupFormPage from './components/SignupForm';
+import NotesPage from './components/Notes';
+// import NotebooksPage from './components/Notebooks';
+// import RemindersPage from './components/Reminders';
 import Errors from './components/Errors';
+
 
 import './index.css';
 
@@ -29,6 +33,15 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="/notes">
+            <NotesPage />
+          </Route>
+          {/* <Route path="/notebooks">
+            <NotesPage />
+          </Route> */}
+          {/* <Route path="/reminders">
+            <NotesPage />
+          </Route> */}
           <Route path="/">
             <Errors />
           </Route>
