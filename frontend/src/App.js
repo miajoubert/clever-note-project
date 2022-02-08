@@ -26,6 +26,10 @@ function App() {
           </Route>
         </Switch>
       )}
+      <img
+        className='homePic'
+        src="https://txcatholic.org/wp-content/uploads/2019/03/Notebook-pen-and-coffee-for-web-white-background-300x200.jpg"
+      ></img>
     </>
   );
 }
