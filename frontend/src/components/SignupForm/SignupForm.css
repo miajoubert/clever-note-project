@@ -16,7 +16,7 @@ body {
 }
 
 .submitButton {
-  background-color: white;
+  background-color: #00a82b;
   margin: 15px 0px 0px 80px;
   border: black solid 2px;
   border-radius: 10px;
@@ -25,5 +25,5 @@ body {
   font-weight: bold;
 }
 .submitButton:hover {
-  background-color: #00a82b;
+  background-color: lightgray
 }

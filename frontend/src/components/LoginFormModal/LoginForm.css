@@ -31,27 +31,29 @@ input {
 }
 
 .loginButton {
-  background-color: white;
+  background-color: #00a82b;
   width: auto;
   margin: 10px 10px;
   border: black solid 2px;
   border-radius: 10px;
   padding: 5px;
   font-size: 15px;
+  font-weight: bold;
 }
 .loginButton:hover {
-  background-color: #00a82b;
+  background-color: lightgray;
 }
 
 
 .nav {
-  background-color: white;
+  background-color: #00a82b;
   margin: 0px 10px 0px 80px;
   border: black solid 2px;
   border-radius: 10px;
   padding: 5px;
   font-size: 15px;
+  font-weight: bold;
 }
 .nav:hover {
-  background-color: #00a82b;
+  background-color: lightgray;
 }
