@@ -1,11 +1,29 @@
 .navLinks {
   list-style-type: none;
+  position: -webkit-sticky;
 }
 
-a {
+a:link {
   text-decoration: none;
+}
+
+.home {
   color: black;
 }
+
+.navbar {
+  position: absolute;
+  top: 30px; right:40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  /* color: #00a82b; */
+  font-family:'Source Serif Pro', serif;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
 
 .signup {
   background-color: white;
@@ -16,5 +34,58 @@ a {
   font-size: 15px;
 }
 .signup:hover {
+  background-color: #00a82b;
+}
+
+.notes {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  margin-left: 20px;
+}
+
+.notes:hover {
+  color: #00a82b
+}
+
+.profileButton {
+  font-size: 20px;
+  width: 50px;
+  background-color: white;
+  margin: 0px 0px 0px 20px;
+  border: black solid 2px;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 20px;
+}
+.profileButton:hover {
+  background-color: #00a82b;
+}
+
+.profile-dropdown {
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  top: 55px;
+  right: 5px;
+  text-align: right;
+  color: #00a82b;
+  list-style-type: none;
+}
+
+.username {
+  font-weight: bolder;
+}
+
+.logoutButton {
+  background-color: white;
+  margin: 10px 0px;
+  border: black solid 2px;
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
+.logoutButton:hover {
   background-color: #00a82b;
 }

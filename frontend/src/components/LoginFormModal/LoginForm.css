@@ -2,22 +2,18 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.loginModal {
-  border-radius: 20px;
-}
-
 .loginForm {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  width: 200px;
+  text-align: center;
   margin: 1rem;
-  padding-right: 10rem;
+  font-weight: bold;
 }
 
 .title {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  text-align: right;
+  text-align: center;
   font-weight: bolder;
 }
 
@@ -28,10 +24,25 @@ body {
 }
 
 input {
-  margin: 10px 0px 0px 10px;
-  height: 25px;
+  margin: 10px 0px;
+  padding: 5px;
+  height: 20px;
   border-radius: 10px;
 }
+
+.loginButton {
+  background-color: white;
+  width: auto;
+  margin: 10px 10px;
+  border: black solid 2px;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 15px;
+}
+.loginButton:hover {
+  background-color: #00a82b;
+}
+
 
 .nav {
   background-color: white;

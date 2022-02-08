@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import * as sessionActions from './store/session'
 import Navigation from './components/Navigation';
-import SignupFormPage from './components/SignupFormPage';
+import SignupFormPage from './components/SignupForm';
 
 import './index.css';
 

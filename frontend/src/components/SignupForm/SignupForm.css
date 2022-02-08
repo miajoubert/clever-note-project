@@ -8,16 +8,22 @@ body {
   align-items: flex-end;
   width: 60vw;
   min-width: 350px;
+  font-weight: bold;
 }
 
-button {
+.signupForm > label > input {
+  margin-left: 10px;
+}
+
+.submitButton {
   background-color: white;
   margin: 15px 0px 0px 80px;
   border: black solid 2px;
   border-radius: 10px;
   padding: 5px;
   font-size: 15px;
+  font-weight: bold;
 }
-button:hover {
+.submitButton:hover {
   background-color: #00a82b;
 }
