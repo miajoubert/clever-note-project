@@ -1,5 +1,7 @@
 .navLinks {
   list-style-type: none;
+  display: flex;
+  flex-direction: row;
   position: -webkit-sticky;
 }
 
@@ -24,6 +26,19 @@ a:link {
   font-weight: bold;
 }
 
+.navbarHome {
+  position: absolute;
+  top: 30px; right:80px;
+  min-width: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  /* color: #00a82b; */
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+}
 
 .signup {
   background-color: #00a82b;
