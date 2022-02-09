@@ -1,68 +1,71 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, Route, useParams } from "react-router-dom";
 
 import * as sessionActions from "../../store/session";
-import { listNotes, addNote, updateNote, deleteNote } from "../../store/notes";
+import FloatingButton from "../FloatingButton";
+import NoteDetail from "./NoteDetail";
+import CreateNoteForm from "./NoteCreate";
+import { listNotes, addNote, updateNote, deleteNote, noteDetails } from "../../store/notes";
+
 
 import './Notes.css'
 
 const NotesPage = () => {
+  const { noteId } = useParams();
   const notes = useSelector(state => state.notes)
+  const session = useSelector(state => state.session)
+  const dispatch = useDispatch()
+
+  const [showForm, setShowForm] = useState(false);
+
+  const userId = session.user.id;
+  const notesArr = Object.values(notes);
+
+
+  useEffect(() => {
+    dispatch(listNotes(userId))
+  }, [])
+
+  console.log("USE PARAMS!!!!!!!!!!!!!!!!!!", useParams())
 
   return (
-    <>
-      <div>TESTING NOTES PAGE</div>
-      <div>
-        {/* {notes.map((note) => (
-          <>
-            <tr key={note.id}>
-              <td>
-                <img
-                  className="note-img"
-                  src={"https://www.pngitem.com/pimgs/m/8-82343_clip-art-notepad-background-transparent-background-sticky-note.png"}
-                />
-              </td>
-              <td>{note.title}</td>
-              <td className="centered">{note.content}</td>
-              <td className="centered">{note.updatedAt}</td>
-            </tr>
-          </>
-        ))} */}
-      </div>
-    </>
+    <main>
+      <FloatingButton hidden={showForm} onClick={() => setShowForm(true)} />
+      <nav>
+        {notesArr.map((note) => {
+          return (
+            <NavLink key={note.id} to={`/notes/${note.id}`}>
+              <div
+                className={
+                  Number.parseInt(noteId) === note.id
+                    ? "noteSelected"
+                    : "note"
+                }
+              >
+                <div className="primary-text">{note.title}</div>
+                <div className="secondary-text">
+                  ({new Date(note.updatedAt).getMonth() + 1}/{new Date(note.updatedAt).getDate()}/{new Date(note.updatedAt).getFullYear()})
+                </div>
+                <div> --- </div>
+              </div>
+            </NavLink>
+          )
+        }
+        )}
+      </nav>
+
+      {
+        showForm ? (
+          <CreateNoteForm hideForm={() => setShowForm(false)} />
+        ) : (
+          <Route path="/notes/:noteId">
+            <NoteDetail />
+          </Route>
+        )
+      }
+    </main>
   )
-
-
-
-  // const dispatch = useDispatch();
-  // const notes = useSelector((state) => state.notes)
-  // const userId = useSelector((state) => state.session.user.id);
-
-  // const [showForm, setShowForm] = useState(false);
-  // const [editNoteId, setEditNoteId] = useState(null);
-
-  // const Fab = props => {
-  //   return (
-  //     <div className={props.hidden ? 'fab is-hidden' : 'fab'} onClick={props.onClick}>
-  //       <span aria-label="add" role="img" className="fab-symbol">➕</span>
-  //     </div>
-  //   );
-  // };
-
-  // const payload = {
-  //   ...notes,
-  //   title: "TESTING TITLE",
-  //   notebookId: "1",
-  //   content: "TESTING CONTENT",
-  // }
-
-  // useEffect(() => {
-  //   dispatch(listNotes(userId));
-  //   dispatch(addNote(payload, userId))
-  //   dispatch(updateNote(payload))
-  //   // dispatch(deleteNote(note.id))
-  // })
 }
 
 export default NotesPage;

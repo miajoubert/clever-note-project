@@ -1,12 +1,17 @@
-const LIST_NOTE = 'notes/LIST';
+const LIST_NOTES = 'notes/LIST';
+const LIST_NOTE = 'notes/ONE'
 const ADD_NOTE = 'notes/ADD_NOTE';
 const UPDATE_NOTE = 'notes/UPDATE_NOTE';
 const DELETE_NOTE = 'notes/DELETE_NOTE';
 
-const list = (notes, userId) => ({
+const list = (notes) => ({
+  type: LIST_NOTES,
+  notes
+})
+
+const one = (note) => ({
   type: LIST_NOTE,
-  notes,
-  userId
+  note
 })
 
 const add = (payload, userId) => ({
@@ -26,13 +31,22 @@ const remove = (noteId) => ({
 })
 
 export const listNotes = (userId) => async (dispatch) => {
-  const response = await fetch(`/api/notes`)
+  const response = await fetch(`/api/notes`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json", "data": userId }
+  });
   const notes = await response.json();
-  dispatch(list(notes, userId))
+  dispatch(list(notes))
+}
+
+export const noteDetails = (noteId) => async (dispatch) => {
+  const response = await fetch(`/api/notes/${noteId}`)
+  const note = await response.json();
+  dispatch(one(note))
 }
 
 export const addNote = (payload, userId) => async (dispatch) => {
-  const response = await fetch(`/api/notes`, {
+  const response = await fetch(`/api/notes/add`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)
@@ -58,67 +72,22 @@ export const deleteNote = (noteId) => async (dispatch) => {
   dispatch(remove(noteId));
 }
 
-let testNotes = [
-  {
-    id: 1,
-    title: "my note",
-    userId: 1,
-    notebookId: 1,
-    content: "this is my note!",
-    createdAt: new Date(),
-    updatedAt: new Date()
-  },
-  {
-    id: 2,
-    title: "my OTHER note",
-    userId: 1,
-    notebookId: 1,
-    content: "this is my note!",
-    createdAt: new Date(),
-    updatedAt: new Date()
-  }
-]
-
-
 const initialState = {};
 
 const notesReducer = (state = initialState, action) => {
   switch (action.type) {
+    case LIST_NOTES:
+      const newState = { ...state };
+      // console.log("ACTION dot NOTES!!!!!", action.notes)
+      action.notes.forEach((note) => {
+        newState[note.id] = note;
+      });
+      // console.log("NEW STATE!!!!!!!!!!!!", newState)
+      return newState;
     case LIST_NOTE:
-      const newState = {
-        1: {
-          id: 1,
-          title: "my note",
-          userId: 1,
-          notebookId: 1,
-          content: "this is my note!",
-          createdAt: new Date(),
-          updatedAt: new Date()
-        },
-        2: {
-          id: 2,
-          title: "my OTHER note",
-          userId: 1,
-          notebookId: 1,
-          content: "this is my note!",
-          createdAt: new Date(),
-          updatedAt: new Date()
-        }
-      };
-      // testNotes.forEach(note => {
-      //   newState[note.id] = note
-      // });
-      console.log("MY CURRENT STATE", newState)
-      return newState
-    // const newNotes = { ...testNotes };
-    // console.log('NEWNOTES in REDUCER', newNotes)
-    // action.items.forEach((note) => {
-    //   newNotes[note.id] = note;
-    // });
-    // return {
-    //   ...state,
-    //   newNotes
-    // };
+      const oneState = { ...state };
+      oneState[action.notes.id] = action.notes;
+      return oneState;
     case ADD_NOTE:
       const addState = { ...state };
       addState[action.noteId] = action.note;
