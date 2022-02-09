@@ -7,6 +7,7 @@ import Navigation from './components/Navigation';
 import LandingPage from './components/LandingPage';
 import SignupFormPage from './components/SignupForm';
 import NotesPage from './components/Notes';
+import NoteDetail from './components/Notes/NoteDetail';
 // import NotebooksPage from './components/Notebooks';
 // import RemindersPage from './components/Reminders';
 import Errors from './components/Errors';
@@ -33,7 +34,7 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path={["/notes", "/notes/:noteId"]}>
+          <Route path={["/", "/notes", "/notes/:noteId"]} exact>
             <NotesPage />
           </Route>
           {/* <Route path="/notebooks">
@@ -46,7 +47,8 @@ function App() {
             <Errors />
           </Route>
         </Switch>
-      )}
+      )
+      }
     </>
   );
 }

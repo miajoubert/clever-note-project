@@ -9,7 +9,8 @@ router.get('/',
     const userId = Number.parseInt(req.headers.data);
 
     const notes = await Note.findAll({
-      where: { userId }
+      where: { userId },
+      order: [['updatedAt', 'DESC']]
     });
 
     return res.json(notes)
@@ -26,10 +27,13 @@ router.get('/:noteId',
   })
 );
 
-router.post('/add',
+router.post('/',
   asyncHandler(async function (req, res) {
-    const { userId } = req.body;
+
+    console.log("REQBODY!!!!!!!", req.body)
+
     const {
+      userId,
       title,
       notebookId,
       content

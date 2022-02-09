@@ -1,3 +1,5 @@
+import { csrfFetch } from "./csrf";
+
 const LIST_NOTES = 'notes/LIST';
 const LIST_NOTE = 'notes/ONE'
 const ADD_NOTE = 'notes/ADD_NOTE';
@@ -14,10 +16,9 @@ const one = (note) => ({
   note
 })
 
-const add = (payload, userId) => ({
+const add = (payload) => ({
   type: ADD_NOTE,
-  payload,
-  userId
+  payload
 })
 
 const update = (payload) => ({
@@ -31,7 +32,7 @@ const remove = (noteId) => ({
 })
 
 export const listNotes = (userId) => async (dispatch) => {
-  const response = await fetch(`/api/notes`, {
+  const response = await csrfFetch(`/api/notes`, {
     method: "GET",
     headers: { "Content-Type": "application/json", "data": userId }
   });
@@ -40,23 +41,26 @@ export const listNotes = (userId) => async (dispatch) => {
 }
 
 export const noteDetails = (noteId) => async (dispatch) => {
-  const response = await fetch(`/api/notes/${noteId}`)
+  const response = await csrfFetch(`/api/notes/${noteId}`)
   const note = await response.json();
   dispatch(one(note))
 }
 
-export const addNote = (payload, userId) => async (dispatch) => {
-  const response = await fetch(`/api/notes/add`, {
+export const addNote = (payload) => async (dispatch) => {
+  console.log("HERE IS MY USERID!!!!!!!!!!!!", payload.userId)
+  const response = await csrfFetch(`/api/notes/`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(payload)
   });
   const note = response.json();
-  dispatch(add(payload, userId));
+  dispatch(add(payload));
 }
 
 export const updateNote = (payload) => async (dispatch) => {
-  const response = await fetch(`/api/notes/${payload.id}`, {
+  const response = await csrfFetch(`/api/notes/${payload.id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)
@@ -66,7 +70,7 @@ export const updateNote = (payload) => async (dispatch) => {
 }
 
 export const deleteNote = (noteId) => async (dispatch) => {
-  const response = await fetch(`/api/notes/${noteId}`,
+  const response = await csrfFetch(`/api/notes/${noteId}`,
     { method: "DELETE" }
   );
   dispatch(remove(noteId));
@@ -90,7 +94,7 @@ const notesReducer = (state = initialState, action) => {
       return oneState;
     case ADD_NOTE:
       const addState = { ...state };
-      addState[action.noteId] = action.note;
+      addState[action.notes.id] = action.note;
       return addState;
     case UPDATE_NOTE:
       return {

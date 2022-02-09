@@ -5,49 +5,48 @@ import { NavLink, Route, useParams } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import FloatingButton from "../FloatingButton";
 import NoteDetail from "./NoteDetail";
-import CreateNoteForm from "./NoteCreate";
+import NoteForm from "./NoteForm";
 import { listNotes, addNote, updateNote, deleteNote, noteDetails } from "../../store/notes";
 
 
 import './Notes.css'
 
 const NotesPage = () => {
-  const { noteId } = useParams();
   const notes = useSelector(state => state.notes)
   const session = useSelector(state => state.session)
   const dispatch = useDispatch()
 
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(true);
 
   const userId = session.user.id;
+  const { noteId } = useParams();
   const notesArr = Object.values(notes);
-
 
   useEffect(() => {
     dispatch(listNotes(userId))
-  }, [])
-
-  console.log("USE PARAMS!!!!!!!!!!!!!!!!!!", useParams())
+  }, [dispatch])
 
   return (
     <main>
-      <FloatingButton hidden={showForm} onClick={() => setShowForm(true)} />
-      <nav>
+      <nav className="noteList">
         {notesArr.map((note) => {
           return (
-            <NavLink key={note.id} to={`/notes/${note.id}`}>
+            <NavLink
+              key={note.id}
+              to={`/notes/${note.id}`}
+              onClick={() => setShowForm(false)}
+            >
               <div
                 className={
                   Number.parseInt(noteId) === note.id
-                    ? "noteSelected"
+                    ? "note selected"
                     : "note"
                 }
               >
                 <div className="primary-text">{note.title}</div>
                 <div className="secondary-text">
-                  ({new Date(note.updatedAt).getMonth() + 1}/{new Date(note.updatedAt).getDate()}/{new Date(note.updatedAt).getFullYear()})
+                  {new Date(note.updatedAt).getMonth() + 1}/{new Date(note.updatedAt).getDate()}/{new Date(note.updatedAt).getFullYear()}
                 </div>
-                <div> --- </div>
               </div>
             </NavLink>
           )
@@ -57,11 +56,14 @@ const NotesPage = () => {
 
       {
         showForm ? (
-          <CreateNoteForm hideForm={() => setShowForm(false)} />
+          <NoteForm hidden={!showForm} hideForm={() => setShowForm(false)} />
         ) : (
-          <Route path="/notes/:noteId">
-            <NoteDetail />
-          </Route>
+          <>
+            <Route path="/notes/:noteId">
+              <NoteDetail />
+            </Route>
+            <FloatingButton hidden={showForm} onClick={() => setShowForm(true)} />
+          </>
         )
       }
     </main>
