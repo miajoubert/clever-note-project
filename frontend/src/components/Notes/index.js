@@ -16,7 +16,7 @@ const NotesPage = () => {
   const session = useSelector(state => state.session)
   const dispatch = useDispatch()
 
-  const [showForm, setShowForm] = useState(true);
+  const [showForm, setShowForm] = useState(false);
 
   const userId = session.user.id;
   const { noteId } = useParams();

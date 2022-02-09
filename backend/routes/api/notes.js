@@ -29,9 +29,6 @@ router.get('/:noteId',
 
 router.post('/',
   asyncHandler(async function (req, res) {
-
-    console.log("REQBODY!!!!!!!", req.body)
-
     const {
       userId,
       title,
@@ -71,15 +68,15 @@ router.put('/:id',
   })
 );
 
-router.delete("/:id",
+router.delete("/:noteId",
   asyncHandler(async function (req, res) {
-    const { userId, id } = req.params;
+    const { noteId } = req.params;
 
     await Note.destroy({
-      where: { id }
+      where: { id: noteId }
     })
 
-    return id;
+    return res.json(noteId);
   })
 )
 

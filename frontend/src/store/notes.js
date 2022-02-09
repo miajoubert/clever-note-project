@@ -16,9 +16,9 @@ const one = (note) => ({
   note
 })
 
-const add = (payload) => ({
+const add = (note) => ({
   type: ADD_NOTE,
-  payload
+  note
 })
 
 const update = (payload) => ({
@@ -26,9 +26,9 @@ const update = (payload) => ({
   payload
 })
 
-const remove = (noteId) => ({
+const remove = (note) => ({
   type: DELETE_NOTE,
-  noteId
+  note
 })
 
 export const listNotes = (userId) => async (dispatch) => {
@@ -47,7 +47,6 @@ export const noteDetails = (noteId) => async (dispatch) => {
 }
 
 export const addNote = (payload) => async (dispatch) => {
-  console.log("HERE IS MY USERID!!!!!!!!!!!!", payload.userId)
   const response = await csrfFetch(`/api/notes/`, {
     method: "POST",
     headers: {
@@ -55,8 +54,9 @@ export const addNote = (payload) => async (dispatch) => {
     },
     body: JSON.stringify(payload)
   });
-  const note = response.json();
-  dispatch(add(payload));
+  const note = await response.json();
+
+  dispatch(add(note));
 }
 
 export const updateNote = (payload) => async (dispatch) => {
@@ -65,15 +65,15 @@ export const updateNote = (payload) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)
   });
-  const note = response.json();
+  const note = await response.json();
   dispatch(update(payload));
 }
 
 export const deleteNote = (noteId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/notes/${noteId}`,
+  const note = await csrfFetch(`/api/notes/${noteId}`,
     { method: "DELETE" }
   );
-  dispatch(remove(noteId));
+  dispatch(remove(note));
 }
 
 const initialState = {};
@@ -90,11 +90,14 @@ const notesReducer = (state = initialState, action) => {
       return newState;
     case LIST_NOTE:
       const oneState = { ...state };
-      oneState[action.notes.id] = action.notes;
+      oneState[action.note.id] = action.note;
       return oneState;
     case ADD_NOTE:
-      const addState = { ...state };
-      addState[action.notes.id] = action.note;
+      const addState = {
+        ...state,
+        [action.note.id]: action.note
+      };
+      console.log("MY NEW STATE", addState)
       return addState;
     case UPDATE_NOTE:
       return {
@@ -103,7 +106,7 @@ const notesReducer = (state = initialState, action) => {
       }
     case DELETE_NOTE:
       const deleteState = { ...state };
-      delete deleteState[action.noteId];
+      delete deleteState[action.note.id];
       return deleteState;
     default:
       return state;

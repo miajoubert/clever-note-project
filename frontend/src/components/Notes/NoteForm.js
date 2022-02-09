@@ -20,7 +20,7 @@ const NoteForm = ({ hideForm }) => {
 
   const userId = session.user.id;
 
-  const handleSubmit = async (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     const payload = {
@@ -30,10 +30,11 @@ const NoteForm = ({ hideForm }) => {
       content
     };
 
-    let newNote = dispatch(addNote(payload, userId));
+    let newNote = dispatch(addNote(payload));
     console.log("MY NEW NOTE!!!!!", newNote)
     if (newNote) {
       history.push(`/notes/${newNote.id}`);
+
       hideForm()
     }
   };
@@ -46,7 +47,7 @@ const NoteForm = ({ hideForm }) => {
   return (
     <>
       <div>Take Note...</div>
-      <div>
+      <form>
         <label>
           Title
           <input
@@ -76,12 +77,7 @@ const NoteForm = ({ hideForm }) => {
         </label>
         <button type="submit" onClick={handleSubmit}>Create Note</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>
-      </div>
-      {/* <section className="newForm">
-        <form className="noteForm" onSubmit={handleSubmit}>
-
-        </form>
-      </section> */}
+      </form>
     </>
   )
 }

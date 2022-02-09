@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 import * as sessionActions from "../../store/session";
 import FloatingButton from "../FloatingButton";
-import { listNotes, noteDetails } from "../../store/notes";
+import { listNotes, noteDetails, editNote, deleteNote } from "../../store/notes";
 
 import './Notes.css'
 
@@ -29,6 +29,10 @@ const NoteDetail = () => {
         <div className="centered">
           {new Date(note.updatedAt).toDateString()} {new Date(note.updatedAt).getHours()}:{new Date(note.updatedAt).getMinutes()}
         </div>
+      </div>
+      <div>
+        <button>Edit</button>
+        <button onClick={() => dispatch(deleteNote(noteId))}>Delete</button>
       </div>
     </>
   )
