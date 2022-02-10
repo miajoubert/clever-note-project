@@ -19,9 +19,7 @@ router.get('/',
 
 router.get('/:noteId',
   asyncHandler(async function (req, res) {
-    const { noteId } = req.params
-
-    console.log("GET ROUTE!!!!!", noteId)
+    const { noteId } = req.params;
 
     const note = await Note.findByPk(noteId);
 

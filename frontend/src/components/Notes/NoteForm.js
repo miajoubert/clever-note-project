@@ -29,10 +29,9 @@ const NoteForm = ({ hideForm }) => {
       content
     };
 
-    const newState = await dispatch(addNote(payload));
-    console.log(newState)
-    hideForm()
-    return <Redirect to={`/notes/${payload.id}`} />
+    let newNote = await dispatch(addNote(payload));
+    hideForm();
+    history.push(`/notes/${newNote.id}`);
   };
 
   const handleCancel = (e) => {
