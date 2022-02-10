@@ -9,7 +9,8 @@ router.get('/',
     const userId = Number.parseInt(req.headers.data);
 
     const notes = await Note.findAll({
-      where: { userId }
+      where: { userId },
+      order: [['updatedAt', 'DESC']]
     });
 
     return res.json(notes)
@@ -20,16 +21,18 @@ router.get('/:noteId',
   asyncHandler(async function (req, res) {
     const { noteId } = req.params
 
+    console.log("GET ROUTE!!!!!", noteId)
+
     const note = await Note.findByPk(noteId);
 
     return res.json(note)
   })
 );
 
-router.post('/add',
+router.post('/',
   asyncHandler(async function (req, res) {
-    const { userId } = req.body;
     const {
+      userId,
       title,
       notebookId,
       content
@@ -48,7 +51,8 @@ router.post('/add',
 
 router.put('/:id',
   asyncHandler(async function (req, res) {
-    const { userId, id } = req.params;
+    const { id } = req.params;
+
     const {
       title,
       notebookId,
@@ -57,7 +61,7 @@ router.put('/:id',
 
     const note = await Note.findByPk(id)
 
-    const altNote = await note.save({
+    const altNote = await note.update({
       title,
       notebookId,
       content
@@ -67,16 +71,16 @@ router.put('/:id',
   })
 );
 
-router.delete("/:id",
+router.delete("/:noteId",
   asyncHandler(async function (req, res) {
-    const { userId, id } = req.params;
+    const { noteId } = req.params;
 
     await Note.destroy({
-      where: { id }
+      where: { id: noteId }
     })
 
-    return id;
+    return res.json({ noteId });
   })
-)
+);
 
 module.exports = router;

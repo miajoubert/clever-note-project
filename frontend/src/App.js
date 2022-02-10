@@ -3,10 +3,12 @@ import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 
 import * as sessionActions from './store/session'
+
 import Navigation from './components/Navigation';
 import LandingPage from './components/LandingPage';
 import SignupFormPage from './components/SignupForm';
 import NotesPage from './components/Notes';
+import NoteDetail from './components/Notes/NoteDetail';
 // import NotebooksPage from './components/Notebooks';
 // import RemindersPage from './components/Reminders';
 import Errors from './components/Errors';
@@ -33,7 +35,12 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path={["/notes", "/notes/:noteId"]}>
+          <Route path={
+            ["/",
+              "/notes",
+              "/notes/:noteId",
+              "/notes/:noteId/edit"]
+          } exact>
             <NotesPage />
           </Route>
           {/* <Route path="/notebooks">
@@ -46,7 +53,8 @@ function App() {
             <Errors />
           </Route>
         </Switch>
-      )}
+      )
+      }
     </>
   );
 }
