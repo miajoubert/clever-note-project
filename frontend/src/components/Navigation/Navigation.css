@@ -86,6 +86,7 @@ a:link {
   position: absolute;
   top: 55px;
   right: 0px;
+  z-index: 2;
   text-align: right;
   color: #00a82b;
   list-style-type: none;
@@ -106,4 +107,19 @@ a:link {
 }
 .logoutButton:hover {
   background-color: lightgray;
+}
+
+@media screen and (max-width: 700px) {
+  .navbar {
+    position: absolute;
+    top: 70px; right:40px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .navbar {
+    position: absolute;
+    top: 60px; right:40px;
+    flex-direction: column;
+  }
 }

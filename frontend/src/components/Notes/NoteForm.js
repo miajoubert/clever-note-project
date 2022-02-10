@@ -1,9 +1,9 @@
 import React, { useEffect, useState, Route } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams, useHistory } from "react-router-dom";
+import { NavLink, useParams, useHistory, Redirect } from "react-router-dom";
 
 import * as sessionActions from "../../store/session";
-import { addNote, updateNote } from "../../store/notes";
+import { addNote, listNotes, noteDetails, updateNote } from "../../store/notes";
 
 import './Notes.css'
 
@@ -13,12 +13,16 @@ const NoteForm = ({ hideForm }) => {
   const dispatch = useDispatch()
   const history = useHistory();
 
-  const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const [notebookId, setNotebookId] = useState(1)
 
   const userId = session.user.id;
+
+  useEffect(() => {
+    dispatch(listNotes())
+  }, [])
+
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -30,16 +34,17 @@ const NoteForm = ({ hideForm }) => {
       content
     };
 
-    let newNote = dispatch(addNote(payload));
-    console.log("MY NEW NOTE!!!!!", newNote)
-    if (newNote) {
-      history.push(`/notes/${newNote.id}`);
+    const newNote = await dispatch(addNote(payload));
+    await dispatch(listNotes(newNote))
 
+    if (newNote) {
+      let note = await dispatch(noteDetails(newNote.id))
+      console.log("NEW NOTE NOTE", note)
       hideForm()
     }
   };
 
-  const handleCancelClick = (e) => {
+  const handleCancel = (e) => {
     e.preventDefault();
     hideForm()
   };
@@ -76,7 +81,7 @@ const NoteForm = ({ hideForm }) => {
             onChange={(e) => setNotebookId(e.target.value)} />
         </label>
         <button type="submit" onClick={handleSubmit}>Create Note</button>
-        <button type="button" onClick={handleCancelClick}>Cancel</button>
+        <button type="button" onClick={handleCancel}>Cancel</button>
       </form>
     </>
   )

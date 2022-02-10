@@ -74,10 +74,12 @@ main {
 .content {
   margin-top: 80px;
   margin-left: 120px;
+  width: 24rem;
 }
 .timestamp {
   position: static;
   bottom: 1rem;
+  width: auto;
   text-align: right;
   font-weight: 500;
   font-style: italic;
@@ -85,8 +87,8 @@ main {
 
 .bottomNoteDetails {
   position: sticky;
-  margin-left: 7rem;
-  margin-top: 20px;
+  margin-left: 9rem;
+  margin-top: 40px;
   bottom: .5rem;
   display: flex;
   flex-direction: row;
@@ -133,4 +135,19 @@ main {
   box-shadow: 0 6px 8px rgb(0, 0, 0, 0.3);
   height: 58px;
   width: 83px;
+}
+
+
+@media screen and (max-width: 700px) {
+  main {
+    position: absolute;
+    top: 10rem;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  main {
+    position: absolute;
+    top: 12rem;
+  }
 }

@@ -29,7 +29,7 @@ router.get('/:noteId',
   })
 );
 
-router.post('/',
+router.post('/new',
   asyncHandler(async function (req, res) {
     const {
       userId,
@@ -80,6 +80,6 @@ router.delete("/:noteId",
 
     return res.json({ noteId });
   })
-)
+);
 
 module.exports = router;

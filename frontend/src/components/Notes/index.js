@@ -24,7 +24,8 @@ const NotesPage = () => {
   const notesArr = Object.values(notes);
 
   useEffect(() => {
-    dispatch(listNotes(userId));
+    dispatch(listNotes(userId))
+      .then(() => setIsLoaded(true));
     dispatch(noteDetails(noteId))
   }, [])
 
@@ -55,7 +56,12 @@ const NotesPage = () => {
         }
         )}
       </nav>
-      <FloatingButton hidden={showForm} onClick={() => setShowForm(true)} />
+
+      <NavLink
+        to="/notes/new">
+        <FloatingButton hidden={showForm} onClick={() => setShowForm(true)} />
+      </NavLink>
+
 
       {
         showForm ? (
@@ -63,7 +69,7 @@ const NotesPage = () => {
         ) : (
           <>
             <Route path="/notes/:noteId">
-              <NoteDetail />
+              <NoteDetail showDetails={() => setShowForm(true)} />
             </Route>
           </>
         )

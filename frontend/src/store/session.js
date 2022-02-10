@@ -75,8 +75,6 @@ const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
     case START_SESSION: {
       const newState = { ...state };
-
-      console.log("NEW STATE REDUCER", newState.user)
       newState.user = action.payload;
       return newState;
     }

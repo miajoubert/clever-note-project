@@ -8,43 +8,64 @@ import { listNotes, noteDetails, editNote, deleteNote } from "../../store/notes"
 
 import './Notes.css'
 
-const NoteDetail = () => {
+const NoteDetail = ({ showDetails }) => {
   const { noteId } = useParams();
 
-  const note = useSelector(state => state.notes[noteId]);
+  const notes = useSelector(state => state.notes)
   const session = useSelector(state => state.session);
   const dispatch = useDispatch();
 
-  useEffect((noteId) => {
-    dispatch(noteDetails(noteId))
-  }, [dispatch, noteId])
+  let note = notes[noteId]
+
+  useEffect(() => {
+    dispatch(listNotes(notes))
+  }, [dispatch])
 
   async function deleteNoteFunc() {
     await dispatch(deleteNote(noteId))
-    return <Redirect to="/notes" />
+    await (showDetails())
   }
-
 
   const userId = session.user.id;
 
-  return (
+  if (!note) {
+    return (
+      <div
+        className="noteDetailBackground"
+        hidden={noteDetails}
+      >
+        <div className="title" style={{ color: "red" }}>Note not found!</div>
+        <div className="content" style={{ color: "red" }}>
+          <b>
+            This note has been deleted. Please select another note...
+          </b>
+        </div>
+      </div >
+    )
+  } else return (
     <>
-      <div className="noteDetailBackground" >
-        <div className="title">{note.title}</div>
-        <div className="content">{note.content}</div>
+      <div
+        className="noteDetailBackground"
+        hidden={noteDetails}>
+        <div className="title">{note?.title}</div>
+        <div className="content">{note?.content}</div>
         <div className="bottomNoteDetails">
-          <button className="editButton">Edit Note</button>
+          <button
+            className="editButton"
+          >
+            Edit Note
+          </button>
           <button
             className="deleteButton"
             onClick={deleteNoteFunc}
           >
-            Delete Note</button>
+            Delete Note
+          </button>
           <div className="timestamp">
-            {new Date(note.updatedAt).toDateString()} {new Date(note.updatedAt).getHours()}:{new Date(note.updatedAt).getMinutes()}
+            {new Date(note?.updatedAt).toDateString()} {new Date(note?.updatedAt).getHours()}:{new Date(note?.updatedAt).getMinutes()}
           </div>
         </div>
       </div>
-
     </>
   )
 }
