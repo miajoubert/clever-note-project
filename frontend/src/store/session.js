@@ -42,8 +42,6 @@ export const restoreSession = () => async dispatch => {
 export const signup = (user) => async (dispatch) => {
   const { username, email, password } = user;
 
-  console.log("IN MY THUNK NOW")
-
   const response = await csrfFetch("/api/users", {
     method: "POST",
     body: JSON.stringify({
@@ -53,9 +51,8 @@ export const signup = (user) => async (dispatch) => {
     }),
   });
 
-  console.log("THIS IS MYRESPONSE", response)
   const data = await response.json();
-  console.log("THIS IS MY THUNK DATA", data)
+
   dispatch(startSession(data.user));
   return response;
 };

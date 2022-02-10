@@ -29,58 +29,68 @@ const NotesPage = () => {
     dispatch(noteDetails(noteId))
   }, [])
 
-  return (
-    <main>
-      <nav
-        className="noteList">
-        {notesArr.map((note) => {
-          return (
-            <NavLink
-              key={note.id}
-              to={`/notes/${note.id}`}
-              onClick={() => setShowForm(false)}
-            >
-              <div
-                className={
-                  Number.parseInt(noteId) === note.id
-                    ? "note selected"
-                    : "note"
-                }
+  if (!session.user) {
+    return (
+      <>
+        <div>
+          LOGGED OUT
+        </div>
+      </>
+    )
+  } else {
+    return (
+      <main>
+        <nav
+          className="noteList">
+          {notesArr.map((note) => {
+            return (
+              <NavLink
+                key={note.id}
+                to={`/notes/${note.id}`}
+                onClick={() => setShowForm(false)}
               >
-                <div className="primary-text">{note.title}</div>
-                <div className="secondary-text">
-                  {new Date(note.updatedAt).getMonth() + 1}/{new Date(note.updatedAt).getDate()}/{new Date(note.updatedAt).getFullYear()}
+                <div
+                  className={
+                    Number.parseInt(noteId) === note.id
+                      ? "note selected"
+                      : "note"
+                  }
+                >
+                  <div className="primary-text">{note.title}</div>
+                  <div className="secondary-text">
+                    {new Date(note.updatedAt).getMonth() + 1}/{new Date(note.updatedAt).getDate()}/{new Date(note.updatedAt).getFullYear()}
+                  </div>
                 </div>
-              </div>
-            </NavLink>
+              </NavLink>
+            )
+          }
+          )}
+        </nav>
+
+        <FloatingButton
+          hidden={showForm}
+          onClick={() => setShowForm(true)}
+        />
+
+        {
+          showForm ? (
+            <NoteForm
+              hidden={!showForm}
+              hideForm={() => setShowForm(false)} />
+          ) : (
+            <>
+              <Route path="/notes/:noteId">
+                <NoteDetail
+                  hidden={!showForm}
+                  setShowForm={() => setShowForm(false)}
+                />
+              </Route>
+            </>
           )
         }
-        )}
-      </nav>
-
-      <FloatingButton
-        hidden={showForm}
-        onClick={() => setShowForm(true)}
-      />
-
-      {
-        showForm ? (
-          <NoteForm
-            hidden={!showForm}
-            hideForm={() => setShowForm(false)} />
-        ) : (
-          <>
-            <Route path="/notes/:noteId">
-              <NoteDetail
-                hidden={!showForm}
-                setShowForm={() => setShowForm(false)}
-              />
-            </Route>
-          </>
-        )
-      }
-    </main>
-  )
+      </main>
+    )
+  }
 }
 
 export default NotesPage;
