@@ -47,7 +47,7 @@ export const noteDetails = (noteId) => async (dispatch) => {
 }
 
 export const addNote = (payload) => async (dispatch) => {
-  const response = await csrfFetch(`/api/notes/new`, {
+  const response = await csrfFetch(`/api/notes`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -66,6 +66,7 @@ export const updateNote = (payload) => async (dispatch) => {
     body: JSON.stringify(payload)
   });
   const note = await response.json();
+  console.log("THUNK's NEW NOTE", note)
   dispatch(update(payload));
 }
 
@@ -98,7 +99,7 @@ const notesReducer = (state = initialState, action) => {
         ...state,
         [action.note.id]: action.note
       };
-      return { addState, noteId: action.note.id };
+      return addState;
     case UPDATE_NOTE:
       return {
         ...state,

@@ -29,7 +29,7 @@ router.get('/:noteId',
   })
 );
 
-router.post('/new',
+router.post('/',
   asyncHandler(async function (req, res) {
     const {
       userId,
@@ -51,7 +51,8 @@ router.post('/new',
 
 router.put('/:id',
   asyncHandler(async function (req, res) {
-    const { userId, id } = req.params;
+    const { id } = req.params;
+
     const {
       title,
       notebookId,
@@ -60,7 +61,7 @@ router.put('/:id',
 
     const note = await Note.findByPk(id)
 
-    const altNote = await note.save({
+    const altNote = await note.update({
       title,
       notebookId,
       content

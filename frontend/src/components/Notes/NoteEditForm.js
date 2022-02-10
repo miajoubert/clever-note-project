@@ -1,21 +1,19 @@
 import React, { useEffect, useState, Route } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams, useHistory, Redirect } from "react-router-dom";
 
 import * as sessionActions from "../../store/session";
 import { addNote, listNotes, noteDetails, updateNote } from "../../store/notes";
 
 import './Notes.css'
 
-const NoteForm = ({ hideForm }) => {
-  const notes = useSelector(state => state.notes)
+const NoteEditForm = ({ note, hideModal, showDetails }) => {
   const session = useSelector(state => state.session)
+  const notes = useSelector(state => state.notes)
   const dispatch = useDispatch()
-  const history = useHistory();
 
-  const [title, setTitle] = useState("")
-  const [content, setContent] = useState("")
-  const [notebookId, setNotebookId] = useState(1)
+  const [title, setTitle] = useState(note.title)
+  const [content, setContent] = useState(note.content)
+  const [notebookId, setNotebookId] = useState(note.notebookId)
 
   const userId = session.user.id;
 
@@ -23,26 +21,27 @@ const NoteForm = ({ hideForm }) => {
     e.preventDefault();
 
     const payload = {
-      userId,
+      ...note,
       title,
       notebookId,
       content
     };
 
-    const newState = await dispatch(addNote(payload));
-    console.log(newState)
-    hideForm()
-    return <Redirect to={`/notes/${payload.id}`} />
-  };
+    const updatedNote = await dispatch(updateNote(payload))
+    if (updatedNote) {
+      hideModal()
+      await dispatch(listNotes(notes))
+    }
+  }
 
   const handleCancel = (e) => {
     e.preventDefault();
-    hideForm()
+    hideModal()
   };
 
   return (
     <>
-      <div>Take Note...</div>
+      <div>Revise:</div>
       <form>
         <label>
           Title
@@ -71,11 +70,22 @@ const NoteForm = ({ hideForm }) => {
             value={notebookId}
             onChange={(e) => setNotebookId(e.target.value)} />
         </label>
-        <button type="submit" onClick={handleSubmit}>Create Note</button>
-        <button type="button" onClick={handleCancel}>Cancel</button>
+        <button
+          type="submit"
+          onClick={handleSubmit}
+        >
+          Edit Note
+        </button>
+        <button
+          type="button"
+          onClick={handleCancel}
+        >
+          Cancel
+        </button>
       </form>
     </>
+    // )
   )
 }
 
-export default NoteForm;
+export default NoteEditForm

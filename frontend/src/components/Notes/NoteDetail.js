@@ -1,19 +1,24 @@
 import React, { useEffect, useState, Route } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useParams } from "react-router-dom";
+import { NavLink, Redirect, useParams } from "react-router-dom";
 
+import NoteEditModal from "./NoteEditModal";
 import * as sessionActions from "../../store/session";
+
 import FloatingButton from "../FloatingButton";
+import NoteEditForm from "./NoteEditModal";
 import { listNotes, noteDetails, editNote, deleteNote } from "../../store/notes";
 
 import './Notes.css'
 
-const NoteDetail = ({ showDetails }) => {
+const NoteDetail = () => {
   const { noteId } = useParams();
 
   const notes = useSelector(state => state.notes)
   const session = useSelector(state => state.session);
   const dispatch = useDispatch();
+
+  const [hideNoteDetails, setHideNoteDetails] = useState(false)
 
   let note = notes[noteId]
 
@@ -23,7 +28,6 @@ const NoteDetail = ({ showDetails }) => {
 
   async function deleteNoteFunc() {
     await dispatch(deleteNote(noteId))
-    await (showDetails())
   }
 
   const userId = session.user.id;
@@ -32,7 +36,7 @@ const NoteDetail = ({ showDetails }) => {
     return (
       <div
         className="noteDetailBackground"
-        hidden={noteDetails}
+        hidden={hideNoteDetails}
       >
         <div className="title" style={{ color: "red" }}>Note not found!</div>
         <div className="content" style={{ color: "red" }}>
@@ -46,15 +50,13 @@ const NoteDetail = ({ showDetails }) => {
     <>
       <div
         className="noteDetailBackground"
-        hidden={noteDetails}>
+        hidden={hideNoteDetails}>
         <div className="title">{note?.title}</div>
         <div className="content">{note?.content}</div>
         <div className="bottomNoteDetails">
-          <button
-            className="editButton"
-          >
-            Edit Note
-          </button>
+          <NoteEditModal
+            note={note}
+          />
           <button
             className="deleteButton"
             onClick={deleteNoteFunc}
@@ -66,6 +68,8 @@ const NoteDetail = ({ showDetails }) => {
           </div>
         </div>
       </div>
+      {/* )
+      } */}
     </>
   )
 }

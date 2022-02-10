@@ -31,7 +31,8 @@ const NotesPage = () => {
 
   return (
     <main>
-      <nav className="noteList">
+      <nav
+        className="noteList">
         {notesArr.map((note) => {
           return (
             <NavLink
@@ -57,19 +58,23 @@ const NotesPage = () => {
         )}
       </nav>
 
-      <NavLink
-        to="/notes/new">
-        <FloatingButton hidden={showForm} onClick={() => setShowForm(true)} />
-      </NavLink>
-
+      <FloatingButton
+        hidden={showForm}
+        onClick={() => setShowForm(true)}
+      />
 
       {
         showForm ? (
-          <NoteForm hidden={!showForm} hideForm={() => setShowForm(false)} />
+          <NoteForm
+            hidden={!showForm}
+            hideForm={() => setShowForm(false)} />
         ) : (
           <>
             <Route path="/notes/:noteId">
-              <NoteDetail showDetails={() => setShowForm(true)} />
+              <NoteDetail
+                hidden={!showForm}
+                setShowForm={() => setShowForm(false)}
+              />
             </Route>
           </>
         )

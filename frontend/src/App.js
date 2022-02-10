@@ -35,7 +35,12 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path={["/", "/notes", "/notes/:noteId"]} exact>
+          <Route path={
+            ["/",
+              "/notes",
+              "/notes/:noteId",
+              "/notes/:noteId/edit"]
+          } exact>
             <NotesPage />
           </Route>
           {/* <Route path="/notebooks">
