@@ -21,9 +21,9 @@ const add = (note) => ({
   note
 })
 
-const update = (payload) => ({
+const update = (note) => ({
   type: UPDATE_NOTE,
-  payload
+  note
 })
 
 const remove = (noteId) => ({
@@ -57,6 +57,8 @@ export const addNote = (payload) => async (dispatch) => {
   const note = await response.json();
 
   dispatch(add(note));
+
+  return note;
 }
 
 export const updateNote = (payload) => async (dispatch) => {
@@ -66,8 +68,10 @@ export const updateNote = (payload) => async (dispatch) => {
     body: JSON.stringify(payload)
   });
   const note = await response.json();
-  console.log("THUNK's NEW NOTE", note)
-  dispatch(update(payload));
+
+  dispatch(update(note));
+
+  return note;
 }
 
 export const deleteNote = (noteId) => async (dispatch) => {
@@ -95,15 +99,21 @@ const notesReducer = (state = initialState, action) => {
       oneState[action.note.id] = action.note;
       return oneState;
     case ADD_NOTE:
-      const addState = {
-        ...state,
-        [action.note.id]: action.note
-      };
+      if (!state[action.note.id]) {
+        const addState = {
+          ...state,
+          [action.note.id]: action.note
+        };
+      }
+      let addState;
+      const noteList = state.map(id => addState[id]);
+      noteList.push(action.note);
+      addState = noteList;
       return addState;
     case UPDATE_NOTE:
       return {
         ...state,
-        [action.noteId]: action.note
+        [action.note.id]: action.note
       }
     case DELETE_NOTE:
       const deleteState = { ...state };

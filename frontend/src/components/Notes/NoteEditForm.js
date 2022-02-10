@@ -5,11 +5,13 @@ import * as sessionActions from "../../store/session";
 import { addNote, listNotes, noteDetails, updateNote } from "../../store/notes";
 
 import './Notes.css'
+import { useHistory } from "react-router-dom";
 
 const NoteEditForm = ({ note, hideModal, showDetails }) => {
   const session = useSelector(state => state.session)
   const notes = useSelector(state => state.notes)
   const dispatch = useDispatch()
+  const history = useHistory();
 
   const [title, setTitle] = useState(note.title)
   const [content, setContent] = useState(note.content)
@@ -28,10 +30,9 @@ const NoteEditForm = ({ note, hideModal, showDetails }) => {
     };
 
     const updatedNote = await dispatch(updateNote(payload))
-    if (updatedNote) {
-      hideModal()
-      await dispatch(listNotes(notes))
-    }
+    console.log("MY UPDATED NOTE", updatedNote)
+    history.push(`/notes/${updatedNote.id}`)
+    hideModal()
   }
 
   const handleCancel = (e) => {

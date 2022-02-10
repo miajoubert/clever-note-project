@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Route } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Redirect, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import NoteEditModal from "./NoteEditModal";
 import * as sessionActions from "../../store/session";
@@ -17,6 +17,7 @@ const NoteDetail = () => {
   const notes = useSelector(state => state.notes)
   const session = useSelector(state => state.session);
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const [hideNoteDetails, setHideNoteDetails] = useState(false)
 
@@ -28,6 +29,7 @@ const NoteDetail = () => {
 
   async function deleteNoteFunc() {
     await dispatch(deleteNote(noteId))
+    history.push("/notes")
   }
 
   const userId = session.user.id;
