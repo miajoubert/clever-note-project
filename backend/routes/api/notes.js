@@ -21,6 +21,8 @@ router.get('/:noteId',
   asyncHandler(async function (req, res) {
     const { noteId } = req.params
 
+    console.log("GET ROUTE!!!!!", noteId)
+
     const note = await Note.findByPk(noteId);
 
     return res.json(note)
@@ -76,7 +78,7 @@ router.delete("/:noteId",
       where: { id: noteId }
     })
 
-    return res.json(noteId);
+    return res.json({ noteId });
   })
 )
 

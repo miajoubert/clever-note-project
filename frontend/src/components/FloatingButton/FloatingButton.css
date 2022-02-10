@@ -6,9 +6,9 @@
   align-items: center;
   overflow: hidden;
   background-color: #00a82b;
-  position: relative;
-  top: 10rem;
-  left: 5rem;
+  position: absolute;
+  top: 1rem;
+  left: 20rem;
   height: 50px;
   width: 50px;
   transition: box-shadow 0.5s, transform 0.25s;

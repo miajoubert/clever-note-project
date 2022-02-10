@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Route, useParams } from "react-router-dom";
+import { Redirect, NavLink, Route, useParams } from "react-router-dom";
 
 import * as sessionActions from "../../store/session";
 import FloatingButton from "../FloatingButton";
@@ -16,6 +16,7 @@ const NotesPage = () => {
   const session = useSelector(state => state.session)
   const dispatch = useDispatch()
 
+  const [isLoaded, setIsLoaded] = useState(false);
   const [showForm, setShowForm] = useState(false);
 
   const userId = session.user.id;
@@ -23,8 +24,9 @@ const NotesPage = () => {
   const notesArr = Object.values(notes);
 
   useEffect(() => {
-    dispatch(listNotes(userId))
-  }, [dispatch])
+    dispatch(listNotes(userId));
+    dispatch(noteDetails(noteId))
+  }, [])
 
   return (
     <main>
@@ -53,6 +55,7 @@ const NotesPage = () => {
         }
         )}
       </nav>
+      <FloatingButton hidden={showForm} onClick={() => setShowForm(true)} />
 
       {
         showForm ? (
@@ -62,7 +65,6 @@ const NotesPage = () => {
             <Route path="/notes/:noteId">
               <NoteDetail />
             </Route>
-            <FloatingButton hidden={showForm} onClick={() => setShowForm(true)} />
           </>
         )
       }

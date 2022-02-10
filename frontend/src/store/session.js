@@ -41,6 +41,9 @@ export const restoreSession = () => async dispatch => {
 
 export const signup = (user) => async (dispatch) => {
   const { username, email, password } = user;
+
+  console.log("IN MY THUNK NOW")
+
   const response = await csrfFetch("/api/users", {
     method: "POST",
     body: JSON.stringify({
@@ -49,7 +52,10 @@ export const signup = (user) => async (dispatch) => {
       password,
     }),
   });
+
+  console.log("THIS IS MYRESPONSE", response)
   const data = await response.json();
+  console.log("THIS IS MY THUNK DATA", data)
   dispatch(startSession(data.user));
   return response;
 };
@@ -69,6 +75,8 @@ const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
     case START_SESSION: {
       const newState = { ...state };
+
+      console.log("NEW STATE REDUCER", newState.user)
       newState.user = action.payload;
       return newState;
     }

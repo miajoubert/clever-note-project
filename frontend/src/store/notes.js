@@ -26,9 +26,9 @@ const update = (payload) => ({
   payload
 })
 
-const remove = (note) => ({
+const remove = (noteId) => ({
   type: DELETE_NOTE,
-  note
+  noteId
 })
 
 export const listNotes = (userId) => async (dispatch) => {
@@ -73,7 +73,8 @@ export const deleteNote = (noteId) => async (dispatch) => {
   const note = await csrfFetch(`/api/notes/${noteId}`,
     { method: "DELETE" }
   );
-  dispatch(remove(note));
+
+  dispatch(remove(noteId));
 }
 
 const initialState = {};
@@ -106,7 +107,7 @@ const notesReducer = (state = initialState, action) => {
       }
     case DELETE_NOTE:
       const deleteState = { ...state };
-      delete deleteState[action.note.id];
+      delete deleteState[action.noteId];
       return deleteState;
     default:
       return state;
