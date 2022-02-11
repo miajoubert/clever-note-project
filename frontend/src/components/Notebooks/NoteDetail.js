@@ -2,14 +2,13 @@ import React, { useEffect, useState, Route } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
-import NoteEditModal from "./NoteEditModal";
+import NoteEditModal from "./NotebookEditModal";
 import * as sessionActions from "../../store/session";
 
 import FloatingButton from "../FloatingButton";
-import NoteEditForm from "./NoteEditModal";
 import { listNotes, noteDetails, editNote, deleteNote } from "../../store/notes";
 
-import './Notes.css'
+import './Notebooks.css'
 
 const NoteDetail = () => {
   const { noteId } = useParams();

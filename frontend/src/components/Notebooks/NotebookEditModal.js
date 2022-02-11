@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import NoteEditForm from './NoteEditForm';
+import NoteEditForm from './NotebookEditForm';
 
-import './Notes.css'
+import './Notebooks.css'
 
 function NoteEditModal({ note, showDetails }) {
   const [showModal, setShowModal] = useState(false)

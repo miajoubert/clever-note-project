@@ -5,11 +5,11 @@ import { Redirect, NavLink, Route, useParams } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import FloatingButton from "../FloatingButton";
 import NoteDetail from "./NoteDetail";
-import NoteForm from "./NoteForm";
+import NoteForm from "./NotebookForm";
 import { listNotes, addNote, updateNote, deleteNote, noteDetails } from "../../store/notes";
 
 
-import './Notes.css'
+import './Notebooks.css'
 
 const NotesPage = () => {
   const notes = useSelector(state => state.notes)

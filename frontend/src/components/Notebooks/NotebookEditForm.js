@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import { addNote, listNotes, noteDetails, updateNote } from "../../store/notes";
 
-import './NoteForm.css'
+import './NotebookForm.css'
 import { useHistory } from "react-router-dom";
 
 const NoteEditForm = ({ note, hideModal, showDetails }) => {
