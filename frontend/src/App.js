@@ -8,8 +8,7 @@ import Navigation from './components/Navigation';
 import LandingPage from './components/LandingPage';
 import SignupFormPage from './components/SignupForm';
 import NotesPage from './components/Notes';
-import NoteDetail from './components/Notes/NoteDetail';
-// import NotebooksPage from './components/Notebooks';
+import NotebooksPage from './components/Notebooks'
 // import RemindersPage from './components/Reminders';
 import Errors from './components/Errors';
 
@@ -35,19 +34,32 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path={
-            ["/",
-              "/notes",
-              "/notes/:noteId",
-              "/notes/:noteId/edit"]
+          <Route path={[
+            "/",
+            "/notes",
+            "/notes/:noteId",
+            "/notes/:noteId/edit"
+          ]
           } exact>
             <NotesPage />
           </Route>
-          {/* <Route path="/notebooks">
-            <NotesPage />
-          </Route> */}
-          {/* <Route path="/reminders">
-            <NotesPage />
+          <Route path={[
+            "/",
+            "/notebooks",
+            "notebooks/:notebookId",
+            "notebooks/:notebookId/edit"
+          ]}
+            exact>
+            <NotebooksPage />
+          </Route>
+          {/* <Route  path={[
+            "/",
+            "/reminders",
+            "reminders/:reminderId",
+            "reminders/:reminderId/edit"
+          ]}
+            exact>
+            <RemindersPage />
           </Route> */}
           <Route path="/">
             <Errors />

@@ -1,22 +1,21 @@
 import React, { useEffect, useState, Route } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams, useHistory, Redirect } from "react-router-dom";
 
 import * as sessionActions from "../../store/session";
 import { addNote, listNotes, noteDetails, updateNote } from "../../store/notes";
 
 import './NoteForm.css'
+import { useHistory } from "react-router-dom";
 
-const NoteForm = ({ hideForm }) => {
-  const notes = useSelector(state => state.notes)
-  const notebooks = useSelector(state => state.notebook.titles)
+const NoteEditForm = ({ note, hideModal, showDetails }) => {
   const session = useSelector(state => state.session)
+  const notes = useSelector(state => state.notes)
   const dispatch = useDispatch()
   const history = useHistory();
 
-  const [title, setTitle] = useState("")
-  const [content, setContent] = useState("")
-  const [notebookId, setNotebookId] = useState(1)
+  const [title, setTitle] = useState(note.title)
+  const [content, setContent] = useState(note.content)
+  const [notebookId, setNotebookId] = useState(note.notebookId)
 
   const userId = session.user.id;
 
@@ -24,25 +23,25 @@ const NoteForm = ({ hideForm }) => {
     e.preventDefault();
 
     const payload = {
-      userId,
+      ...note,
       title,
       notebookId,
       content
     };
 
-    let newNote = await dispatch(addNote(payload));
-    hideForm();
-    history.push(`/notes/${newNote.id}`);
-  };
+    const updatedNote = await dispatch(updateNote(payload))
+    history.push(`/notes/${updatedNote.id}`)
+    hideModal()
+  }
 
   const handleCancel = (e) => {
     e.preventDefault();
-    hideForm()
+    hideModal()
   };
 
   return (
     <>
-      <div>Take Note...</div>
+      <div>Revise:</div>
       <form>
         <label>
           Title
@@ -55,7 +54,7 @@ const NoteForm = ({ hideForm }) => {
         </label>
         <label>
           Content
-          <textarea
+          <input
             type="text"
             placeholder="Content..."
             required
@@ -64,18 +63,29 @@ const NoteForm = ({ hideForm }) => {
         </label>
         <label>
           Select Notebook
-          <select
+          <input
             type="number"
             placeholder="NotebookId..."
             required
             value={notebookId}
             onChange={(e) => setNotebookId(e.target.value)} />
         </label>
-        <button type="submit" onClick={handleSubmit}>Create Note</button>
-        <button type="button" onClick={handleCancel}>Cancel</button>
+        <button
+          type="submit"
+          onClick={handleSubmit}
+        >
+          Edit Note
+        </button>
+        <button
+          type="button"
+          onClick={handleCancel}
+        >
+          Cancel
+        </button>
       </form>
     </>
+    // )
   )
 }
 
-export default NoteForm;
+export default NoteEditForm

@@ -54,7 +54,7 @@ const NoteEditForm = ({ note, hideModal, showDetails }) => {
         </label>
         <label>
           Content
-          <input
+          <textarea
             type="text"
             placeholder="Content..."
             required
