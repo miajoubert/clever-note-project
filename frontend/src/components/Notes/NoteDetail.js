@@ -2,11 +2,10 @@ import React, { useEffect, useState, Route } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
-import NoteEditModal from "./NoteEditModal";
 import * as sessionActions from "../../store/session";
 
 import FloatingButton from "../FloatingButton";
-import NoteEditForm from "./NoteEditModal";
+import NoteEditModal from "./NoteEditModal";
 import { listNotes, editNote, deleteNote } from "../../store/notes";
 
 import './Notes.css'
@@ -66,7 +65,7 @@ const NoteDetail = () => {
             Delete Note
           </button>
           <div className="timestamp">
-            <div><b>{note.Notebook.title}</b></div>
+            <div><b>{note?.Notebook.title}</b></div>
             <div>{new Date(note?.updatedAt).toDateString()} {new Date(note?.updatedAt).getHours()}:{new Date(note?.updatedAt).getMinutes()}</div>
           </div>
         </div>

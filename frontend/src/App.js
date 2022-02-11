@@ -46,8 +46,8 @@ function App() {
           <Route path={[
             "/",
             "/notebooks",
-            "notebooks/:notebookId",
-            "notebooks/:notebookId/edit"
+            "/notebooks/:notebookId",
+            "/notebooks/:notebookId/edit"
           ]}
             exact>
             <NotebooksPage />

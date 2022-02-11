@@ -37,7 +37,6 @@ export const listNotes = (userId) => async (dispatch) => {
     headers: { "Content-Type": "application/json", "data": userId }
   });
   const notes = await response.json();
-  console.log(notes)
   dispatch(list(notes))
 }
 

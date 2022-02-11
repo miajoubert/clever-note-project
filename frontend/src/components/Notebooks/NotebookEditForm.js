@@ -2,7 +2,7 @@ import React, { useEffect, useState, Route } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import * as sessionActions from "../../store/session";
-import { addNote, listNotes, noteDetails, updateNotebook } from "../../store/notebooks";
+import { updateNotebook } from "../../store/notebooks";
 
 import './NotebookForm.css'
 import { useHistory } from "react-router-dom";
@@ -26,7 +26,7 @@ const NotebookEditForm = ({ notebook, hideModal, showDetails }) => {
     };
 
     const updatedNotebook = await dispatch(updateNotebook(payload))
-    history.push(`/notes/${updatedNotebook.id}`)
+    history.push(`/notebooks/${updatedNotebook.id}`)
     hideModal()
   }
 

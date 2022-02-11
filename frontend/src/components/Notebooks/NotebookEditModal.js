@@ -4,7 +4,7 @@ import NotebookEditForm from './NotebookEditForm';
 
 import './Notebooks.css'
 
-function NotebookEditModal({ note, showDetails }) {
+function NotebookEditModal({ notebook, showDetails }) {
   const [showModal, setShowModal] = useState(false)
 
   return (
@@ -13,13 +13,13 @@ function NotebookEditModal({ note, showDetails }) {
         className="editButton"
         onClick={() => setShowModal(true)}
       >
-        Edit
+        Edit Notebook
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <NoteEditForm
+          <NotebookEditForm
             hideModal={() => setShowModal(false)}
-            note={note} />
+            notebook={notebook} />
         </Modal>
       )}
     </>

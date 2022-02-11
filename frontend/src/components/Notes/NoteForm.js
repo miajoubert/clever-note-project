@@ -9,21 +9,9 @@ import './NoteForm.css'
 
 const NoteForm = ({ hideForm }) => {
   const notes = useSelector(state => state.notes)
-  const notebooksList = useSelector(state => state.notebooks)
-  console.log("MY NOTES", notebooksList)
-  // const notebooksList = {
-  //   1: {
-  //     id: 1,
-  //     title: "My Notebook",
-  //     userId: 1,
-  //   },
-  //   2: {
-  //     id: 2,
-  //     title: "New Notebook",
-  //     userId: 1,
-  //   }
-  // }
-  const notebooks = Object.values(notebooksList)
+  const notebookList = useSelector(state => state.notebooks)
+  console.log("NOTEBOOK LIST", notebookList)
+  const notebooks = Object.values(notebookList)
 
   const session = useSelector(state => state.session)
   const dispatch = useDispatch()
@@ -44,8 +32,6 @@ const NoteForm = ({ hideForm }) => {
       notebookId,
       content
     };
-
-    console.log(payload)
 
     let newNote = await dispatch(addNote(payload));
     hideForm();

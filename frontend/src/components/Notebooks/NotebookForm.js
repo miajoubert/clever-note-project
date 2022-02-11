@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Route } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams, useHistory, Redirect } from "react-router-dom";
+import { NavLink, useParams, useHistory } from "react-router-dom";
 
 import * as sessionActions from "../../store/session";
 import { addNotebook } from "../../store/notebooks";
@@ -8,7 +8,7 @@ import { addNotebook } from "../../store/notebooks";
 import './NotebookForm.css'
 
 const NotebookForm = ({ hideForm }) => {
-  const notebook = useSelector(state => state.notebook)
+  const notebooks = useSelector(state => state.notebooks)
   const session = useSelector(state => state.session)
   const dispatch = useDispatch()
   const history = useHistory();
@@ -37,7 +37,7 @@ const NotebookForm = ({ hideForm }) => {
 
   return (
     <>
-      <div>Take Note...</div>
+      <div>Start from scratch...</div>
       <form>
         <label>
           Title
@@ -48,7 +48,12 @@ const NotebookForm = ({ hideForm }) => {
             value={title}
             onChange={(e) => setTitle(e.target.value)} />
         </label>
-        <button type="submit" onClick={handleSubmit}>Create Note</button>
+        <button
+          type="submit"
+          onClick={handleSubmit}
+        >
+          Create Notebook
+        </button>
         <button type="button" onClick={handleCancel}>Cancel</button>
       </form>
     </>

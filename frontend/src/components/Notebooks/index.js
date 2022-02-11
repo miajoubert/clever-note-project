@@ -7,6 +7,7 @@ import FloatingButton from "../FloatingButton";
 import NotebookDetail from "./NotebookDetail";
 import NotebookForm from "./NotebookForm";
 import { listNotebooks } from "../../store/notebooks";
+import { listNotes } from "../../store/notes";
 
 
 import './Notebooks.css'
@@ -21,12 +22,11 @@ const NotesPage = () => {
 
   const userId = session.user.id;
   const { notebookId } = useParams();
-  const notebooksArr = Object.values(notes);
+  const notebooksArr = Object.values(notebooks);
 
   useEffect(() => {
     dispatch(listNotebooks(userId))
-    // .then(() => setIsLoaded(true));
-    // dispatch(noteDetails(noteId))
+    dispatch(listNotes(notebookId))
   }, [])
 
   if (!session.user) {
@@ -52,13 +52,16 @@ const NotesPage = () => {
                 <div
                   className={
                     Number.parseInt(notebookId) === notebook.id
-                      ? "note selected"
-                      : "note"
+                      ? "notebook selected"
+                      : "notebook"
                   }
                 >
                   <div className="primary-text">{notebook.title}</div>
-                  <div className="secondary-text">
-                    {new Date(notebook.updatedAt).getMonth() + 1}/{new Date(notebook.updatedAt).getDate()}/{new Date(notebook.updatedAt).getFullYear()}
+                  <div className="notebookInfo">
+                    <div className="secondary-text">
+                      {new Date(notebook.updatedAt).getMonth() + 1}/{new Date(notebook.updatedAt).getDate()}/{new Date(notebook.updatedAt).getFullYear()}
+                    </div>
+                    <div className="notebookImage" />
                   </div>
                 </div>
               </NavLink>

@@ -10,9 +10,11 @@ import { useHistory } from "react-router-dom";
 const NoteEditForm = ({ note, hideModal, showDetails }) => {
   const session = useSelector(state => state.session)
   const notes = useSelector(state => state.notes)
+  const notebookList = useSelector(state => state.notebooks)
   const dispatch = useDispatch()
   const history = useHistory();
 
+  const notebooks = Object.values(notebookList)
   const [title, setTitle] = useState(note.title)
   const [content, setContent] = useState(note.content)
   const [notebookId, setNotebookId] = useState(note.notebookId)
@@ -62,13 +64,18 @@ const NoteEditForm = ({ note, hideModal, showDetails }) => {
             onChange={(e) => setContent(e.target.value)} />
         </label>
         <label>
-          Select Notebook
-          <input
-            type="number"
-            placeholder="NotebookId..."
-            required
+          Notebook
+          <select
             value={notebookId}
-            onChange={(e) => setNotebookId(e.target.value)} />
+            onChange={(e) => setNotebookId(e.target.value)}
+          >
+            {notebooks.map(notebook =>
+              <option key={notebook.id}
+                value={notebook.id}
+              >
+                {notebook.title}
+              </option>)}
+          </select>
         </label>
         <button
           type="submit"

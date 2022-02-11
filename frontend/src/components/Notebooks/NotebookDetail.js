@@ -5,7 +5,6 @@ import { useHistory, useParams } from "react-router-dom";
 import NotebookEditModal from "./NotebookEditModal";
 import * as sessionActions from "../../store/session";
 
-import FloatingButton from "../FloatingButton";
 import { listNotebooks, noteDetails, editNote, deleteNotebook } from "../../store/notebooks";
 
 import './Notebooks.css'
@@ -30,7 +29,7 @@ const NotebookDetail = () => {
 
   async function deleteNotebookFunc() {
     await dispatch(deleteNotebook(notebookId))
-    history.push("/notes")
+    history.push("/notebooks")
   }
 
   const userId = session.user.id;
