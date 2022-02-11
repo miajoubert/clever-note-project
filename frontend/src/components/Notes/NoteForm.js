@@ -5,7 +5,7 @@ import { NavLink, useParams, useHistory, Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { addNote, listNotes, noteDetails, updateNote } from "../../store/notes";
 
-import './Notes.css'
+import './NoteForm.css'
 
 const NoteForm = ({ hideForm }) => {
   const notes = useSelector(state => state.notes)

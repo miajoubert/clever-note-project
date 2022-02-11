@@ -88,11 +88,9 @@ const notesReducer = (state = initialState, action) => {
   switch (action.type) {
     case LIST_NOTES:
       const newState = { ...state };
-      // console.log("ACTION dot NOTES!!!!!", action.notes)
       action.notes.forEach((note) => {
         newState[note.id] = note;
       });
-      // console.log("NEW STATE!!!!!!!!!!!!", newState)
       return newState;
     case LIST_NOTE:
       const oneState = { ...state };

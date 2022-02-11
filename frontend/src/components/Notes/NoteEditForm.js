@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import { addNote, listNotes, noteDetails, updateNote } from "../../store/notes";
 
-import './Notes.css'
+import './NoteForm.css'
 import { useHistory } from "react-router-dom";
 
 const NoteEditForm = ({ note, hideModal, showDetails }) => {
@@ -30,7 +30,6 @@ const NoteEditForm = ({ note, hideModal, showDetails }) => {
     };
 
     const updatedNote = await dispatch(updateNote(payload))
-    console.log("MY UPDATED NOTE", updatedNote)
     history.push(`/notes/${updatedNote.id}`)
     hideModal()
   }

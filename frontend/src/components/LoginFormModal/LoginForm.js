@@ -27,7 +27,7 @@ function LoginForm() {
   return (
     <form className="loginForm" onSubmit={handleSubmit}>
       <div className="title">Log in...</div>
-      <ul>
+      <ul className="errorsAuth">
         {errors.map((error, i) => (
           <li key={i}>{error}</li>
         ))}

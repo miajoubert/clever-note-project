@@ -13,7 +13,7 @@
   justify-content: center;
 }
 
-.errors {
+.errors404 {
   position: relative;
   top: 6.5rem;
   left: 19rem;
@@ -21,7 +21,7 @@
   font-size: 42px;
   height: 1rem;
 }
-.errors2 {
+.errors404-2 {
   position: relative;
   top: 9.5rem;
   left: 14rem;
