@@ -3,20 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams, useHistory, Redirect } from "react-router-dom";
 
 import * as sessionActions from "../../store/session";
-import { addNote, listNotes, noteDetails, updateNote } from "../../store/notes";
+import { addNotebook } from "../../store/notebooks";
 
 import './NotebookForm.css'
 
-const NoteForm = ({ hideForm }) => {
-  const notes = useSelector(state => state.notes)
-  const notebooks = useSelector(state => state.notebook.titles)
+const NotebookForm = ({ hideForm }) => {
+  const notebook = useSelector(state => state.notebook)
   const session = useSelector(state => state.session)
   const dispatch = useDispatch()
   const history = useHistory();
 
   const [title, setTitle] = useState("")
-  const [content, setContent] = useState("")
-  const [notebookId, setNotebookId] = useState(1)
 
   const userId = session.user.id;
 
@@ -25,14 +22,12 @@ const NoteForm = ({ hideForm }) => {
 
     const payload = {
       userId,
-      title,
-      notebookId,
-      content
+      title
     };
 
-    let newNote = await dispatch(addNote(payload));
+    let newNotebook = await dispatch(addNotebook(payload));
     hideForm();
-    history.push(`/notes/${newNote.id}`);
+    history.push(`/notebooks/${newNotebook.id}`);
   };
 
   const handleCancel = (e) => {
@@ -53,24 +48,6 @@ const NoteForm = ({ hideForm }) => {
             value={title}
             onChange={(e) => setTitle(e.target.value)} />
         </label>
-        <label>
-          Content
-          <textarea
-            type="text"
-            placeholder="Content..."
-            required
-            value={content}
-            onChange={(e) => setContent(e.target.value)} />
-        </label>
-        <label>
-          Select Notebook
-          <select
-            type="number"
-            placeholder="NotebookId..."
-            required
-            value={notebookId}
-            onChange={(e) => setNotebookId(e.target.value)} />
-        </label>
         <button type="submit" onClick={handleSubmit}>Create Note</button>
         <button type="button" onClick={handleCancel}>Cancel</button>
       </form>
@@ -78,4 +55,4 @@ const NoteForm = ({ hideForm }) => {
   )
 }
 
-export default NoteForm;
+export default NotebookForm;

@@ -4,29 +4,29 @@ import { Redirect, NavLink, Route, useParams } from "react-router-dom";
 
 import * as sessionActions from "../../store/session";
 import FloatingButton from "../FloatingButton";
-import NoteDetail from "./NoteDetail";
-import NoteForm from "./NotebookForm";
-import { listNotes, addNote, updateNote, deleteNote, noteDetails } from "../../store/notes";
+import NotebookDetail from "./NotebookDetail";
+import NotebookForm from "./NotebookForm";
+import { listNotebooks } from "../../store/notebooks";
 
 
 import './Notebooks.css'
 
 const NotesPage = () => {
+  const notebooks = useSelector(state => state.notebooks)
   const notes = useSelector(state => state.notes)
   const session = useSelector(state => state.session)
   const dispatch = useDispatch()
 
-  const [isLoaded, setIsLoaded] = useState(false);
   const [showForm, setShowForm] = useState(false);
 
   const userId = session.user.id;
-  const { noteId } = useParams();
-  const notesArr = Object.values(notes);
+  const { notebookId } = useParams();
+  const notebooksArr = Object.values(notes);
 
   useEffect(() => {
-    dispatch(listNotes(userId))
-      .then(() => setIsLoaded(true));
-    dispatch(noteDetails(noteId))
+    dispatch(listNotebooks(userId))
+    // .then(() => setIsLoaded(true));
+    // dispatch(noteDetails(noteId))
   }, [])
 
   if (!session.user) {
@@ -41,24 +41,24 @@ const NotesPage = () => {
     return (
       <main>
         <nav
-          className="noteList">
-          {notesArr.map((note) => {
+          className="notebookList">
+          {notebooksArr.map((notebook) => {
             return (
               <NavLink
-                key={note.id}
-                to={`/notes/${note.id}`}
+                key={notebook.id}
+                to={`/notebooks/${notebook.id}`}
                 onClick={() => setShowForm(false)}
               >
                 <div
                   className={
-                    Number.parseInt(noteId) === note.id
+                    Number.parseInt(notebookId) === notebook.id
                       ? "note selected"
                       : "note"
                   }
                 >
-                  <div className="primary-text">{note.title}</div>
+                  <div className="primary-text">{notebook.title}</div>
                   <div className="secondary-text">
-                    {new Date(note.updatedAt).getMonth() + 1}/{new Date(note.updatedAt).getDate()}/{new Date(note.updatedAt).getFullYear()}
+                    {new Date(notebook.updatedAt).getMonth() + 1}/{new Date(notebook.updatedAt).getDate()}/{new Date(notebook.updatedAt).getFullYear()}
                   </div>
                 </div>
               </NavLink>
@@ -74,13 +74,13 @@ const NotesPage = () => {
 
         {
           showForm ? (
-            <NoteForm
+            <NotebookForm
               hidden={!showForm}
               hideForm={() => setShowForm(false)} />
           ) : (
             <>
-              <Route path="/notes/:noteId">
-                <NoteDetail
+              <Route path="/notebooks/:notebookId">
+                <NotebookDetail
                   hidden={!showForm}
                   setShowForm={() => setShowForm(false)}
                 />

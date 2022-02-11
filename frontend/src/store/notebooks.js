@@ -26,9 +26,9 @@ const update = (notebook) => ({
   notebook
 })
 
-const remove = (noteId) => ({
+const remove = (notebookId) => ({
   type: DELETE_NOTEBOOK,
-  noteId
+  notebookId
 })
 
 export const listNotebooks = (userId) => async (dispatch) => {
@@ -37,6 +37,7 @@ export const listNotebooks = (userId) => async (dispatch) => {
     headers: { "Content-Type": "application/json", "data": userId }
   });
   const notebooks = await response.json();
+
   dispatch(list(notebooks))
 }
 

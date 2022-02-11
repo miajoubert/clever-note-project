@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import NoteEditForm from './NotebookEditForm';
+import NotebookEditForm from './NotebookEditForm';
 
 import './Notebooks.css'
 
-function NoteEditModal({ note, showDetails }) {
+function NotebookEditModal({ note, showDetails }) {
   const [showModal, setShowModal] = useState(false)
 
   return (
@@ -26,4 +26,4 @@ function NoteEditModal({ note, showDetails }) {
   )
 }
 
-export default NoteEditModal;
+export default NotebookEditModal;

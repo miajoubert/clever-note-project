@@ -37,14 +37,16 @@ export const listNotes = (userId) => async (dispatch) => {
     headers: { "Content-Type": "application/json", "data": userId }
   });
   const notes = await response.json();
+  console.log(notes)
   dispatch(list(notes))
 }
 
-export const noteDetails = (noteId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/notes/${noteId}`)
-  const note = await response.json();
-  dispatch(one(note))
-}
+// export const noteDetails = (noteId) => async (dispatch) => {
+//   // const response = await csrfFetch(`/api/notes/${noteId}`)
+//   // const note = await response.json();
+//   // console.log("MY NOTE DETAILS", note)
+//   // dispatch(one(note))
+// }
 
 export const addNote = (payload) => async (dispatch) => {
   const response = await csrfFetch(`/api/notes`, {

@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Note } = require('../../db/models')
+const { Note, Notebook } = require('../../db/models')
 
 const router = express.Router();
 
@@ -9,7 +9,12 @@ router.get('/',
     const userId = Number.parseInt(req.headers.data);
 
     const notes = await Note.findAll({
-      where: { userId },
+      where: {
+        userId
+      },
+      include: [
+        { model: Notebook }
+      ],
       order: [['updatedAt', 'DESC']]
     });
 

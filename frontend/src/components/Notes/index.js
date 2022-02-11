@@ -6,7 +6,7 @@ import * as sessionActions from "../../store/session";
 import FloatingButton from "../FloatingButton";
 import NoteDetail from "./NoteDetail";
 import NoteForm from "./NoteForm";
-import { listNotes, addNote, updateNote, deleteNote, noteDetails } from "../../store/notes";
+import { listNotes, addNote, updateNote, deleteNote } from "../../store/notes";
 
 
 import './Notes.css'
@@ -20,13 +20,13 @@ const NotesPage = () => {
   const [showForm, setShowForm] = useState(false);
 
   const userId = session.user.id;
-  const { noteId } = useParams();
+  let { noteId } = useParams();
   const notesArr = Object.values(notes);
 
   useEffect(() => {
     dispatch(listNotes(userId))
       .then(() => setIsLoaded(true));
-    dispatch(noteDetails(noteId))
+    // dispatch(noteDetails(noteId))
   }, [])
 
   if (!session.user) {

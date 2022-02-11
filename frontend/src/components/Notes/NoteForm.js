@@ -9,14 +9,29 @@ import './NoteForm.css'
 
 const NoteForm = ({ hideForm }) => {
   const notes = useSelector(state => state.notes)
-  const notebooks = useSelector(state => state.notebook.titles)
+  const notebooksList = useSelector(state => state.notebooks)
+  console.log("MY NOTES", notebooksList)
+  // const notebooksList = {
+  //   1: {
+  //     id: 1,
+  //     title: "My Notebook",
+  //     userId: 1,
+  //   },
+  //   2: {
+  //     id: 2,
+  //     title: "New Notebook",
+  //     userId: 1,
+  //   }
+  // }
+  const notebooks = Object.values(notebooksList)
+
   const session = useSelector(state => state.session)
   const dispatch = useDispatch()
   const history = useHistory();
 
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
-  const [notebookId, setNotebookId] = useState(1)
+  const [notebookId, setNotebookId] = useState(notebooks[0])
 
   const userId = session.user.id;
 
@@ -29,6 +44,8 @@ const NoteForm = ({ hideForm }) => {
       notebookId,
       content
     };
+
+    console.log(payload)
 
     let newNote = await dispatch(addNote(payload));
     hideForm();
@@ -63,13 +80,18 @@ const NoteForm = ({ hideForm }) => {
             onChange={(e) => setContent(e.target.value)} />
         </label>
         <label>
-          Select Notebook
+          Notebook
           <select
-            type="number"
-            placeholder="NotebookId..."
-            required
             value={notebookId}
-            onChange={(e) => setNotebookId(e.target.value)} />
+            onChange={(e) => setNotebookId(e.target.value)}
+          >
+            {notebooks.map(notebook =>
+              <option key={notebook.id}
+                value={notebook.id}
+              >
+                {notebook.title}
+              </option>)}
+          </select>
         </label>
         <button type="submit" onClick={handleSubmit}>Create Note</button>
         <button type="button" onClick={handleCancel}>Cancel</button>

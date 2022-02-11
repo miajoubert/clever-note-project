@@ -7,7 +7,7 @@ import * as sessionActions from "../../store/session";
 
 import FloatingButton from "../FloatingButton";
 import NoteEditForm from "./NoteEditModal";
-import { listNotes, noteDetails, editNote, deleteNote } from "../../store/notes";
+import { listNotes, editNote, deleteNote } from "../../store/notes";
 
 import './Notes.css'
 
@@ -66,7 +66,8 @@ const NoteDetail = () => {
             Delete Note
           </button>
           <div className="timestamp">
-            {new Date(note?.updatedAt).toDateString()} {new Date(note?.updatedAt).getHours()}:{new Date(note?.updatedAt).getMinutes()}
+            <div><b>{note.Notebook.title}</b></div>
+            <div>{new Date(note?.updatedAt).toDateString()} {new Date(note?.updatedAt).getHours()}:{new Date(note?.updatedAt).getMinutes()}</div>
           </div>
         </div>
       </div>

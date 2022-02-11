@@ -2,20 +2,18 @@ import React, { useEffect, useState, Route } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import * as sessionActions from "../../store/session";
-import { addNote, listNotes, noteDetails, updateNote } from "../../store/notes";
+import { addNote, listNotes, noteDetails, updateNotebook } from "../../store/notebooks";
 
 import './NotebookForm.css'
 import { useHistory } from "react-router-dom";
 
-const NoteEditForm = ({ note, hideModal, showDetails }) => {
+const NotebookEditForm = ({ notebook, hideModal, showDetails }) => {
   const session = useSelector(state => state.session)
-  const notes = useSelector(state => state.notes)
+  const notebooks = useSelector(state => state.notebooks)
   const dispatch = useDispatch()
   const history = useHistory();
 
-  const [title, setTitle] = useState(note.title)
-  const [content, setContent] = useState(note.content)
-  const [notebookId, setNotebookId] = useState(note.notebookId)
+  const [title, setTitle] = useState(notebook.title)
 
   const userId = session.user.id;
 
@@ -23,14 +21,12 @@ const NoteEditForm = ({ note, hideModal, showDetails }) => {
     e.preventDefault();
 
     const payload = {
-      ...note,
-      title,
-      notebookId,
-      content
+      ...notebook,
+      title
     };
 
-    const updatedNote = await dispatch(updateNote(payload))
-    history.push(`/notes/${updatedNote.id}`)
+    const updatedNotebook = await dispatch(updateNotebook(payload))
+    history.push(`/notes/${updatedNotebook.id}`)
     hideModal()
   }
 
@@ -52,29 +48,11 @@ const NoteEditForm = ({ note, hideModal, showDetails }) => {
             value={title}
             onChange={(e) => setTitle(e.target.value)} />
         </label>
-        <label>
-          Content
-          <input
-            type="text"
-            placeholder="Content..."
-            required
-            value={content}
-            onChange={(e) => setContent(e.target.value)} />
-        </label>
-        <label>
-          Select Notebook
-          <input
-            type="number"
-            placeholder="NotebookId..."
-            required
-            value={notebookId}
-            onChange={(e) => setNotebookId(e.target.value)} />
-        </label>
         <button
           type="submit"
           onClick={handleSubmit}
         >
-          Edit Note
+          Edit Notebook
         </button>
         <button
           type="button"
@@ -88,4 +66,4 @@ const NoteEditForm = ({ note, hideModal, showDetails }) => {
   )
 }
 
-export default NoteEditForm
+export default NotebookEditForm
