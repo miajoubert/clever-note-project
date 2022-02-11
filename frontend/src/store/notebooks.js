@@ -84,7 +84,7 @@ export const deleteNotebook = (notebookId) => async (dispatch) => {
 
 const initialState = {};
 
-const notesReducer = (state = initialState, action) => {
+const notebooksReducer = (state = initialState, action) => {
   switch (action.type) {
     case LIST_NOTEBOOKS:
       const newState = { ...state };
