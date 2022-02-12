@@ -27,7 +27,7 @@ function LandingPage() {
           src="https://image.freepik.com/free-photo/blank-notebook-pen-brown-paper-white-desk-background_42493-78.jpg"
         ></img>
         <div className='navigateTo'>
-          Navigate to <b>Notes</b> or <b>Notebooks</b> to begin your Clevernote journey...
+          Navigate to <u>Notes</u> or <u>Notebooks</u> above to begin your journey on <span className="clevernote">Clevernote</span>...
         </div>
       </div>
     )

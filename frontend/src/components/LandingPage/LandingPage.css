@@ -30,9 +30,15 @@
 
 .navigateTo {
   position: relative;
-  right: 5rem;
+  right: 2rem;
   top: 5rem;
-  width: 250px;
+  text-align: justify;
+  width: 240px;
   font-family:'Source Serif Pro', serif;
-  font-size: 22px;
+  font-size: 24px;
+}
+
+.clevernote {
+  color: #00a82b;
+  font-size: 30px;
 }

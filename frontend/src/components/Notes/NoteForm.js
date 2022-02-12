@@ -1,8 +1,8 @@
-import React, { useEffect, useState, Route } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams, useHistory, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { listNotebooks } from "../../store/notebooks";
 
-import * as sessionActions from "../../store/session";
 import { addNote, listNotes, noteDetails, updateNote } from "../../store/notes";
 
 import './NoteForm.css'
@@ -10,7 +10,6 @@ import './NoteForm.css'
 const NoteForm = ({ hideForm }) => {
   const notes = useSelector(state => state.notes)
   const notebookList = useSelector(state => state.notebooks)
-  console.log("NOTEBOOK LIST", notebookList)
   const notebooks = Object.values(notebookList)
 
   const session = useSelector(state => state.session)
@@ -22,6 +21,12 @@ const NoteForm = ({ hideForm }) => {
   const [notebookId, setNotebookId] = useState(notebooks[0])
 
   const userId = session.user.id;
+
+  useEffect(() => {
+    if (userId) {
+      dispatch(listNotebooks(userId))
+    }
+  }, [userId])
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -73,7 +78,7 @@ const NoteForm = ({ hideForm }) => {
           >
             {notebooks.map(notebook =>
               <option key={notebook.id}
-                value={notebook.id}
+                value={notebookId.id}
               >
                 {notebook.title}
               </option>)}

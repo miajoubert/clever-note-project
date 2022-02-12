@@ -5,6 +5,9 @@ import { useHistory, useParams } from "react-router-dom";
 import NotebookEditModal from "./NotebookEditModal";
 import * as sessionActions from "../../store/session";
 
+import NotesPage from "../Notes";
+import NoteDetail from "../Notes/NoteDetail";
+
 import { listNotebooks, noteDetails, editNote, deleteNotebook } from "../../store/notebooks";
 
 import './Notebooks.css'
@@ -13,7 +16,7 @@ const NotebookDetail = () => {
   const { notebookId } = useParams();
 
   const notebooks = useSelector(state => state.notebooks)
-  const notes = useSelector(state => state.notes)
+  const allNotes = useSelector(state => state.notes)
   const session = useSelector(state => state.session);
 
   const dispatch = useDispatch();
@@ -22,9 +25,15 @@ const NotebookDetail = () => {
   const [hideNotebookDetails, setHideNotebookDetails] = useState(false)
 
   let notebook = notebooks[notebookId]
+  let notesList = Object.values(allNotes)
+  let notes = notesList.filter(note => {
+    return note.notebookId === notebook.id
+  })
+
+  console.log("ALL THESE NOTES", notes)
 
   useEffect(() => {
-    dispatch(listNotebooks(notes))
+    dispatch(listNotebooks(notebooks))
   }, [dispatch])
 
   async function deleteNotebookFunc() {
@@ -37,7 +46,7 @@ const NotebookDetail = () => {
   if (!notebook) {
     return (
       <div
-        className="noteDetailBackground"
+        className="notebookDetailBackground"
         hidden={hideNotebookDetails}
       >
         <div className="title" style={{ color: "red" }}>Notebook not found!</div>
@@ -51,10 +60,9 @@ const NotebookDetail = () => {
   } else return (
     <>
       <div
-        className="noteDetailBackground"
+        className="notebookDetails"
         hidden={hideNotebookDetails}>
-        <div className="title">{notebook?.title}</div>
-        <div className="bottomNoteDetails">
+        <div className="buttonDetails">
           <NotebookEditModal
             notebook={notebook}
           />
@@ -64,13 +72,14 @@ const NotebookDetail = () => {
           >
             Delete Notebook
           </button>
-          <div className="timestamp">
-            {new Date(notebook?.updatedAt).toDateString()} {new Date(notebook?.updatedAt).getHours()}:{new Date(notebook?.updatedAt).getMinutes()}
-          </div>
         </div>
       </div>
-      {/* )
-      } */}
+      <div
+        className="notebookNotesPageDiv"
+        hidden={hideNotebookDetails}
+      >
+        {notes}
+      </div>
     </>
   )
 }

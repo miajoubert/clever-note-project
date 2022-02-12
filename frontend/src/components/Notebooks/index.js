@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, NavLink, Route, useParams } from "react-router-dom";
 
 import * as sessionActions from "../../store/session";
-import FloatingButton from "../FloatingButton";
+import FloatingNotebookButton from "./FabNotebook";
 import NotebookDetail from "./NotebookDetail";
 import NotebookForm from "./NotebookForm";
 import { listNotebooks } from "../../store/notebooks";
@@ -45,18 +45,18 @@ const NotesPage = () => {
           {notebooksArr.map((notebook) => {
             return (
               <NavLink
-                key={notebook.id}
-                to={`/notebooks/${notebook.id}`}
+                key={notebook?.id}
+                to={`/notebooks/${notebook?.id}`}
                 onClick={() => setShowForm(false)}
               >
                 <div
                   className={
-                    Number.parseInt(notebookId) === notebook.id
+                    Number.parseInt(notebookId) === notebook?.id
                       ? "notebook selected"
                       : "notebook"
                   }
                 >
-                  <div className="primary-text">{notebook.title}</div>
+                  <div className="primary-text">{notebook?.title}</div>
                   <div className="notebookInfo">
                     <div className="secondary-text">
                       {new Date(notebook.updatedAt).getMonth() + 1}/{new Date(notebook.updatedAt).getDate()}/{new Date(notebook.updatedAt).getFullYear()}
@@ -70,7 +70,7 @@ const NotesPage = () => {
           )}
         </nav>
 
-        <FloatingButton
+        <FloatingNotebookButton
           hidden={showForm}
           onClick={() => setShowForm(true)}
         />

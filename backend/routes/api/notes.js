@@ -14,8 +14,7 @@ router.get('/',
       },
       include: [
         { model: Notebook }
-      ],
-      order: [['updatedAt', 'DESC']]
+      ]
     });
 
     return res.json(notes)
@@ -26,7 +25,10 @@ router.get('/:noteId',
   asyncHandler(async function (req, res) {
     const { noteId } = req.params;
 
-    const note = await Note.findByPk(noteId);
+    const note = await Note.findByPk(noteId, {
+      include: [
+        { model: Notebook }]
+    });
 
     return res.json(note)
   })
@@ -46,7 +48,12 @@ router.post('/',
       userId,
       notebookId,
       content
-    });
+    },
+      {
+        include: [
+          { model: Notebook }]
+      }
+    );
 
     return res.json(note)
   })

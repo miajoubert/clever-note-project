@@ -2,24 +2,32 @@ import React, { useEffect, useState, Route } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import * as sessionActions from "../../store/session";
-import { addNote, listNotes, noteDetails, updateNote } from "../../store/notes";
+import { updateNote } from "../../store/notes";
+import { listNotebooks } from "../../store/notebooks";
 
 import './NoteForm.css'
 import { useHistory } from "react-router-dom";
 
 const NoteEditForm = ({ note, hideModal, showDetails }) => {
   const session = useSelector(state => state.session)
-  const notes = useSelector(state => state.notes)
   const notebookList = useSelector(state => state.notebooks)
+  const notebooks = Object.values(notebookList)
+
   const dispatch = useDispatch()
   const history = useHistory();
 
-  const notebooks = Object.values(notebookList)
   const [title, setTitle] = useState(note.title)
   const [content, setContent] = useState(note.content)
-  const [notebookId, setNotebookId] = useState(note.notebookId)
+  const [notebookId, setNotebookId] = useState(notebooks[note.notebookId])
 
   const userId = session.user.id;
+
+  useEffect(() => {
+    if (userId) {
+      dispatch(listNotebooks(userId))
+    }
+  }, [userId])
+
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -32,7 +40,7 @@ const NoteEditForm = ({ note, hideModal, showDetails }) => {
     };
 
     const updatedNote = await dispatch(updateNote(payload))
-    history.push(`/notes/${updatedNote.id}`)
+    history.push(`/notes/${updatedNote?.id}`)
     hideModal()
   }
 
@@ -66,7 +74,7 @@ const NoteEditForm = ({ note, hideModal, showDetails }) => {
         <label>
           Notebook
           <select
-            value={notebookId}
+            value={notebookId.id}
             onChange={(e) => setNotebookId(e.target.value)}
           >
             {notebooks.map(notebook =>

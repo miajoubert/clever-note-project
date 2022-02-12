@@ -91,13 +91,11 @@ const notebooksReducer = (state = initialState, action) => {
       action.notebooks.forEach((notebook) => {
         newState[notebook.id] = notebook;
       });
-      console.log("MY NOTEBOOKS STATE", newState)
       return newState;
     case LIST_NOTEBOOK:
       const oneState = { ...state };
       oneState[action.notebook.id] = action.notebook;
       return oneState;
-      console.log("MY NOTEBOOK SINGLE STATE", oneState)
     case ADD_NOTEBOOK:
       if (state[action.notebook.id]) {
         const addState = {
@@ -109,7 +107,6 @@ const notebooksReducer = (state = initialState, action) => {
         ...state,
         [action.notebook.id]: action.notebook
       };
-      console.log("MY NOTEBOOK ADD STATE", addState)
       return addState;
     case UPDATE_NOTEBOOK:
       return {
@@ -119,7 +116,6 @@ const notebooksReducer = (state = initialState, action) => {
     case DELETE_NOTEBOOK:
       const deleteState = { ...state };
       delete deleteState[action.notebookId];
-      console.log("MY NOTEBOOK DEL STATE", deleteState)
       return deleteState;
     default:
       return state;

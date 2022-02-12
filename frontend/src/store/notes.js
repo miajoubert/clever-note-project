@@ -38,14 +38,8 @@ export const listNotes = (userId) => async (dispatch) => {
   });
   const notes = await response.json();
   dispatch(list(notes))
+  return notes
 }
-
-// export const noteDetails = (noteId) => async (dispatch) => {
-//   // const response = await csrfFetch(`/api/notes/${noteId}`)
-//   // const note = await response.json();
-//   // console.log("MY NOTE DETAILS", note)
-//   // dispatch(one(note))
-// }
 
 export const addNote = (payload) => async (dispatch) => {
   const response = await csrfFetch(`/api/notes`, {
