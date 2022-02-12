@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
 import NotebookEditModal from "./NotebookEditModal";
-import * as sessionActions from "../../store/session";
-
-import NotesPage from "../Notes";
-import NoteDetail from "../Notes/NoteDetail";
+import NotesPerNotebook from "./NotesPerNotebook";
 
 import { listNotebooks, noteDetails, editNote, deleteNotebook } from "../../store/notebooks";
 
@@ -24,13 +21,13 @@ const NotebookDetail = () => {
 
   const [hideNotebookDetails, setHideNotebookDetails] = useState(false)
 
+  const userId = session.user.id;
+
   let notebook = notebooks[notebookId]
   let notesList = Object.values(allNotes)
   let notes = notesList.filter(note => {
     return note.notebookId === notebook.id
   })
-
-  console.log("ALL THESE NOTES", notes)
 
   useEffect(() => {
     dispatch(listNotebooks(notebooks))
@@ -41,23 +38,23 @@ const NotebookDetail = () => {
     history.push("/notebooks")
   }
 
-  const userId = session.user.id;
 
-  if (!notebook) {
-    return (
-      <div
-        className="notebookDetailBackground"
-        hidden={hideNotebookDetails}
-      >
-        <div className="title" style={{ color: "red" }}>Notebook not found!</div>
-        <div className="content" style={{ color: "red" }}>
-          <b>
-            This notebook has been deleted. Please select another note...
-          </b>
-        </div>
-      </div >
-    )
-  } else return (
+  // if (!notebook) {
+  //   return (
+  //     <div
+  //       className="notebookDetailBackground"
+  //       hidden={hideNotebookDetails}
+  //     >
+  //       <div className="title" style={{ color: "red" }}>Notebook not found!</div>
+  //       <div className="content" style={{ color: "red" }}>
+  //         <b>
+  //           This notebook has been deleted. Please select another note...
+  //         </b>
+  //       </div>
+  //     </div >
+  //   )
+  // } else return (
+  return (
     <>
       <div
         className="notebookDetails"
@@ -78,7 +75,9 @@ const NotebookDetail = () => {
         className="notebookNotesPageDiv"
         hidden={hideNotebookDetails}
       >
-        {notes}
+        <NotesPerNotebook
+          hidden={true}
+          notebookId={notebookId} />
       </div>
     </>
   )
