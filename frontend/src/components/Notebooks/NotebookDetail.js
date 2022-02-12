@@ -26,7 +26,7 @@ const NotebookDetail = () => {
   let notebook = notebooks[notebookId]
   let notesList = Object.values(allNotes)
   let notes = notesList.filter(note => {
-    return note.notebookId === notebook.id
+    return note?.notebookId === notebook?.id
   })
 
   useEffect(() => {
@@ -38,22 +38,6 @@ const NotebookDetail = () => {
     history.push("/notebooks")
   }
 
-
-  // if (!notebook) {
-  //   return (
-  //     <div
-  //       className="notebookDetailBackground"
-  //       hidden={hideNotebookDetails}
-  //     >
-  //       <div className="title" style={{ color: "red" }}>Notebook not found!</div>
-  //       <div className="content" style={{ color: "red" }}>
-  //         <b>
-  //           This notebook has been deleted. Please select another note...
-  //         </b>
-  //       </div>
-  //     </div >
-  //   )
-  // } else return (
   return (
     <>
       <div

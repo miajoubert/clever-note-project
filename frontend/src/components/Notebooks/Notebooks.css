@@ -13,7 +13,6 @@ main {
   margin-left: 10px;
   width: 13rem;
   overflow-y: auto;
-  z-index: 1;
 }
 
 .notebookInfo {
@@ -49,6 +48,7 @@ main {
   border-radius: 10px;;
   background-image: url("https://products.mpowerpromo.com/PL/NB108/NB108Translucent_Purple//4196486/id4196486c3626311hFVyA5-VKapE0mrIwbGHug6UKcjJhR3kljvl_dRsI9QUpsuso.jpg");
   background-size: contain;
+  z-index: 0;
 }
 
 .buttonDetails {

@@ -25,75 +25,67 @@ const NotesPage = () => {
   const notebooksArr = Object.values(notebooks);
 
   useEffect(() => {
-    dispatch(listNotebooks(userId))
-    dispatch(listNotes(notebookId))
-  }, [])
+    if (userId) {
+      dispatch(listNotebooks(userId))
+      dispatch(listNotes(notebookId))
+    }
+  }, [userId])
 
-  if (!session.user) {
-    return (
-      <>
-        <div>
-          LOGGED OUT
-        </div>
-      </>
-    )
-  } else {
-    return (
-      <main>
-        <nav
-          className="notebookList">
-          {notebooksArr.map((notebook) => {
-            return (
-              <NavLink
-                key={notebook?.id}
-                to={`/notebooks/${notebook?.id}`}
-                onClick={() => setShowForm(false)}
+  return (
+    <main>
+      <nav
+        className="notebookList">
+        {notebooksArr.map((notebook) => {
+          return (
+            <NavLink
+              key={notebook?.id}
+              to={`/notebooks/${notebook?.id}`}
+              onClick={() => setShowForm(false)}
+            >
+              <div
+                className={
+                  Number.parseInt(notebookId) === notebook?.id
+                    ? "notebook selected"
+                    : "notebook"
+                }
               >
-                <div
-                  className={
-                    Number.parseInt(notebookId) === notebook?.id
-                      ? "notebook selected"
-                      : "notebook"
-                  }
-                >
-                  <div className="primary-text">{notebook?.title}</div>
-                  <div className="notebookInfo">
-                    <div className="secondary-text">
-                      {new Date(notebook.updatedAt).getMonth() + 1}/{new Date(notebook.updatedAt).getDate()}/{new Date(notebook.updatedAt).getFullYear()}
-                    </div>
-                    <div className="notebookImage" />
+                <div className="primary-text">{notebook?.title}</div>
+                <div className="notebookInfo">
+                  <div className="secondary-text">
+                    {new Date(notebook?.updatedAt).getMonth() + 1}/{new Date(notebook?.updatedAt).getDate()}/{new Date(notebook?.updatedAt).getFullYear()}
                   </div>
+                  <div className="notebookImage" />
                 </div>
-              </NavLink>
-            )
-          }
-          )}
-        </nav>
-
-        <FloatingNotebookButton
-          hidden={showForm}
-          onClick={() => setShowForm(true)}
-        />
-
-        {
-          showForm ? (
-            <NotebookForm
-              hidden={!showForm}
-              hideForm={() => setShowForm(false)} />
-          ) : (
-            <>
-              <Route path="/notebooks/:notebookId">
-                <NotebookDetail
-                  hidden={!showForm}
-                  setShowForm={() => setShowForm(false)}
-                />
-              </Route>
-            </>
+              </div>
+            </NavLink>
           )
         }
-      </main>
-    )
-  }
+        )}
+      </nav>
+
+      <FloatingNotebookButton
+        hidden={showForm}
+        onClick={() => setShowForm(true)}
+      />
+
+      {
+        showForm ? (
+          <NotebookForm
+            hidden={!showForm}
+            hideForm={() => setShowForm(false)} />
+        ) : (
+          <>
+            <Route path="/notebooks/:notebookId">
+              <NotebookDetail
+                hidden={!showForm}
+                setShowForm={() => setShowForm(false)}
+              />
+            </Route>
+          </>
+        )
+      }
+    </main>
+  )
 }
 
 export default NotesPage;

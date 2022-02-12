@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route, useParams } from "react-router-dom";
 
 import FloatingButton from "../FloatingButton";
-import NoteDetail from "../Notes/NoteDetail";
+import NotesPerDetail from "./NotesPerDetails";
 import NotesPerNotebookNewForm from "./NotesPerForm";
 import { listNotes } from "../../store/notes";
-
 
 import './NotesPerNotebook.css'
 
@@ -16,6 +15,7 @@ const NotesPerNotebook = ({ notebookId }) => {
   const dispatch = useDispatch()
 
   const [showForm, setShowForm] = useState(false);
+  const [noteDetail, setNoteDetail] = useState()
 
   const userId = session.user.id;
   let { noteId } = useParams();
@@ -37,14 +37,13 @@ const NotesPerNotebook = ({ notebookId }) => {
         className="noteList">
         {notesList?.map((note) => {
           return (
-            <NavLink
+            <div
               key={note?.id}
-              to={`/notes/${note?.id}`}
-              onClick={() => setShowForm(false)}
+              onClick={() => setNoteDetail(note)}
             >
               <div
                 className={
-                  Number.parseInt(noteId) === note?.id
+                  Number.parseInt(noteDetail?.id) === note?.id
                     ? "note selected"
                     : "note"
                 }
@@ -54,7 +53,7 @@ const NotesPerNotebook = ({ notebookId }) => {
                   {new Date(note?.updatedAt).getMonth() + 1}/{new Date(note?.updatedAt).getDate()}/{new Date(note?.updatedAt).getFullYear()}
                 </div>
               </div>
-            </NavLink>
+            </div>
           )
         }
         )}
@@ -73,16 +72,15 @@ const NotesPerNotebook = ({ notebookId }) => {
             currNotebookId={notebookId} />
         ) : (
           <>
-            <Route path="/notes/:noteId">
-              <NoteDetail
-                hidden={!showForm}
-                setShowForm={() => setShowForm(false)}
-              />
-            </Route>
+            <NotesPerDetail
+              hidden={!showForm}
+              setShowForm={() => setShowForm(false)}
+              note={noteDetail}
+            />
           </>
         )
       }
-    </main>
+    </main >
   )
 }
 

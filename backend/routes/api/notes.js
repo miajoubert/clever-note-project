@@ -12,9 +12,8 @@ router.get('/',
       where: {
         userId
       },
-      include: [
-        { model: Notebook }
-      ]
+      order: [['title', 'DESC']],
+      include: [{ model: Notebook }],
     });
 
     return res.json(notes)

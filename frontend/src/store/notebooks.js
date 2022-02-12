@@ -38,6 +38,7 @@ export const listNotebooks = (userId) => async (dispatch) => {
   });
   const notebooks = await response.json();
   dispatch(list(notebooks))
+  // return notebooks
 }
 
 export const notebookDetails = (notebookId) => async (dispatch) => {
