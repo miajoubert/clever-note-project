@@ -10,7 +10,6 @@ import './NoteForm.css'
 const NoteForm = ({ hideForm }) => {
   const notebookList = useSelector(state => state.notebooks)
   const notebooks = Object.values(notebookList)
-  console.log(notebooks)
 
   const session = useSelector(state => state.session)
   const dispatch = useDispatch()
