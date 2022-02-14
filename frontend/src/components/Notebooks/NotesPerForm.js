@@ -11,7 +11,6 @@ const NotesPerNotebookNewForm = ({ hideForm, currNotebookId }) => {
   const notes = useSelector(state => state.notes)
   const notebookList = useSelector(state => state.notebooks)
   const notebooks = Object.values(notebookList)
-  console.log(notebooks)
 
   const session = useSelector(state => state.session)
   const dispatch = useDispatch()
@@ -51,43 +50,47 @@ const NotesPerNotebookNewForm = ({ hideForm, currNotebookId }) => {
 
   return (
     <>
-      <div>Take Note...</div>
-      <form>
-        <label>
-          Title
-          <input
-            type="text"
-            placeholder="Title..."
-            required
-            value={title}
-            onChange={(e) => setTitle(e.target.value)} />
-        </label>
-        <label>
-          Content
-          <textarea
-            type="text"
-            placeholder="Content..."
-            required
-            value={content}
-            onChange={(e) => setContent(e.target.value)} />
-        </label>
-        <label>
-          Notebook
-          <select
-            value={notebookId}
-            onChange={(e) => setNotebookId(e.target.value)}
-          >
-            {notebooks.map(notebook =>
-              <option key={notebook.id}
-                value={notebookId.id}
-              >
-                {notebook.title}
-              </option>)}
-          </select>
-        </label>
-        <button type="submit" onClick={handleSubmit}>Create Note</button>
-        <button type="button" onClick={handleCancel}>Cancel</button>
-      </form>
+      <div className="noteFormDiv">
+        <div>Take Note...</div>
+        <form className="noteForm">
+          <label>
+            Title
+            <input
+              type="text"
+              placeholder="Title..."
+              required
+              value={title}
+              onChange={(e) => setTitle(e.target.value)} />
+          </label>
+          <label>
+            Content
+            <textarea
+              type="text"
+              placeholder="Content..."
+              required
+              value={content}
+              onChange={(e) => setContent(e.target.value)} />
+          </label>
+          <label>
+            Notebook
+            <select
+              value={notebookId}
+              onChange={(e) => setNotebookId(e.target.value)}
+            >
+              {notebooks.map(notebook =>
+                <option key={notebook.id}
+                  value={notebookId.id}
+                >
+                  {notebook.title}
+                </option>)}
+            </select>
+          </label>
+          <div className="buttonsForm">
+            <button className="formButton" type="submit" onClick={handleSubmit}>Create Note</button>
+            <button className="formButton" type="button" onClick={handleCancel}>Cancel</button>
+          </div>
+        </form>
+      </div>
     </>
   )
 }

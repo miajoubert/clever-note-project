@@ -14,6 +14,7 @@ const NotebookForm = ({ hideForm }) => {
   const history = useHistory();
 
   const [title, setTitle] = useState("")
+  const [errors, setErrors] = useState([]);
 
   const userId = session.user.id;
 
@@ -25,9 +26,15 @@ const NotebookForm = ({ hideForm }) => {
       title
     };
 
-    let newNotebook = await dispatch(addNotebook(payload));
-    hideForm();
-    history.push(`/notebooks/${newNotebook.id}`);
+    let newNotebook = await dispatch(addNotebook(payload))
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      })
+    if (newNotebook) {
+      hideForm();
+      history.push(`/notebooks/${newNotebook.id}`);
+    }
   };
 
   const handleCancel = (e) => {
@@ -37,25 +44,39 @@ const NotebookForm = ({ hideForm }) => {
 
   return (
     <>
-      <div>Start from scratch...</div>
-      <form>
-        <label>
-          Title
-          <input
-            type="text"
-            placeholder="Title..."
-            required
-            value={title}
-            onChange={(e) => setTitle(e.target.value)} />
-        </label>
-        <button
-          type="submit"
-          onClick={handleSubmit}
-        >
-          Create Notebook
-        </button>
-        <button type="button" onClick={handleCancel}>Cancel</button>
-      </form>
+      <div className="noteFormDiv">
+        <div>Start from scratch...</div>
+        <ul className="errorsAuthSignup">
+          {errors.map((error, i) => (
+            <li
+              className="errorLi"
+              key={i}
+            >
+              {error}
+            </li>))}
+        </ul>
+        <form className="noteForm">
+          <label>
+            Title
+            <input
+              type="text"
+              placeholder="Title..."
+              required
+              value={title}
+              onChange={(e) => setTitle(e.target.value)} />
+          </label>
+          <div className="buttonsForm">
+            <button
+              className="formButton"
+              type="submit"
+              onClick={handleSubmit}
+            >
+              Create Notebook
+            </button>
+            <button className="formButton" type="button" onClick={handleCancel}>Cancel</button>
+          </div>
+        </form>
+      </div>
     </>
   )
 }

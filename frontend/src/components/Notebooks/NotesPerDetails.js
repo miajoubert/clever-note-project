@@ -36,6 +36,7 @@ const NotesPerDetail = ({ note }) => {
     history.push(`/notebooks/${notebookId}`)
   }
 
+
   return (
     <>
       <div
@@ -50,12 +51,12 @@ const NotesPerDetail = ({ note }) => {
           >
             Go to Note
           </button>
-          <button
+          {/* <button
             className="deleteButton"
             onClick={deleteNoteFunc}
           >
             Delete Note
-          </button>
+          </button> */}
           <div className="timestamp">
             <div><b>{notebook?.title}</b></div>
             <div>{new Date(note?.updatedAt).toDateString()} {new Date(note?.updatedAt).getHours()}:{new Date(note?.updatedAt).getMinutes()}</div>

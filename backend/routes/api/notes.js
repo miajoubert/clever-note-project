@@ -1,8 +1,22 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
+const { check } = require('express-validator');
+
 const { Note, Notebook } = require('../../db/models')
+const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
+
+
+const validateNoteForm = [
+  check('title')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a note title.'),
+  check('content')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide note content.'),
+  handleValidationErrors
+];
 
 router.get('/',
   asyncHandler(async function (req, res) {
@@ -21,6 +35,7 @@ router.get('/',
 );
 
 router.get('/:noteId',
+  validateNoteForm,
   asyncHandler(async function (req, res) {
     const { noteId } = req.params;
 
@@ -34,6 +49,7 @@ router.get('/:noteId',
 );
 
 router.post('/',
+  validateNoteForm,
   asyncHandler(async function (req, res) {
     const {
       userId,
@@ -59,6 +75,7 @@ router.post('/',
 );
 
 router.put('/:id',
+  validateNoteForm,
   asyncHandler(async function (req, res) {
     const { id } = req.params;
 

@@ -18,6 +18,7 @@ function Navigation({ isLoaded }) {
       <div className="navbar" >
         <NavLink className='notes' to="/notes">Notes</NavLink>
         <NavLink className='notes' to="/notebooks">Notebooks</NavLink>
+        <a className='notes' href="https://github.com/miajoubert/clevernote-project" target="_blank">About</a>
         {/* <NavLink className='notes' to="/reminder">Reminders</NavLink> */}
         {/* <SearchButton /> */}
         <ProfileButton user={sessionUser} />

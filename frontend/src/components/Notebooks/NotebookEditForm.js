@@ -37,32 +37,37 @@ const NotebookEditForm = ({ notebook, hideModal, showDetails }) => {
 
   return (
     <>
-      <div>Revise:</div>
-      <form>
-        <label>
-          Title
-          <input
-            type="text"
-            placeholder="Title..."
-            required
-            value={title}
-            onChange={(e) => setTitle(e.target.value)} />
-        </label>
-        <button
-          type="submit"
-          onClick={handleSubmit}
-        >
-          Edit Notebook
-        </button>
-        <button
-          type="button"
-          onClick={handleCancel}
-        >
-          Cancel
-        </button>
-      </form>
+      <div className="noteFormDiv">
+        <div>Revise:</div>
+        <form className="noteForm">
+          <label>
+            Title
+            <input
+              type="text"
+              placeholder="Title..."
+              required
+              value={title}
+              onChange={(e) => setTitle(e.target.value)} />
+          </label>
+          <div className="buttonsForm">
+            <button
+              className="formButton"
+              type="submit"
+              onClick={handleSubmit}
+            >
+              Edit Notebook
+            </button>
+            <button
+              className="formButton"
+              type="button"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
     </>
-    // )
   )
 }
 

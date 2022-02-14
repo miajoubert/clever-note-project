@@ -16,9 +16,10 @@ const NoteEditForm = ({ note, hideModal, showDetails }) => {
   const dispatch = useDispatch()
   const history = useHistory();
 
-  const [title, setTitle] = useState(note.title)
-  const [content, setContent] = useState(note.content)
-  const [notebookId, setNotebookId] = useState(notebooks[note.notebookId])
+  const [title, setTitle] = useState(note?.title)
+  const [content, setContent] = useState(note?.content)
+  const [notebookId, setNotebookId] = useState(notebooks[note?.notebookId])
+  const [errors, setErrors] = useState([]);
 
   const userId = session.user.id;
 
@@ -29,7 +30,7 @@ const NoteEditForm = ({ note, hideModal, showDetails }) => {
   }, [userId])
 
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
 
     const payload = {
@@ -39,10 +40,13 @@ const NoteEditForm = ({ note, hideModal, showDetails }) => {
       content
     };
 
-    const updatedNote = await dispatch(updateNote(payload))
+    setErrors([]);
+    const updatedNote = dispatch(updateNote(payload))
     history.push(`/notes/${updatedNote?.id}`)
     hideModal()
+
   }
+
 
   const handleCancel = (e) => {
     e.preventDefault();
@@ -51,55 +55,69 @@ const NoteEditForm = ({ note, hideModal, showDetails }) => {
 
   return (
     <>
-      <div>Revise:</div>
-      <form>
-        <label>
-          Title
-          <input
-            type="text"
-            placeholder="Title..."
-            required
-            value={title}
-            onChange={(e) => setTitle(e.target.value)} />
-        </label>
-        <label>
-          Content
-          <textarea
-            type="text"
-            placeholder="Content..."
-            required
-            value={content}
-            onChange={(e) => setContent(e.target.value)} />
-        </label>
-        <label>
-          Notebook
-          <select
-            value={notebookId.id}
-            onChange={(e) => setNotebookId(e.target.value)}
-          >
-            {notebooks.map(notebook =>
-              <option key={notebook.id}
-                value={notebook.id}
-              >
-                {notebook.title}
-              </option>)}
-          </select>
-        </label>
-        <button
-          type="submit"
-          onClick={handleSubmit}
-        >
-          Edit Note
-        </button>
-        <button
-          type="button"
-          onClick={handleCancel}
-        >
-          Cancel
-        </button>
-      </form>
+      <div className="noteFormDiv">
+        <div>Revise:</div>
+        <ul className="errorsAuthSignup">
+          {errors.map((error, i) => (
+            <li
+              className="errorLi"
+              key={i}
+            >
+              {error}
+            </li>))}
+        </ul>
+        <form className="noteForm">
+          <label>
+            Title
+            <input
+              type="text"
+              placeholder="Title..."
+              required
+              value={title}
+              onChange={(e) => setTitle(e.target.value)} />
+          </label>
+          <label>
+            Content
+            <textarea
+              type="text"
+              placeholder="Content..."
+              required
+              value={content}
+              onChange={(e) => setContent(e.target.value)} />
+          </label>
+          <label>
+            Notebook
+            <select
+              value={notebookId.id}
+              onChange={(e) => setNotebookId(e.target.value)}
+            >
+              {notebooks.map(notebook =>
+                <option key={notebook.id}
+                  value={notebook.id}
+                >
+                  {notebook.title}
+                </option>)}
+            </select>
+          </label>
+          <div className="buttonsForm">
+            <button
+              className="formButton"
+              type="submit"
+              onClick={handleSubmit}
+            >
+              Edit Note
+            </button>
+            <button
+              className="formButton"
+              type="button"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div >
     </>
-    // )
   )
 }
 

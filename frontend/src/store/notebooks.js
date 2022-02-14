@@ -1,6 +1,6 @@
 import { csrfFetch } from "./csrf";
 
-const LIST_NOTEBOOKS = 'notenooks/LIST';
+const LIST_NOTEBOOKS = 'notebooks/LIST';
 const LIST_NOTEBOOK = 'notebooks/ONE'
 const ADD_NOTEBOOK = 'notebooks/ADD_NOTEBOOK';
 const UPDATE_NOTEBOOK = 'notebooks/UPDATE_NOTEBOOK';
@@ -38,7 +38,6 @@ export const listNotebooks = (userId) => async (dispatch) => {
   });
   const notebooks = await response.json();
   dispatch(list(notebooks))
-  // return notebooks
 }
 
 export const notebookDetails = (notebookId) => async (dispatch) => {
