@@ -81,7 +81,7 @@ router.delete("/:notebookId",
   asyncHandler(async function (req, res) {
     const { notebookId } = req.params;
 
-    await Note.destroy({
+    await Notebook.destroy({
       where: { id: notebookId }
     })
 
