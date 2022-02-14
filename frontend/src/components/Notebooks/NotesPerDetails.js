@@ -58,7 +58,7 @@ const NotesPerDetail = ({ note }) => {
             Delete Note
           </button> */}
           <div className="timestamp">
-            <div><b>{notebook?.title}</b></div>
+            {/* <div><b>{notebook?.title}</b></div> */}
             <div>{new Date(note?.updatedAt).toDateString()} {new Date(note?.updatedAt).getHours()}:{new Date(note?.updatedAt).getMinutes()}</div>
           </div>
         </div>
