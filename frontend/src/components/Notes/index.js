@@ -26,9 +26,7 @@ const NotesPage = () => {
   useEffect(() => {
     if (session.user) {
       dispatch(listNotes(userId))
-        .then(() => setIsLoaded(true));
     }
-    // dispatch(noteDetails(noteId))
   }, [])
 
   return (

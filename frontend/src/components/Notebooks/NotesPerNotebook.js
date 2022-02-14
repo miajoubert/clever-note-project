@@ -58,11 +58,11 @@ const NotesPerNotebook = ({ notebookId }) => {
         }
         )}
       </nav>
-
+      {/*
       <FloatingButton
         hidden={showForm}
         onClick={() => setShowForm(true)}
-      />
+      /> */}
 
       {
         showForm ? (

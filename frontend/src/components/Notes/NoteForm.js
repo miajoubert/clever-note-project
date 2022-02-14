@@ -10,6 +10,7 @@ import './NoteForm.css'
 const NoteForm = ({ hideForm }) => {
   const notebookList = useSelector(state => state.notebooks)
   const notebooks = Object.values(notebookList)
+  console.log(notebooks)
 
   const session = useSelector(state => state.session)
   const dispatch = useDispatch()
@@ -17,7 +18,7 @@ const NoteForm = ({ hideForm }) => {
 
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
-  const [notebookId, setNotebookId] = useState(notebooks[0])
+  const [notebookId, setNotebookId] = useState(notebooks[0]?.id)
   const [errors, setErrors] = useState([]);
 
   const userId = session.user.id;
@@ -96,7 +97,7 @@ const NoteForm = ({ hideForm }) => {
             >
               {notebooks.map(notebook =>
                 <option key={notebook?.id}
-                  value={notebook?.id.id}
+                  value={notebook?.id}
                 >
                   {notebook?.title}
                 </option>)}

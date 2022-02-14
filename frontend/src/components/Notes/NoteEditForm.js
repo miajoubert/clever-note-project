@@ -18,7 +18,7 @@ const NoteEditForm = ({ note, hideModal, showDetails }) => {
 
   const [title, setTitle] = useState(note?.title)
   const [content, setContent] = useState(note?.content)
-  const [notebookId, setNotebookId] = useState(notebooks[note?.notebookId])
+  const [notebookId, setNotebookId] = useState(notebooks[note?.notebookId]?.id)
   const [errors, setErrors] = useState([]);
 
   const userId = session.user.id;
@@ -30,7 +30,7 @@ const NoteEditForm = ({ note, hideModal, showDetails }) => {
   }, [userId])
 
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     const payload = {
@@ -41,10 +41,15 @@ const NoteEditForm = ({ note, hideModal, showDetails }) => {
     };
 
     setErrors([]);
-    const updatedNote = dispatch(updateNote(payload))
-    history.push(`/notes/${updatedNote?.id}`)
-    hideModal()
-
+    let updatedNote = await dispatch(updateNote(payload))
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      })
+    if (updatedNote) {
+      history.push(`/notes/${updatedNote?.id}`)
+      hideModal()
+    }
   }
 
 
@@ -88,14 +93,14 @@ const NoteEditForm = ({ note, hideModal, showDetails }) => {
           <label>
             Notebook
             <select
-              value={notebookId.id}
+              value={notebookId}
               onChange={(e) => setNotebookId(e.target.value)}
             >
               {notebooks.map(notebook =>
-                <option key={notebook.id}
-                  value={notebook.id}
+                <option key={notebook?.id}
+                  value={notebook?.id}
                 >
-                  {notebook.title}
+                  {notebook?.title}
                 </option>)}
             </select>
           </label>
