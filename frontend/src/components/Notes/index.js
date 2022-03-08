@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route, useParams } from "react-router-dom";
 
-import * as sessionActions from "../../store/session";
 import FloatingButton from "../FloatingButton";
 import NoteDetail from "./NoteDetail";
 import NoteForm from "./NoteForm";
-import { listNotes, addNote, updateNote, deleteNote } from "../../store/notes";
+import { listNotes } from "../../store/notes";
 
 
 import './Notes.css'
@@ -16,7 +15,6 @@ const NotesPage = () => {
   const session = useSelector(state => state.session)
   const dispatch = useDispatch()
 
-  const [isLoaded, setIsLoaded] = useState(false);
   const [showForm, setShowForm] = useState(false);
 
   const userId = session.user.id;
