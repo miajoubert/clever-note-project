@@ -1,4 +1,4 @@
-#Clevernote
+# Clevernote
 
 ## Getting Started
 1. Clone repository:
