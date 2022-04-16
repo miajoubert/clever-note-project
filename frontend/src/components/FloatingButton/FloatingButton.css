@@ -1,4 +1,4 @@
-.fab {
+.fab-button {
   border-radius: 10px;
   box-shadow: 0 4px 6px rgb(0, 0, 0, 0.2);
   display: flex;
@@ -15,16 +15,16 @@
   zoom: 1;
 }
 
-.fab.hidden {
+.fab-button.hidden {
   transform: scale(0);
 }
 
-.fab:hover {
+.fab-button:hover {
   box-shadow: 0 6px 8px rgb(0, 0, 0, 0.3);
   height: 58px;
   width: 58px;
 }
 
-.fab span {
+.fab-button span {
   transition: transform 0.5s;
 }
