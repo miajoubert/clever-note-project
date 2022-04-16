@@ -1,0 +1,16 @@
+.mainNotesList {
+  position: fixed;
+  top: 11rem;
+  left: 13rem;
+  right: 0;
+  bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  overflow-x: hidden;
+}
+
+.noteList {
+  margin-left: 10px;
+  min-width: 13rem;
+  overflow-y: auto;
+}

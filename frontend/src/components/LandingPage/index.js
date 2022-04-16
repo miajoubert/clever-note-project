@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import Footer from '../Navigation/Footer';
 
+
 import './LandingPage.css'
 
 function LandingPage() {

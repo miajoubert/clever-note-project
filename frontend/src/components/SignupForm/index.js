@@ -33,9 +33,6 @@ function SignupFormPage() {
   return (
     <div className="signupFormDiv">
       <form className="signupForm" onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, i) => <li key={i}>{error}</li>)}
-        </ul>
         <label>
           Email
           <input
@@ -74,6 +71,15 @@ function SignupFormPage() {
         </label>
         <button className="submitButton" type="submit">Sign Up</button>
       </form>
+      <ul className="errorsAuthSignup">
+        {errors.map((error, i) => (
+          <li
+            className="errorLi"
+            key={i}
+          >
+            {error}
+          </li>))}
+      </ul>
     </div>
   );
 }

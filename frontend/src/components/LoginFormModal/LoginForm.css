@@ -47,7 +47,7 @@ input {
 
 .nav {
   background-color: #00a82b;
-  margin: 0px 10px 0px 80px;
+  margin: 0px 10px 0px 30px;
   border: black solid 2px;
   border-radius: 10px;
   padding: 5px;
@@ -56,4 +56,13 @@ input {
 }
 .nav:hover {
   background-color: lightgray;
+}
+
+
+.errorsAuth {
+  margin: 20px 0px;
+  padding: 0;
+  list-style-type: none;
+  color: red;
+  text-align: left;
 }

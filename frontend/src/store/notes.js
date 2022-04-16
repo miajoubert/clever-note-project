@@ -38,12 +38,7 @@ export const listNotes = (userId) => async (dispatch) => {
   });
   const notes = await response.json();
   dispatch(list(notes))
-}
-
-export const noteDetails = (noteId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/notes/${noteId}`)
-  const note = await response.json();
-  dispatch(one(note))
+  return notes
 }
 
 export const addNote = (payload) => async (dispatch) => {
@@ -88,27 +83,25 @@ const notesReducer = (state = initialState, action) => {
   switch (action.type) {
     case LIST_NOTES:
       const newState = { ...state };
-      // console.log("ACTION dot NOTES!!!!!", action.notes)
       action.notes.forEach((note) => {
         newState[note.id] = note;
       });
-      // console.log("NEW STATE!!!!!!!!!!!!", newState)
       return newState;
     case LIST_NOTE:
       const oneState = { ...state };
       oneState[action.note.id] = action.note;
       return oneState;
     case ADD_NOTE:
-      if (!state[action.note.id]) {
+      if (state[action.note.id]) {
         const addState = {
           ...state,
-          [action.note.id]: action.note
+          [action.note.id + 1]: action.note
         };
       }
-      let addState;
-      const noteList = state.map(id => addState[id]);
-      noteList.push(action.note);
-      addState = noteList;
+      const addState = {
+        ...state,
+        [action.note.id]: action.note
+      };
       return addState;
     case UPDATE_NOTE:
       return {

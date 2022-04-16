@@ -5,9 +5,10 @@ import { listNotebooks } from "../../store/notebooks";
 
 import { addNote, listNotes, noteDetails, updateNote } from "../../store/notes";
 
-import './NoteForm.css'
+import './NotesPerForm.css'
 
-const NoteForm = ({ hideForm }) => {
+const NotesPerNotebookNewForm = ({ hideForm, currNotebookId }) => {
+  const notes = useSelector(state => state.notes)
   const notebookList = useSelector(state => state.notebooks)
   const notebooks = Object.values(notebookList)
 
@@ -17,8 +18,7 @@ const NoteForm = ({ hideForm }) => {
 
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
-  const [notebookId, setNotebookId] = useState(notebooks[0]?.id)
-  const [errors, setErrors] = useState([]);
+  const [notebookId, setNotebookId] = useState(notebooks[+currNotebookId])
 
   const userId = session.user.id;
 
@@ -38,18 +38,10 @@ const NoteForm = ({ hideForm }) => {
       content
     };
 
-    setErrors([]);
-    let newNote = await dispatch(addNote(payload))
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      })
-
-    if (newNote) {
-      hideForm();
-      history.push(`/notes/${newNote?.id}`);
-    }
-  }
+    let newNote = await dispatch(addNote(payload));
+    hideForm();
+    history.push(`/notes/${newNote.id}`);
+  };
 
   const handleCancel = (e) => {
     e.preventDefault();
@@ -60,17 +52,8 @@ const NoteForm = ({ hideForm }) => {
     <>
       <div className="noteFormDiv">
         <div>Take Note...</div>
-        <ul className="errorsAuthSignup">
-          {errors.map((error, i) => (
-            <li
-              className="errorLi"
-              key={i}
-            >
-              {error}
-            </li>))}
-        </ul>
         <form className="noteForm">
-          <label className="formTitle">
+          <label>
             Title
             <input
               type="text"
@@ -95,10 +78,10 @@ const NoteForm = ({ hideForm }) => {
               onChange={(e) => setNotebookId(e.target.value)}
             >
               {notebooks.map(notebook =>
-                <option key={notebook?.id}
-                  value={notebook?.id}
+                <option key={notebook.id}
+                  value={notebookId.id}
                 >
-                  {notebook?.title}
+                  {notebook.title}
                 </option>)}
             </select>
           </label>
@@ -112,4 +95,4 @@ const NoteForm = ({ hideForm }) => {
   )
 }
 
-export default NoteForm;
+export default NotesPerNotebookNewForm;

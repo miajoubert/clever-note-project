@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Route } from "react-router-dom";
 
-import FloatingButton from "../FloatingButton";
-import NoteEditModal from "./NoteEditModal";
 import { listNotes, editNote, deleteNote } from "../../store/notes";
 
-import './Notes.css'
 import { listNotebooks } from "../../store/notebooks";
 
-const NoteDetail = () => {
-  const { noteId } = useParams();
+const NotesPerDetail = ({ note }) => {
+  const { notebookId } = useParams()
 
   const session = useSelector(state => state.session);
   const notes = useSelector(state => state.notes)
@@ -23,18 +20,22 @@ const NoteDetail = () => {
   const [hideNoteDetails, setHideNoteDetails] = useState(false)
 
   const userId = session.user.id
-  let note = notes[noteId]
-  let notebook = notebooks[note?.notebookId]
+  let notebook = notebooks[notebookId]
 
   useEffect(() => {
     dispatch(listNotes(userId))
       .then(() => dispatch(listNotebooks(userId)))
   }, [userId])
 
-  async function deleteNoteFunc() {
-    await dispatch(deleteNote(noteId))
-    history.push("/notes")
+  function goToFunc() {
+    history.push(`/notes/${note.id}`)
   }
+
+  async function deleteNoteFunc() {
+    await dispatch(deleteNote(note?.id))
+    history.push(`/notebooks/${notebookId}`)
+  }
+
 
   return (
     <>
@@ -44,15 +45,18 @@ const NoteDetail = () => {
         <div className="title">{note?.title}</div>
         <div className="content">{note?.content}</div>
         <div className="bottomNoteDetails">
-          <NoteEditModal
-            note={note}
-          />
           <button
+            className="editButton"
+            onClick={goToFunc}
+          >
+            Go to Note
+          </button>
+          {/* <button
             className="deleteButton"
             onClick={deleteNoteFunc}
           >
             Delete Note
-          </button>
+          </button> */}
           <div className="timestamp">
             {/* <div><b>{notebook?.title}</b></div> */}
             <div>{new Date(note?.updatedAt).toDateString()} {new Date(note?.updatedAt).getHours()}:{new Date(note?.updatedAt).getMinutes()}</div>
@@ -63,4 +67,4 @@ const NoteDetail = () => {
   )
 }
 
-export default NoteDetail;
+export default NotesPerDetail;

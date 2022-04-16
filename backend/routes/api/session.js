@@ -52,6 +52,22 @@ router.post('/',
   })
 );
 
+router.post('/demo',
+  validateLogin,
+  asyncHandler(async (req, res, next) => {
+    const { credential, password } = req.body;
+
+    const user = await User.login({
+      credential,
+      password
+    });
+
+    await setTokenCookie(res, user);
+
+    return res.json({ user });
+  })
+);
+
 router.delete('/',
   (_req, res) => {
     res.clearCookie('token');

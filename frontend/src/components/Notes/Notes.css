@@ -11,6 +11,7 @@ main {
 
 .noteList {
   margin-left: 10px;
+  min-width: 13rem;
   overflow-y: auto;
 }
 
@@ -56,6 +57,7 @@ main {
 .secondary-text {
   font-size: 0.8em;
   color: gray;
+  margin-top: 10px;
 }
 
 
@@ -79,7 +81,7 @@ main {
 .timestamp {
   position: static;
   bottom: 1rem;
-  width: auto;
+  width: 200px;
   text-align: right;
   font-weight: 500;
   font-style: italic;

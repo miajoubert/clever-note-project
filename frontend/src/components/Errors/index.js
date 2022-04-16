@@ -3,10 +3,10 @@ import './Errors.css'
 function Errors() {
   return (
     <div className='homeDiv'>
-      <div className='errors'>
+      <div className='errors404'>
         404:
       </div>
-      <div className='errors2'>
+      <div className='errors404-2'>
         Page Not Found!
       </div>
       <img

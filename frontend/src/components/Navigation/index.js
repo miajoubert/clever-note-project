@@ -2,9 +2,10 @@ import React from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import DemoUser from '../../Demo';
 import LoginFormModal from '../LoginFormModal';
 import ProfileButton from './ProfileButton';
-import NotesPage from '../Notes';
+import SearchButton from './SearchButton'
 
 import './Navigation.css';
 
@@ -17,16 +18,19 @@ function Navigation({ isLoaded }) {
       <div className="navbar" >
         <NavLink className='notes' to="/notes">Notes</NavLink>
         <NavLink className='notes' to="/notebooks">Notebooks</NavLink>
-        <NavLink className='notes' to="/reminder">Reminders</NavLink>
+        <a className='notes' href="https://github.com/miajoubert/clevernote-project" target="_blank">About</a>
+        {/* <NavLink className='notes' to="/reminder">Reminders</NavLink> */}
+        {/* <SearchButton /> */}
         <ProfileButton user={sessionUser} />
       </div >
     );
   } else {
     sessionLinks = (
       <div className='navbarHome'>
+        <DemoUser className='signup' />
         <LoginFormModal className="nav1" />
         <NavLink className='signup' to="/signup">Sign Up</NavLink>
-      </div>
+      </div >
     );
   }
 

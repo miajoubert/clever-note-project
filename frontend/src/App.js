@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 
 import * as sessionActions from './store/session'
@@ -8,20 +8,24 @@ import Navigation from './components/Navigation';
 import LandingPage from './components/LandingPage';
 import SignupFormPage from './components/SignupForm';
 import NotesPage from './components/Notes';
-import NoteDetail from './components/Notes/NoteDetail';
-// import NotebooksPage from './components/Notebooks';
+import NotebooksPage from './components/Notebooks'
 // import RemindersPage from './components/Reminders';
 import Errors from './components/Errors';
 
+import { listNotes } from './store/notes';
+import { listNotebooks } from './store/notebooks';
 
 import './index.css';
 
 function App() {
   const dispatch = useDispatch();
+  const session = useSelector(state => state.session)
+
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    dispatch(sessionActions.restoreSession()).then(() => setIsLoaded(true));
+    dispatch(sessionActions.restoreSession())
+      .then(() => setIsLoaded(true))
   }, [dispatch]);
 
   return (
@@ -35,19 +39,32 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path={
-            ["/",
-              "/notes",
-              "/notes/:noteId",
-              "/notes/:noteId/edit"]
+          <Route path={[
+            "/",
+            "/notes",
+            "/notes/:noteId",
+            "/notes/:noteId/edit"
+          ]
           } exact>
             <NotesPage />
           </Route>
-          {/* <Route path="/notebooks">
-            <NotesPage />
-          </Route> */}
-          {/* <Route path="/reminders">
-            <NotesPage />
+          <Route path={[
+            "/",
+            "/notebooks",
+            "/notebooks/:notebookId",
+            "/notebooks/:notebookId/edit"
+          ]}
+            exact>
+            <NotebooksPage />
+          </Route>
+          {/* <Route  path={[
+            "/",
+            "/reminders",
+            "reminders/:reminderId",
+            "reminders/:reminderId/edit"
+          ]}
+            exact>
+            <RemindersPage />
           </Route> */}
           <Route path="/">
             <Errors />
