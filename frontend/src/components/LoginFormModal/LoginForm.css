@@ -1,20 +1,21 @@
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 .loginForm {
   display: flex;
   flex-direction: column;
-  width: 250px;
+  width: auto;
   text-align: center;
-  margin: 1rem;
   font-weight: bold;
 }
 
-.title {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+.auth-title {
   text-align: center;
-  font-weight: bolder;
+  font-size: 30px;
+  margin: 0px
+}
+
+.signup-title {
+  text-align: center;
+  font-size: 28px;
+  margin: 0px;
 }
 
 .line {
@@ -23,25 +24,30 @@ body {
   margin-bottom: 20px;
 }
 
-input {
-  margin: 10px 0px;
+.auth-form-input {
+  margin: 0px;
   padding: 5px;
-  height: 20px;
-  border-radius: 10px;
+  height: 45px;
+  width: 314px;
+  box-sizing: border-box;
+  border: rgba(128, 128, 128, 0.7) .5px solid;
+  border-radius: 5px;
+  color: black;
 }
 
 .loginButton {
   background-color: #00a82b;
-  width: auto;
-  margin: 10px 10px;
-  border: black solid 2px;
-  border-radius: 10px;
-  padding: 5px;
+  color: white;
+  width: 314px;
+  height: 56px;
+  border: none;
+  border-radius: 5px;
   font-size: 15px;
-  font-weight: bold;
 }
+
 .loginButton:hover {
-  background-color: lightgray;
+  transition: all .2s;
+  background-color: #04d237;
 }
 
 
@@ -54,15 +60,21 @@ input {
   font-size: 15px;
   font-weight: bold;
 }
+
 .nav:hover {
   background-color: lightgray;
 }
 
 
 .errorsAuth {
-  margin: 20px 0px;
+  height: 40px;
+  margin: 10px 0px;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   list-style-type: none;
-  color: red;
-  text-align: left;
+  font-size: 13px;
+  color: #CC4539;
 }

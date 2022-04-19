@@ -16,7 +16,7 @@ function DemoUser() {
 
   return (
     <button
-      className="loginButton"
+      className="signup"
       onClick={handleSubmit}
     >
       Demo

@@ -10,7 +10,7 @@ import { listNotebooks } from "../../store/notebooks";
 import { listNotes } from "../../store/notes";
 
 
-import './Notebooks.css'
+import './index.css'
 
 const NotesPage = () => {
   const notebooks = useSelector(state => state.notebooks)
@@ -54,7 +54,9 @@ const NotesPage = () => {
                   <div className="secondary-text">
                     {new Date(notebook?.updatedAt).getMonth() + 1}/{new Date(notebook?.updatedAt).getDate()}/{new Date(notebook?.updatedAt).getFullYear()}
                   </div>
-                  <div className="notebookImage" />
+                  <div className="notebookImage">
+                    <i class="fas fa-book"></i>
+                  </div>
                 </div>
               </div>
             </NavLink>

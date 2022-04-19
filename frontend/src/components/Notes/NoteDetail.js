@@ -41,7 +41,7 @@ const NoteDetail = () => {
       <div
         className="noteDetailBackground"
         hidden={hideNoteDetails}>
-        <div className="title">{note?.title}</div>
+        <div className="note-title">{note?.title}</div>
         <div className="content">{note?.content}</div>
         <div className="bottomNoteDetails">
           <NoteEditModal

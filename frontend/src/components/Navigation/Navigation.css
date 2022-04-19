@@ -2,8 +2,10 @@
   list-style-type: none;
   display: flex;
   flex-direction: row;
-  position: -webkit-sticky;
-  margin-bottom: 0px;
+  justify-content: space-between;
+  height: 80px;
+  margin: 0px 40px;
+  padding: 0px;
 }
 
 a:link {
@@ -15,91 +17,86 @@ a:link {
 }
 
 .navbar {
-  position: absolute;
-  top: 30px; right:40px;
+  padding: 0px 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  /* color: #00a82b; */
-  font-family:'Source Serif Pro', serif;
   font-size: 2rem;
   font-weight: bold;
-}
-
-.navbarHome {
-  position: absolute;
-  top: 30px; right:80px;
-  min-width: 100px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  /* color: #00a82b; */
-  font-family:Arial, Helvetica, sans-serif;
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-.demoButton {
-  background-color: #00a82b;
-  width: auto;
-  margin: 10px 10px;
-  border: black solid 2px;
-  border-radius: 10px;
-  padding: 5px;
-  font-size: 15px;
-  font-weight: bold;
-}
-.demoButton:hover {
-  background-color: lightgray;
 }
 
 .signup {
   background-color: #00a82b;
-  margin: 0px 10px 0px 30px;
-  border: black solid 2px;
-  border-radius: 10px;
+  margin: 0px 0px 0px 10px;
+  border: none;
+  border-radius: 3px;
   padding: 5px;
+  max-width: 70px;
+  min-width: 70px;
   font-size: 15px;
   font-weight: bold;
-  color: black;
+  text-align: center;
+  color: white;
+  cursor: pointer;
 }
+
 .signup:hover {
-  background-color: lightgray;
+  transition: all .2s;
+  background-color: #04d237;
 }
 
 .notes {
   text-decoration: none;
   color: black;
-  font-size: 20px;
+  font-size: 22px;
   margin-left: 20px;
+  height: 32.67px;
+  display: flex;
+  align-items: flex-end;
 }
 
 .notes:hover {
-  color: #00a82b
+  color: #00a82b;
+  cursor: pointer;
+  transition: all .2s;
 }
 
 .profileButton {
   font-size: 20px;
   width: 50px;
-  background-color: lightgray;
+  background-color: #00a82b;
+  color: white;
   margin: 0px 0px 0px 20px;
-  border: black solid 2px;
-  border-radius: 10px;
+  border: none;
+  border-radius: 5px;
   padding: 5px;
   font-size: 20px;
+  cursor: pointer;
 }
+
+.profileButtonOpen {
+  font-size: 20px;
+  width: 50px;
+  background-color: rgb(89, 88, 88);
+  color: white;
+  margin: 0px 0px 0px 20px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
 .profileButton:hover {
-  background-color: #00a82b;;
+  transition: all .2s;
+  background-color: #04d237;
 }
 
 .profile-dropdown {
   font-size: 15px;
-  font-family: Arial, Helvetica, sans-serif;
-  position: absolute;
+  position: fixed;
   top: 55px;
-  right: 0px;
   z-index: 2;
   text-align: right;
   color: #00a82b;
@@ -113,27 +110,60 @@ a:link {
 .logoutButton {
   background-color: #00a82b;
   margin: 10px 0px;
-  border: black solid 2px;
-  border-radius: 10px;
+  border: none;
+  border-radius: 3px;
   padding: 5px 10px;
   font-size: 15px;
   font-weight: bold;
 }
+
 .logoutButton:hover {
-  background-color: lightgray;
+  transition: all .2s;
+  background-color: #04d237;
+  color: white
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 915px) {
+  a.bar {
+    justify-content: center;
+  }
+
+  .navLinks {
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+    height: auto;
+  }
+
   .navbar {
-    position: absolute;
-    top: 70px; right:40px;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 590px;
+  }
+
+  .profileButton,
+  .searchButton {
+    margin: 0px
   }
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 599px) {
+  .navLinks {
+    margin: 0px 1rem;
+  }
+
   .navbar {
-    position: absolute;
-    top: 60px; right:40px;
-    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    min-width: 350px;
+    max-width: 280px;
+  }
+
+  .homePic {
+    width: 100vw;
   }
 }

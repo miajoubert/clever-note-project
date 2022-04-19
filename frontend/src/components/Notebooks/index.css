@@ -1,9 +1,4 @@
 main {
-  position: absolute;
-  top: 6rem;
-  left: 0;
-  right: 0;
-  bottom: 10px;
   display: flex;
   flex-direction: row;
   overflow-x: hidden;
@@ -15,52 +10,52 @@ main {
   overflow-y: auto;
 }
 
-.notebookInfo {
-  display: flex;
-  flex-direction: row;
-}
-
 .notebook {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: 6rem;
+  height: 3.6rem;
   padding: .75em;
-  overflow:hidden;
+  overflow: hidden;
   border-bottom: 1px solid lightgray;
   border-right: 10px solid transparent;
 }
 
 .notebook:hover {
-  background-color: #00a82a2f;
+  background-color: #00a82a9b;
 }
 
 .selected {
-  background-color: lightgray;
+  background-color: darkgray;
   border-right: 10px solid #00a82b;
+  color: black;
+}
+
+.notebookInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .notebookImage {
-  position: relative;
-  left: 4rem;
-  width: 50px;
-  height: 50px;
-  border-radius: 10px;;
-  background-image: url("https://products.mpowerpromo.com/PL/NB108/NB108Translucent_Purple//4196486/id4196486c3626311hFVyA5-VKapE0mrIwbGHug6UKcjJhR3kljvl_dRsI9QUpsuso.jpg");
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  padding: 5px;
+  border-radius: 5px;
   background-size: contain;
   z-index: 0;
 }
 
 .buttonDetails {
   position: fixed;
-  top: 7rem;
   display: flex;
   margin-left: 30px
 }
 
 .notebookNotesPageDiv {
   margin-left: 10r;
-
 }
 
 /* ::-webkit-scrollbar {
@@ -87,12 +82,6 @@ main {
   color: gray;
 }
 
-
-.title {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 30px;
-  margin-top: 20px;
-}
 .content {
   margin-top: 80px;
   margin-left: 120px;
@@ -126,7 +115,6 @@ main {
   width: 75px;
   background-color: green;
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   transition: box-shadow 0.5s, transform 0.25s;
   zoom: 1;
@@ -147,7 +135,6 @@ main {
   width: 75px;
   background-color: purple;
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   transition: box-shadow 0.5s, transform 0.25s;
   zoom: 1;
@@ -157,29 +144,12 @@ main {
   box-shadow: 0 6px 8px rgb(0, 0, 0, 0.3);
   height: 58px;
   width: 83px;
-}
-
+}*/
 
 @media screen and (max-width: 700px) {
-  main {
-    position: absolute;
-    top: 10rem;
-  }
+  main {}
 }
 
 @media screen and (max-width: 430px) {
-  main {
-    position: absolute;
-    top: 12rem;
-  }
-} */
-
-
-
-.notebookDetailBackground {
-  width: 640px;
-  height: 640px;
-  margin-left: 100px;
-  background-image: url("https://products.mpowerpromo.com/PL/NB108/NB108Translucent_Purple//4196486/id4196486c3626311hFVyA5-VKapE0mrIwbGHug6UKcjJhR3kljvl_dRsI9QUpsuso.jpg");
-  object-fit: contain;
+  main {}
 }

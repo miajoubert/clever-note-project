@@ -5,6 +5,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from '../../store/session';
 
 import './Search.css'
+import './Navigation.css'
 
 function SearchButton() {
   const sessionUser = useSelector(state => state.session.user)
@@ -13,35 +14,35 @@ function SearchButton() {
 
   const [showSearch, setShowSearch] = useState(false);
 
-  const changeSearch = () => {
+  const openSearch = () => {
     setShowSearch(!showSearch);
   };
 
   const search = (e) => {
     e.preventDefault();
     dispatch(sessionActions());
-    // history.push("/results")
+    history.push("/results")
   };
 
   return (
     <>
       <button
-        className="searchDDButton"
-        onClick={changeSearch}>
+        className={!showSearch ? "searchButton profileButton" : "searchButtonOpen"}
+        onClick={openSearch}>
         <i className="fas fa-search" />
       </button>
       {showSearch && (
         <ul className="search-dropdown">
+          <li className="username">
+            <input className="searchInput" type="search"></input>
+          </li>
           <li className="buttonLi">
             <button
-              className="searchButton"
+              className="searchingButton"
               onClick={search}
             >
               Search
             </button>
-          </li>
-          <li className="username">
-            <input className="search" type="search"></input>
           </li>
         </ul>
       )}

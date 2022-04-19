@@ -1,9 +1,6 @@
 main {
-  position: absolute;
-  top: 6rem;
-  left: 0;
-  right: 0;
-  bottom: 10px;
+  padding-top: 1rem;
+  height: 80vh;
   display: flex;
   flex-direction: row;
   overflow-x: hidden;
@@ -19,10 +16,12 @@ main {
   width: 10px;
 
 }
+
 ::-webkit-scrollbar-track {
   background: lightgray;
   border-radius: 3px;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #00a82a31;
   border-radius: 3px;
@@ -35,7 +34,7 @@ main {
   align-items: flex-start;
   height: 3rem;
   padding: .75em;
-  overflow:hidden;
+  overflow: hidden;
   border-bottom: 1px solid lightgray;
   border-right: 10px solid transparent;
 }
@@ -54,6 +53,7 @@ main {
   font-size: 1rem;
   font-weight: bold;
 }
+
 .secondary-text {
   font-size: 0.8em;
   color: gray;
@@ -62,22 +62,24 @@ main {
 
 
 .noteDetailBackground {
-  width: 640px;
+  width: auto;
   height: 640px;
-  margin-left: 100px;
-  background-image: url("../../../public/stickyNote.png");
+  margin-left: 50px;
+  background-image: linear-gradient(to bottom right, rgb(250, 250, 136), darkgoldenrod);
   object-fit: contain;
 }
-.title {
-  font-family: Arial, Helvetica, sans-serif;
+
+.note-title {
   font-size: 30px;
   margin-top: 20px;
 }
+
 .content {
   margin-top: 80px;
   margin-left: 120px;
   width: 24rem;
 }
+
 .timestamp {
   position: static;
   bottom: 1rem;
@@ -96,6 +98,7 @@ main {
   flex-direction: row;
   align-items: center;
 }
+
 .editButton {
   border-radius: 10px;
   box-shadow: 0 4px 6px rgb(0, 0, 0, 0.2);
@@ -106,17 +109,18 @@ main {
   width: 75px;
   background-color: green;
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   transition: box-shadow 0.5s, transform 0.25s;
   zoom: 1;
   margin-right: 1rem;
 }
+
 .editButton:hover {
   box-shadow: 0 6px 8px rgb(0, 0, 0, 0.3);
   height: 58px;
   width: 83px;
 }
+
 .deleteButton {
   border-radius: 10px;
   box-shadow: 0 4px 6px rgb(0, 0, 0, 0.2);
@@ -127,12 +131,12 @@ main {
   width: 75px;
   background-color: purple;
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   transition: box-shadow 0.5s, transform 0.25s;
   zoom: 1;
   margin-right: 1rem;
 }
+
 .deleteButton:hover {
   box-shadow: 0 6px 8px rgb(0, 0, 0, 0.3);
   height: 58px;
@@ -142,14 +146,12 @@ main {
 
 @media screen and (max-width: 700px) {
   main {
-    position: absolute;
-    top: 10rem;
+    background-color: blue;
   }
 }
 
 @media screen and (max-width: 430px) {
   main {
-    position: absolute;
-    top: 12rem;
+    background-color: green;
   }
 }

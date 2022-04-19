@@ -14,8 +14,9 @@ function Footer() {
             href='https://github.com/miajoubert'
             target='_blank'
             rel='noopener noreferrer'
-            className="github-footer"
+            className="github-footer tooltip"
           >
+            <span className='tooltiptext'>Developer GitHub</span>
             <span className="fab fa-github" />
             Mia Joubert
           </a>
@@ -24,8 +25,9 @@ function Footer() {
             href='https://www.linkedin.com/in/miajoubert/'
             target='_blank'
             rel='noopener noreferrer'
-            className="github-footer"
+            className="github-footer tooltip"
           >
+            <span className='tooltiptext'>Developer Linked In</span>
             <span className="fab fa-linkedin" />
             Mia Joubert
           </a>
@@ -34,9 +36,10 @@ function Footer() {
             href='https://github.com/miajoubert/clevernote-project'
             target='_blank'
             rel='noopener noreferrer'
-            className="github-footer"
+            className="github-footer tooltip"
           >
-            <span className="fab fa-github" />
+            <span className='tooltiptext'>Application GitHub</span>
+            <span className="fab fa-github tooltip" />
             Clevernote
           </a>
         </div>

@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams, Route } from "react-router-dom";
 
 import { listNotes, editNote, deleteNote } from "../../store/notes";
-
 import { listNotebooks } from "../../store/notebooks";
+
+import './NotesPerDetails.css'
 
 const NotesPerDetail = ({ note }) => {
   const { notebookId } = useParams()
@@ -36,35 +37,46 @@ const NotesPerDetail = ({ note }) => {
     history.push(`/notebooks/${notebookId}`)
   }
 
-
-  return (
-    <>
-      <div
-        className="noteDetailBackground"
-        hidden={hideNoteDetails}>
-        <div className="title">{note?.title}</div>
-        <div className="content">{note?.content}</div>
-        <div className="bottomNoteDetails">
-          <button
-            className="editButton"
-            onClick={goToFunc}
-          >
-            Go to Note
-          </button>
-          {/* <button
+  if (note?.updatedAt) {
+    return (
+      <>
+        <div
+          className="notesOnNotebookBackground"
+          hidden={hideNoteDetails}>
+          <div className="note-title">{note?.title}</div>
+          <div className="content">{note?.content}</div>
+          <div className="bottomNoteDetails">
+            <button
+              className="editButton"
+              onClick={goToFunc}
+            >
+              Go to Note
+            </button>
+            {/* <button
             className="deleteButton"
             onClick={deleteNoteFunc}
           >
             Delete Note
           </button> */}
-          <div className="timestamp">
-            {/* <div><b>{notebook?.title}</b></div> */}
-            <div>{new Date(note?.updatedAt).toDateString()} {new Date(note?.updatedAt).getHours()}:{new Date(note?.updatedAt).getMinutes()}</div>
+            <div className="timestamp">
+              {/* <div><b>{notebook?.title}</b></div> */}
+              <div>{new Date(note?.updatedAt).toDateString()} {new Date(note?.updatedAt).getHours()}:{new Date(note?.updatedAt).getMinutes()}</div>
+            </div>
           </div>
         </div>
-      </div>
-    </>
-  )
+      </>
+    )
+  } else {
+    return (
+      <>
+        <div
+          hidden={hideNoteDetails}>
+          <div className="bottomNoteDetails">
+            Select a note
+          </div>
+        </div>
+      </>)
+  }
 }
 
 export default NotesPerDetail;

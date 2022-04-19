@@ -41,7 +41,7 @@ router.post('/',
     });
 
     const notebook = await Notebook.create({
-      title: "My Notebook",
+      title: "First Notebook",
       userId: user.id
     })
 

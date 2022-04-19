@@ -26,7 +26,7 @@ function LoginForm() {
 
   return (
     <form className="loginForm" onSubmit={handleSubmit}>
-      <div className="title">Log in...</div>
+      <h1 className="auth-title">Log in to Clevernote:</h1>
       <ul className="errorsAuth">
         {errors.map((error, i) => (
           <li key={i}>{error}</li>
@@ -35,22 +35,31 @@ function LoginForm() {
       <label className="line">
         Username or Email
         <input
+          className="auth-form-input"
           type="text"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           required
+          placeholder="Username or Email..."
         />
       </label>
       <label className="line">
         Password
         <input
+          className="auth-form-input"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          placeholder="Password..."
         />
       </label>
-      <button className="loginButton" type="submit">Log In</button>
+      <button
+        className="loginButton"
+        type="submit"
+      >
+        Sign In
+      </button>
     </form >
   );
 }

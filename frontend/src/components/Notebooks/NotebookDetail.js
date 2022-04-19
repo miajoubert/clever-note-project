@@ -7,7 +7,7 @@ import NotesPerNotebook from "./NotesPerNotebook";
 
 import { listNotebooks, noteDetails, editNote, deleteNotebook } from "../../store/notebooks";
 
-import './Notebooks.css'
+import './index.css'
 
 const NotebookDetail = () => {
   const { notebookId } = useParams();

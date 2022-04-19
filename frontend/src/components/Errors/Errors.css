@@ -17,15 +17,14 @@
   position: relative;
   top: 6.5rem;
   left: 19rem;
-  font-family:'Source Serif Pro', serif;
   font-size: 42px;
   height: 1rem;
 }
+
 .errors404-2 {
   position: relative;
   top: 9.5rem;
   left: 14rem;
-  font-family:'Source Serif Pro', serif;
   font-size: 35px;
   height: 5rem;
   width: 3rem;

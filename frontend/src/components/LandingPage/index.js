@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux';
 import Footer from '../Navigation/Footer';
 
-
 import './LandingPage.css'
 
 function LandingPage() {
@@ -13,9 +12,13 @@ function LandingPage() {
       <>
         <div className='homeDiv'>
           <img
-            className='homePic'
+            className='landingPic'
             src="https://image.freepik.com/free-photo/blank-notebook-pen-brown-paper-white-desk-background_42493-78.jpg"
           ></img>
+          <div className='home-text-container'>
+            <div className='splash-line'>Tame your work, organize your life</div>
+            <div className='splash-line-small'>Remember everything and tackle any project with your notes and reminders all in one place.</div>
+          </div>
         </div>
         <div>
           <Footer />
@@ -26,16 +29,16 @@ function LandingPage() {
     return (
       <>
         <div className='homeDiv'>
-          <div className='welcomeDiv'>
-            <div className='welcome'>Welcome, </div>
-            <div className='welcome'>{user}!</div>
-          </div>
           <img
             className='homePic'
             src="https://image.freepik.com/free-photo/blank-notebook-pen-brown-paper-white-desk-background_42493-78.jpg"
           ></img>
-          <div className='navigateTo'>
-            Navigate to <u>Notes</u> or <u>Notebooks</u> above to begin your journey on <span className="clevernote">Clevernote</span>...
+          <div className='welcomeDiv'>
+            <div className='welcome'>Welcome, </div>
+            <div className='welcome'>{user}!</div>
+            <div className='navigateTo'>
+              Select <u>Notes</u> or <u> Notebooks</u> to begin.
+            </div>
           </div>
         </div>
         <div>

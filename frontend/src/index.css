@@ -1,5 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@700&display=swap');
 
+#root {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+}
+
+body,
+ol,
+ul,
+li,
+div,
+p,
+a {
+  font-family: 'Soleil', sans-serif;
+}
+
 .logo {
   height: 4rem;
   width: 4rem;
@@ -10,7 +28,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* color: #00a82b; */
   font-family: 'Source Serif Pro', serif;
   font-size: 2rem;
   font-weight: bold;

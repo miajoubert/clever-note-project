@@ -6,7 +6,7 @@ import * as sessionActions from './store/session'
 
 import Navigation from './components/Navigation';
 import LandingPage from './components/LandingPage';
-import SignupFormPage from './components/SignupForm';
+import SignupModal from './components/SignupForm';
 import NotesPage from './components/Notes';
 import NotebooksPage from './components/Notebooks'
 // import RemindersPage from './components/Reminders';
@@ -37,7 +37,7 @@ function App() {
             <LandingPage />
           </Route>
           <Route path="/signup">
-            <SignupFormPage />
+            <SignupModal />
           </Route>
           <Route path={[
             "/",
