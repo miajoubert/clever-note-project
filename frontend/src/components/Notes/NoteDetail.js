@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
-import FloatingButton from "../FloatingButton";
 import NoteEditModal from "./NoteEditModal";
+import NoteDeleteModal from "./NoteDeleteModal";
 import { listNotes, editNote, deleteNote } from "../../store/notes";
 
 import './Notes.css'
@@ -31,11 +31,6 @@ const NoteDetail = () => {
       .then(() => dispatch(listNotebooks(userId)))
   }, [userId])
 
-  async function deleteNoteFunc() {
-    await dispatch(deleteNote(noteId))
-    history.push("/notes")
-  }
-
   return (
     <>
       <div
@@ -47,12 +42,9 @@ const NoteDetail = () => {
           <NoteEditModal
             note={note}
           />
-          <button
-            className="deleteButton"
-            onClick={deleteNoteFunc}
-          >
-            Delete Note
-          </button>
+          <NoteDeleteModal
+            note={note}
+          />
           <div className="timestamp">
             {/* <div><b>{notebook?.title}</b></div> */}
             <div>{new Date(note?.updatedAt).toDateString()} {new Date(note?.updatedAt).getHours()}:{new Date(note?.updatedAt).getMinutes()}</div>
