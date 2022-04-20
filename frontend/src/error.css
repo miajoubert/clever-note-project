@@ -1,0 +1,93 @@
+body {
+  font-family: 'Soleil', sans-serif;
+  background: linear-gradient(to bottom right, white 40%, #1A1A1A 100%);
+  /* width: 100vw; */
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.EP-container {
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+  height: 90vh;
+  align-items: center;
+}
+
+.EP-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.logo {
+  height: 6rem;
+  width: 6rem;
+  margin: 0px 15px 0px 0px;
+}
+
+.home {
+  font-family: 'Source Serif Pro', serif;
+  color: black;
+}
+
+.EP-body {
+  text-align: center;
+}
+
+.EP-announcement {
+  margin: 20px 0px 60px 0px;
+  font-size: 1.1rem;
+}
+
+.EP-inmeantime {
+  margin: 10px 0px;
+}
+
+.fas,
+.fab {
+  color: #00a82b
+}
+
+.github-footer {
+  font-size: larger;
+  text-align: justify;
+  text-decoration: none;
+  color: black;
+  padding: 15px 10px;
+}
+
+.github-footer:hover {
+  color: #00a82b
+}
+
+.github-footer:hover span {
+  color: black
+}
+
+.links {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 0px 40px;
+}
+
+.EP-footer {
+  margin-top: 40px;
+}
+
+.clevernote-git {
+  font-size: medium;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 12px;
+  margin: 10px 0px
+}

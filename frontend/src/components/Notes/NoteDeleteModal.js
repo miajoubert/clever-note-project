@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory, useParams } from "react-router-dom";
+
 import { Modal } from '../../context/Modal';
 import { deleteNote } from '../../store/notes';
 
-import './Notes.css'
+import './NoteModals.css'
 
 function NoteDeleteModal({ note }) {
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
+  const { noteId } = useParams();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   async function deleteNoteFunc() {
     await dispatch(deleteNote(noteId))
@@ -15,20 +21,23 @@ function NoteDeleteModal({ note }) {
   return (
     <>
       <button
-        className="editButton"
+        className="note-function-button" id='note-delete'
         onClick={() => setShowModal(true)}
       >
         Delete
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <div>
+          <div className="delete-modal-div">
             <button
+              className="form-button"
               onClick={deleteNoteFunc}
             >
-              Confirm Delete
+              Delete
             </button>
             <button
+              className="form-button"
+              id="cancel-button"
               onClick={() => setShowModal(false)}
             >
               Cancel

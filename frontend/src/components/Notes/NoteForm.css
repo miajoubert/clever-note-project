@@ -1,39 +1,119 @@
-.noteFormDiv {
+.note-form-div {
   padding: 20px;
-}
-
-.noteForm {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  margin: 20px;
-  min-width: 250px;
-  font-weight: bold;
 }
 
-.formTitle {
-  height: 40px;
+.form-title-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-title {
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+#note-errors {
+  justify-content: flex-start;
+}
+
+.form-label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-right: 20px;
+}
+
+.note-form-input {
   margin-bottom: 10px;
-}
-
-textarea {
-  width: 210px;
-  height: 200px;
-  border-radius: 10px;
-}
-
-select {
+  padding: 5px 10px;
+  width: 220px;
   height: 40px;
-  border-radius: 10px;
+  box-sizing: border-box;
+  border: rgba(128, 128, 128, 0.5) .5px solid;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 gray;
+  color: black;
+  font-family: 'Soleil';
+  cursor: pointer;
 }
 
-.formButton {
-  margin-left: 10px;
+.note-form-text {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 220px;
+  height: 200px;
+  box-sizing: border-box;
+  border: rgba(128, 128, 128, 0.5) .5px solid;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 gray;
+  color: black;
+  font-family: 'Soleil';
+  cursor: pointer;
+}
+
+.note-form-select {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 220px;
+  height: 40px;
+  box-sizing: border-box;
+  border: rgba(128, 128, 128, 0.5) .5px solid;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 gray;
+  color: black;
+  font-family: 'Soleil';
+  cursor: pointer;
+}
+
+#create-form {
+  width: 300px;
+}
+
+.form-buttons-div {
+  text-align: right;
+  margin-top: 20px;
+}
+
+#create-buttons {
+  margin-top: 5px;
+}
+
+.form-button {
   background-color: #00a82b;
-  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 0 3px 0 gray;
+  padding: 10px;
+  max-width: 80px;
+  min-width: 80px;
+  font-size: 14px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  margin-left: 10px;
 }
 
-.buttonsForm {
-  margin-top: 10px;
+.create {
+  box-shadow: 0 0 5px 0 black;
+}
 
+.form-button:hover {
+  transition: all .2s;
+  background-color: #04d237;
+}
+
+#cancel-button:hover {
+  transition: all .2s;
+  background-color: gray;
+}
+
+.delete-modal-div {
+  min-width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

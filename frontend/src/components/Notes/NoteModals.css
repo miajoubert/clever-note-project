@@ -1,0 +1,21 @@
+.note-function-button {
+  background-color: #00a82b;
+  border: none;
+  border-radius: 3px;
+  padding: 5px;
+  max-width: 70px;
+  min-width: 70px;
+  font-size: 15px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+}
+
+.note-function-button:hover {
+  transition: all .2s;
+  background-color: #04d237;
+}
+
+#note-edit {
+  margin-bottom: 10px;
+}

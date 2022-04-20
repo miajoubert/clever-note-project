@@ -1,0 +1,72 @@
+.noteDetailBackground {
+  width: 45vw;
+  height: 80vh;
+  margin-bottom: 20px;
+  margin-left: 50px;
+  background-image: linear-gradient(to bottom right, rgb(250, 250, 136), darkgoldenrod);
+  border-radius: 4px;
+}
+
+.note-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 71vh;
+  padding: 25px;
+}
+
+.note-header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.note-title {
+  font-size: 30px;
+  align-items: center;
+}
+
+.fa-bars {
+  color: black;
+  font-size: 20px;
+  padding-top: 5px;
+  cursor: pointer;
+}
+
+.note-buttons-dropdown {
+  position: fixed;
+  margin-left: 35vw;
+  margin-top: 30px;
+  text-align: right;
+  background-color: rgba(240, 255, 255, 0.6);
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 gray;
+  padding: 10px
+}
+
+.note-buttons-dropdown {
+  list-style: none;
+}
+
+.content {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.bottomNoteDetails {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.note-timestamp {
+  display: flex;
+  text-align: right;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.note-time {
+  margin-left: 20px;
+}

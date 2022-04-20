@@ -58,39 +58,48 @@ const NoteForm = ({ hideForm }) => {
 
   return (
     <>
-      <div className="noteFormDiv">
-        <div>Take Note...</div>
-        <ul className="errorsAuthSignup">
-          {errors.map((error, i) => (
-            <li
-              className="errorLi"
-              key={i}
-            >
-              {error}
-            </li>))}
-        </ul>
+      <div className="note-form-div">
+        <div className="form-title-header">
+          <div className="form-title">Take Note...</div>
+          <ul className="errorsAuth" id="note-errors">
+            {errors.map((error, i) => (
+              <li
+                className="errorLi"
+                key={i}
+              >
+                {error}
+              </li>))}
+          </ul>
+        </div>
+
         <form className="noteForm">
-          <label className="formTitle">
+          <label className="form-label">
             Title
             <input
+              className="note-form-input"
+              id="create-form"
               type="text"
               placeholder="Title..."
               required
               value={title}
               onChange={(e) => setTitle(e.target.value)} />
           </label>
-          <label>
+          <label className="form-label">
             Content
             <textarea
+              className="note-form-text"
+              id="create-form"
               type="text"
               placeholder="Content..."
               required
               value={content}
               onChange={(e) => setContent(e.target.value)} />
           </label>
-          <label>
+          <label className="form-label">
             Notebook
             <select
+              className="note-form-select"
+              id="create-form"
               value={notebookId}
               onChange={(e) => setNotebookId(e.target.value)}
             >
@@ -102,9 +111,22 @@ const NoteForm = ({ hideForm }) => {
                 </option>)}
             </select>
           </label>
-          <div className="buttonsForm">
-            <button className="formButton" type="submit" onClick={handleSubmit}>Create Note</button>
-            <button className="formButton" type="button" onClick={handleCancel}>Cancel</button>
+          <div className="form-buttons-div" id="create-buttons">
+            <button
+              className="form-button create"
+              type="submit"
+              onClick={handleSubmit}
+            >
+              Create
+            </button>
+            <button
+              className="form-button create"
+              id="cancel-button"
+              type="button"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
           </div>
         </form>
       </div>

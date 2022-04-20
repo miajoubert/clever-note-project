@@ -2,16 +2,18 @@ import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import NoteEditForm from './NoteEditForm';
 
-import './Notes.css'
+import './NoteModals.css'
 
-function NoteEditModal({ note, showDetails }) {
+function NoteEditModal({ note, onClose }) {
   const [showModal, setShowModal] = useState(false)
 
   return (
     <>
       <button
-        className="editButton"
-        onClick={() => setShowModal(true)}
+        className="note-function-button" id='note-edit'
+        onClick={() => {
+          setShowModal(true)
+        }}
       >
         Edit
       </button>
@@ -19,7 +21,8 @@ function NoteEditModal({ note, showDetails }) {
         <Modal onClose={() => setShowModal(false)}>
           <NoteEditForm
             hideModal={() => setShowModal(false)}
-            note={note} />
+            note={note}
+            onClose={onClose} />
         </Modal>
       )}
     </>
