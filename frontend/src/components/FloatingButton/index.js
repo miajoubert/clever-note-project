@@ -6,7 +6,7 @@ const FloatingButton = props => {
       className={props.hidden ? 'fab-button hidden' : 'fab-button'}
       onClick={props.onClick}
     >
-      <span className="fab-icon"> ➕ </span>
+      <span class="fas fa-plus"></span>
     </div>
   )
 }

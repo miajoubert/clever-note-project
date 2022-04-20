@@ -2,14 +2,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
   background-color: #00a82b;
-  height: 50px;
-  width: 50px;
-  border-radius: 5px;
+  color: white;
+  height: 40px;
+  width: 40px;
+  border-radius: 25px;
   box-shadow: 0 4px 6px rgb(0, 0, 0, 0.2);
-  transition: box-shadow 0.5s, transform 0.25s;
-  zoom: .75;
+  transition: box-shadow 0.3s;
 }
 
 .fab-button.hidden {
@@ -17,12 +16,10 @@
 }
 
 .fab-button:hover {
-  box-shadow: 0 6px 8px rgb(0, 0, 0, 0.3);
-  height: 58px;
-  width: 58px;
+  box-shadow: 0 6px 8px rgb(0, 0, 0, 0.7);
 }
 
-.fab-button span {
-  transition: transform 0.5s;
+.fa-plus {
+  font-size: 20px;
   color: white;
 }

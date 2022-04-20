@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, NavLink, Route, useParams } from "react-router-dom";
 
-import * as sessionActions from "../../store/session";
 import FloatingNotebookButton from "./FabNotebook";
+import FloatingButton from "../FloatingButton";
 import NotebookDetail from "./NotebookDetail";
 import NotebookForm from "./NotebookForm";
 import { listNotebooks } from "../../store/notebooks";
@@ -65,7 +65,7 @@ const NotesPage = () => {
         )}
       </nav>
 
-      <FloatingNotebookButton
+      <FloatingButton
         hidden={showForm}
         onClick={() => setShowForm(true)}
       />
