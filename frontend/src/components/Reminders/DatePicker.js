@@ -3,16 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route, useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 
-import { listReminders, updateReminder } from "../../store/reminders";
+import { Modal } from '../../context/Modal';
+import { listReminders, addReminder, updateReminder } from "../../store/reminders";
+import ReminderFloatingButton from "./ReminderFAB";
 
 import './DatePicker.css'
 import "react-datepicker/dist/react-datepicker.css";
 
-const DatePickerPage = ({ closeForm }) => {
+const DatePickerPage = () => {
   const reminders = useSelector(state => state.reminders)
   const session = useSelector(state => state.session)
   const dispatch = useDispatch()
 
+  const [showModal, setShowModal] = useState(false);
   const [startDate, setStartDate] = useState(new Date())
 
   const userId = session.user.id;
@@ -24,28 +27,38 @@ const DatePickerPage = ({ closeForm }) => {
   //   }
   // }, [])
 
-  const submitReminder = () => {
+  const submitReminder = async () => {
     // if (!showMenu) return;
-    closeForm()
+    await dispatch(addReminder())
+    setShowModal(false)
   };
 
   return (
-    <div className="datepicker-div">
-      <DatePicker
-        className="datePicker"
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
-        showTimeSelect
-        dateFormat="Pp"
+    <>
+      <ReminderFloatingButton
+        onClick={() => setShowModal(true)}
       />
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <div className="datepicker-div">
+            <DatePicker
+              className="datePicker"
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              showTimeSelect
+              dateFormat="Pp"
+            />
 
-      <button
-        className="submit-reminder-button"
-        onClick={submitReminder}>
-        Create Reminder
-      </button>
+            <button
+              className="submit-reminder-button"
+              onClick={submitReminder}>
+              Create Reminder
+            </button>
 
-    </div >
+          </div >
+        </Modal>
+      )}
+    </>
   )
 }
 

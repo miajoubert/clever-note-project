@@ -4,7 +4,6 @@ import { NavLink, Route, useParams } from "react-router-dom";
 
 import { listReminders, updateReminder } from "../../store/reminders";
 import { listNotes } from "../../store/notes";
-import ReminderFloatingButton from "./ReminderFAB";
 import ReminderDetails from "./ReminderDetails";
 import DatePickerPage from "./DatePicker";
 
@@ -18,7 +17,6 @@ const RemindersPage = () => {
   const dispatch = useDispatch()
 
   const [startDate, setStartDate] = useState(new Date())
-  const [showForm, setShowForm] = useState(false);
 
   const userId = session.user.id;
   let { reminderId } = useParams();
@@ -50,62 +48,24 @@ const RemindersPage = () => {
         </div>
       </div> */}
 
-      <ReminderFloatingButton
-        hidden={showForm}
-        onClick={() => setShowForm(true)}
-      />
+      <DatePickerPage />
 
       <nav
         className="reminderList">
         {reminderArr?.map((reminder) => {
           return (
-            <NavLink
-              key={reminder?.id}
-              to={`/reminders/${reminder?.id}`}
-              onClick={() => setShowForm(false)}
-            >
-              <div
-                className={
-                  Number.parseInt(reminderId) === reminder?.id
-                    ? "reminder rem-selected"
-                    : "reminder"
-                }
+            <div className="reminder">
+              <div className="prim-text">{reminder?.title}</div>
+
+              <ReminderDetails
+                reminder={reminder}
               >
-                <div className="primary-text">{reminder?.title}</div>
-                <div className="secondary-text">
-                  {new Date(reminder?.time).getMonth() + 1}/{new Date(reminder?.time).getDate()}/{new Date(reminder?.time).getFullYear()}
-                  --
-                  {new Date(reminder?.time).getHours()}:{new Date(reminder?.time).getMinutes()}
-                </div>
-                <div className="secondary-text">
-                  {noteList[reminder?.noteId]?.title}
-                </div>
-              </div>
-            </NavLink>
+              </ReminderDetails>
+            </div>
           )
         }
         )}
       </nav>
-
-
-      {
-        showForm ? (
-          <DatePickerPage
-            hidden={!showForm}
-            closeForm={() => setShowForm(false)} />
-          // className="datePicker"
-          // selected={startDate}
-          // onChange={(date) => setStartDate(date)}
-          // showTimeSelect
-          // dateFormat="Pp"
-        ) :
-          (
-            <>
-              SOMETHING HERE THAT'S NOT THE FORM
-            </>
-          )
-      }
-
     </main >
   )
 }

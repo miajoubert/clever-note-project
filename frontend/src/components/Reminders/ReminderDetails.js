@@ -6,6 +6,8 @@ import { Modal } from "../../context/Modal";
 import { reminderDetails, updateReminder, deleteReminder } from "../../store/reminders";
 import { listNotes } from "../../store/notes";
 import DatePickerPage from "./DatePicker";
+import ReminderDeleteModal from "./ReminderDelete";
+import ReminderUpdateModal from "./ReminderUpdate";
 
 import './ReminderDetails.css'
 
@@ -27,46 +29,67 @@ const ReminderDetails = ({ reminder }) => {
     }
   }, [dispatch])
 
-  console.log("reminders", reminders)
-  console.log("notessssssss", noteList)
-
-  const handleDelete = async () => {
-    await dispatch(deleteReminder(reminder?.id));
-    setShowModal(false);
-  };
-  const handleUpdate = async () => {
-    await dispatch(updateReminder(reminder?.id));
-    setShowModal(false);
+  const handleCancel = (e) => {
+    e.preventDefault();
+    setShowModal(false)
   };
 
   return (
     <>
       <button
-        className="note-function-button" id='note-delete'
+        className="note-function-button"
+        id='rem-det-button'
         onClick={() => setShowModal(true)}
       >
         Details
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-
           <div className="reminder-det-modal">
-            <button
-              className="form-button"
-              onClick={handleDelete}
-            >
-              Delete
-            </button>
-            <button
-              className="form-button"
-              id="cancel-button"
-              onClick={() => setShowModal(false)}
-            >
-              Cancel
-            </button>
+            <div className="title-div">
+              {reminder.title}
+            </div>
+
+            <div className="note-title-div">
+              On: <a
+                className="note-title-div-2"
+                href="/notes/noteId"
+              >
+                {noteList[reminder?.noteId]?.title}
+              </a>
+            </div>
+
+            <div className="date-div">
+              {new Date(reminder?.time).getMonth() + 1}/{new Date(reminder?.time).getDate()}/{new Date(reminder?.time).getFullYear()}
+              <div className="at-sign">
+                @
+              </div>
+              <div className="time-div">
+                {new Date(reminder?.time).getHours()}:{new Date(reminder?.time).getMinutes()}
+              </div>
+            </div>
+
+
+            <div className="rem-det-buttons-div">
+              <ReminderUpdateModal
+                reminder={reminder}
+              />
+              <ReminderDeleteModal
+                reminder={reminder}
+              />
+              <button
+                className="note-function-button"
+                id="cancel-rem-button"
+                onClick={handleCancel}
+              >
+                Cancel
+              </button>
+            </div>
           </div>
+
         </Modal>
-      )}
+      )
+      }
     </>
   )
 }

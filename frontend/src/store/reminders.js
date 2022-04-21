@@ -82,6 +82,8 @@ export const deleteReminder = (reminderId) => async (dispatch) => {
     { method: "DELETE" }
   );
 
+  console.log("Made it into my delete")
+
   dispatch(remove(reminderId));
 }
 

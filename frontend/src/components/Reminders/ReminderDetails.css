@@ -1,1 +1,54 @@
+#rem-det-button {
+  background-color: #1A1A1Abb;
+  box-shadow: 0 0 3px 0 gray;
+}
+
+#rem-det-button:hover {
+  background-color: white;
+  font-weight: bold;
+  color: #1A1A1Abb;
+}
+
 .reminder-det-modal {}
+
+.title-div {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.note-title-div,
+.note-title-div-2 {
+  margin-bottom: 10px;
+  color: black
+}
+
+.note-title-div-2:hover {
+  color: #00a82b
+}
+
+.date-div {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 10px 0px;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.at-sign {
+  margin: 0px 10px;
+}
+
+.rem-det-buttons-div {
+  display: flex;
+  justify-content: center;
+}
+
+#cancel-rem-button {
+  margin-left: 20px;
+}
+
+#cancel-rem-button:hover {
+  background-color: gray;
+}

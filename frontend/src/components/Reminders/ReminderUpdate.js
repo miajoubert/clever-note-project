@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from "react-router-dom";
 
 import { Modal } from '../../context/Modal';
-import { updateReminder } from '../../store/reminders';
+import { listReminders, updateReminder } from '../../store/reminders';
 import DatePickerPage from './DatePicker';
 
-import './ReminderUpdate.css'
+import './ReminderModals.css'
 
 function ReminderUpdateModal({ reminder }) {
+  const session = useSelector(state => state.session)
   const noteList = useSelector(state => state.notes)
   const notes = Object.values(noteList)
 
@@ -17,17 +18,20 @@ function ReminderUpdateModal({ reminder }) {
   const { reminderParamId } = useParams();
 
   const [showModal, setShowModal] = useState(false);
-  const [title, setTitle] = useState(note?.title)
-  const [noteId, setNoteId] = useState(noteList[note?.noteId]?.id)
+  const [title, setTitle] = useState(reminder?.title)
+  const [noteId, setNoteId] = useState(noteList[reminder?.noteId]?.id)
+  const [time, setTime] = useState(reminder?.time)
   const [errors, setErrors] = useState([]);
 
   let reminderId
   if (reminder) { reminderId = reminder?.id }
   else { reminderId = reminderParamId }
 
+  const userId = session.user.id;
+
   useEffect(() => {
     if (userId) {
-      dispatch(listNotes(userId))
+      dispatch(listReminders(userId))
     }
   }, [userId])
 
@@ -62,10 +66,11 @@ function ReminderUpdateModal({ reminder }) {
   return (
     <>
       <button
-        className="note-function-button" id='note-delete'
+        className="note-function-button"
+        id='rem-update-button'
         onClick={() => setShowModal(true)}
       >
-        Delete
+        Update
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
@@ -107,7 +112,7 @@ function ReminderUpdateModal({ reminder }) {
                   className="note-form-select"
                   value={noteId}
                   onChange={(e) => setNoteId(e.target.value)}
-                  default={noteList[note.noteId].title}
+                  default={noteList[reminder.noteId].title}
                 >
                   {notes?.map(note => (
                     <option key={note?.id}

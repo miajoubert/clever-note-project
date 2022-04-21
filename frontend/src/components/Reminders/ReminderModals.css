@@ -1,0 +1,7 @@
+#rem-delete-button {
+  margin-left: 20px
+}
+
+#rem-delete-button:hover {
+  background-color: darkred;
+}

@@ -8,6 +8,7 @@
 
 .reminderList {
   box-shadow: 0 0 5px 0 #808080;
+  border-radius: 5px;
   margin: 0px 40px;
   padding: 10px;
   width: 50vw;
@@ -18,10 +19,11 @@
 }
 
 .reminder {
+  display: flex;
+  min-width: 240px;
+  justify-content: space-between;
+  align-items: center;
   text-align: left;
-}
-
-
-.rem-selected {
-  background-color: #1A1A1ACC;
+  font-size: 20px;
+  padding: 15px 10px;
 }

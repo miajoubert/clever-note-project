@@ -5,28 +5,25 @@ import { useHistory, useParams } from "react-router-dom";
 import { Modal } from '../../context/Modal';
 import { deleteReminder } from '../../store/reminders';
 
-import './ReminderDelete.css'
+import './ReminderModals.css'
 
-function ReminderDeleteModal({ note }) {
+function ReminderDeleteModal({ reminder, onClose }) {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { reminderParamId } = useParams();
 
   const [showModal, setShowModal] = useState(false);
 
-  let reminderId
-  if (reminder) { reminderId = reminder?.id }
-  else { reminderId = reminderParamId }
-
   async function handleDelete() {
-    await dispatch(deleteReminder(reminderId))
+    await dispatch(deleteReminder(reminder.id))
+    setShowModal(false)
     history.push("/reminders")
   }
 
   return (
     <>
       <button
-        className="note-function-button" id='note-delete'
+        className="note-function-button"
+        id='rem-delete-button'
         onClick={() => setShowModal(true)}
       >
         Delete
