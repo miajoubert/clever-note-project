@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@700&display=swap');
 
-.homeDiv {
+.homeDivErrors {
   width: auto;
   display: flex;
   flex-direction: row;
@@ -17,7 +17,6 @@
   top: 100px;
   width: 500px;
   z-index: -1;
-
 }
 
 .errors404 {
@@ -38,7 +37,7 @@
 }
 
 @media screen and (max-width: 915px) {
-  .homeDiv {
+  .homeDivErrors {
     margin-left: 200px;
   }
 
@@ -48,7 +47,7 @@
 }
 
 @media screen and (max-width: 599px) {
-  .homeDiv {
+  .homeDivErrors {
     margin-left: 200px;
     margin-top: 30px;
   }

@@ -2,7 +2,7 @@ import './Errors.css'
 
 function Errors() {
   return (
-    <div className='homeDiv'>
+    <div className='homeDivErrors'>
       <img
         className='errorPic'
         src="https://image.freepik.com/free-photo/blank-notebook-pen-brown-paper-white-desk-background_42493-78.jpg"
