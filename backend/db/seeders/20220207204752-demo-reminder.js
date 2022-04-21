@@ -17,13 +17,13 @@ module.exports = {
         title: "Reminder 1",
         userId: 1,
         noteId: 1,
-        time: new Date(),
+        time: new Date('2022-05-17T17:24:00'),
       },
       {
         title: "Reminder New 2",
         userId: 1,
         noteId: 2,
-        time: new Date(),
+        time: new Date('2022-04-21T12:20:00'),
       },
     ])
   },

@@ -13,7 +13,6 @@ const NoteDetail = ({ note }) => {
   const session = useSelector(state => state.session);
   const notes = useSelector(state => state.notes)
   const notebooks = useSelector(state => state.notebooks)
-  // const history = useHistory()
 
   const { noteId } = useParams();
   const dispatch = useDispatch();

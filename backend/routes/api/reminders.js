@@ -13,6 +13,9 @@ const validateReminderForm = [
     .withMessage('Please provide a reminder title.')
     .isLength({ max: 30 })
     .withMessage('Please keep title under 30 characters.'),
+  check('time')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a time.'),
   handleValidationErrors
 ];
 
@@ -47,13 +50,17 @@ router.post('/',
   validateReminderForm,
   asyncHandler(async function (req, res) {
     const {
+      title,
       userId,
-      title
+      noteId,
+      time
     } = req.body;
 
     const reminder = await Reminder.create({
       title,
-      userId
+      userId,
+      noteId,
+      time
     });
 
     return res.json(reminder)
@@ -66,13 +73,17 @@ router.put('/:id',
     const { id } = req.params;
 
     const {
-      title
+      title,
+      noteId,
+      time
     } = req.body;
 
     const reminder = await Reminder.findByPk(id)
 
     const altReminder = await reminder.update({
-      title
+      title,
+      noteId,
+      time
     });
 
     return res.json(altReminder)

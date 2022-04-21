@@ -34,7 +34,10 @@ const remove = (reminderId) => ({
 export const listReminders = (userId) => async (dispatch) => {
   const response = await csrfFetch(`/api/reminders`, {
     method: "GET",
-    headers: { "Content-Type": "application/json", "data": userId }
+    headers: {
+      "Content-Type": "application/json",
+      "data": userId
+    }
   });
   const reminders = await response.json();
   dispatch(list(reminders))

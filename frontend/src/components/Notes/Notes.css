@@ -22,12 +22,12 @@ main {
 
 ::-webkit-scrollbar-track {
   background: lightgray;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #00a82a31;
-  border-radius: 3px;
+  background: darkgray;
+  border-radius: 2px;
 }
 
 .note {

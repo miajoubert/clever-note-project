@@ -1,0 +1,29 @@
+.note-fab-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  color: white;
+  min-height: 40px;
+  max-height: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  margin-left: 20px;
+  border-radius: 25px;
+  box-shadow: 0 4px 6px rgb(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s;
+}
+
+.note-fab-button.hidden {
+  transform: scale(0);
+}
+
+.note-fab-button:hover {
+  box-shadow: 0 6px 8px rgb(0, 0, 0, 0.7);
+  background-color: darkred;
+}
+
+.fa-plus {
+  font-size: 20px;
+  color: white;
+}

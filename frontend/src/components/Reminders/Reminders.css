@@ -1,33 +1,27 @@
-.under-construction {
+.main-reminder-div {
+  box-sizing: border-box;
   width: 100%;
-  margin: 40px;
   padding: 20px;
   text-align: center;
 }
 
-.tools {
+
+.reminderList {
+  box-shadow: 0 0 5px 0 #808080;
+  margin: 0px 40px;
+  padding: 10px;
+  width: 50vw;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
-.construction1 {
-  font-size: 30px;
+.reminder {
+  text-align: left;
 }
 
-.construction2 {
-  padding: 20px 20px;
-  font-size: 25px;
-}
 
-.fa-wrench,
-.fa-screwdriver {
-  font-size: 35px;
-  color: rgb(255, 102, 0);
-  text-shadow: 1px 1px 3px black;
-}
-
-.fa-screwdriver {
-  transform: rotate(270deg);
+.rem-selected {
+  background-color: #1A1A1ACC;
 }

@@ -3,24 +3,24 @@ import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from "react-router-dom";
 
 import { Modal } from '../../context/Modal';
-import { deleteNote } from '../../store/notes';
+import { deleteReminder } from '../../store/reminders';
 
-import './NoteModals.css'
+import './ReminderDelete.css'
 
-function NoteDeleteModal({ note }) {
+function ReminderDeleteModal({ note }) {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { noteParamId } = useParams();
+  const { reminderParamId } = useParams();
 
   const [showModal, setShowModal] = useState(false);
 
-  let noteId
-  if (note) { noteId = note?.id }
-  else { noteId = noteParamId }
+  let reminderId
+  if (reminder) { reminderId = reminder?.id }
+  else { reminderId = reminderParamId }
 
-  async function deleteNoteFunc() {
-    await dispatch(deleteNote(noteId))
-    history.push("/notes")
+  async function handleDelete() {
+    await dispatch(deleteReminder(reminderId))
+    history.push("/reminders")
   }
 
   return (
@@ -36,7 +36,7 @@ function NoteDeleteModal({ note }) {
           <div className="delete-modal-div">
             <button
               className="form-button"
-              onClick={deleteNoteFunc}
+              onClick={handleDelete}
             >
               Delete
             </button>
@@ -54,4 +54,4 @@ function NoteDeleteModal({ note }) {
   )
 }
 
-export default NoteDeleteModal;
+export default ReminderDeleteModal;
