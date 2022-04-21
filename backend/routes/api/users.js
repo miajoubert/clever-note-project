@@ -2,7 +2,7 @@ const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
+const { setTokenCookie } = require('../../utils/auth');
 const { User, Notebook } = require('../../db/models')
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -45,7 +45,7 @@ router.post('/',
       userId: user.id
     })
 
-    await setTokenCookie(res, user);
+    setTokenCookie(res, user);
 
     return res.json({ user, notebook });
   })

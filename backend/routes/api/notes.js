@@ -2,6 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 
+const { requireAuth } = require('../../utils/auth')
 const { Note, Notebook } = require('../../db/models')
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -21,6 +22,7 @@ const validateNoteForm = [
 ];
 
 router.get('/',
+  requireAuth,
   asyncHandler(async function (req, res) {
     const userId = Number.parseInt(req.headers.data);
 
