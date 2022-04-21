@@ -64,6 +64,7 @@
 
 .bottomNoteDetails {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -72,6 +73,8 @@
 .nb-title-div {
   display: flex;
   align-items: center;
+  margin-top: 10px;
+  padding-right: 10px;
 }
 
 .note-timestamp {
@@ -79,6 +82,12 @@
   text-align: right;
   font-weight: 500;
   font-style: italic;
+  margin-top: 10px;
+}
+
+.updated-at-text {
+  margin-right: 15px;
+  font-style: normal;
 }
 
 .note-time {
@@ -86,8 +95,9 @@
 }
 
 .select-note-message {
-  min-width: 150px;
-  height: 175px;
+  max-width: 200px;
+  min-width: 200px;
+  height: 200px;
   margin: 0px 20px;
   padding: 0px 20px 20px;
   font-size: 25px;
@@ -112,4 +122,28 @@
 .select-note-text {
   margin: 30px 0px;
   padding: 10px
+}
+
+.select-button-div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
+  font-size: 19px;
+}
+
+#add-note-note {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00a82b;
+  color: white;
+  min-height: 30px;
+  max-height: 30px;
+  min-width: 30px;
+  max-width: 30px;
+  border-radius: 25px;
+  margin: 0px 10px;
+  transition: box-shadow 0.3s;
 }

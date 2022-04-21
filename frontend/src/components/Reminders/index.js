@@ -2,15 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route, useParams } from "react-router-dom";
 
-import NoteFloatingButton from "./NoteFAB";
-import NoteDetail from "./NoteDetail";
-import NoteForm from "./NoteForm";
 import { listNotes } from "../../store/notes";
 
+import './Reminders.css'
 
-import './Notes.css'
-
-const NotesPage = () => {
+const RemindersPage = () => {
   const notes = useSelector(state => state.notes)
   const session = useSelector(state => state.session)
   const dispatch = useDispatch()
@@ -56,29 +52,30 @@ const NotesPage = () => {
         )}
       </nav>
 
-      <NoteFloatingButton
+      {/* <NoteFloatingButton
         hidden={showForm}
         onClick={() => setShowForm(true)}
-      />
+      /> */}
 
       {
-        showForm ? (
-          <NoteForm
-            hidden={!showForm}
-            hideForm={() => setShowForm(false)} />
-        ) : (
-          <>
-            <Route path="/notes/:noteId">
-              <NoteDetail
-                hidden={!showForm}
-                setShowForm={() => setShowForm(false)}
-              />
-            </Route>
-          </>
-        )
+        // showForm ? (
+        //   <NoteForm
+        //     hidden={!showForm}
+        //     hideForm={() => setShowForm(false)} />
+        // ) :
+        //  (
+        //   <>
+        //     <Route path="/notes/:noteId">
+        //       <NoteDetail
+        //         hidden={!showForm}
+        //         setShowForm={() => setShowForm(false)}
+        //       />
+        //     </Route>
+        //   </>
+        // )
       }
     </main>
   )
 }
 
-export default NotesPage;
+export default RemindersPage;

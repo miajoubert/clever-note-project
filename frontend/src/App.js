@@ -9,11 +9,8 @@ import LandingPage from './components/LandingPage';
 import SignupModal from './components/SignupForm';
 import NotesPage from './components/Notes';
 import NotebooksPage from './components/Notebooks'
-// import RemindersPage from './components/Reminders';
+import RemindersPage from './components/Reminders';
 import Errors from './components/Errors';
-
-import { listNotes } from './store/notes';
-import { listNotebooks } from './store/notebooks';
 
 import './index.css';
 
@@ -57,7 +54,7 @@ function App() {
             exact>
             <NotebooksPage />
           </Route>
-          {/* <Route  path={[
+          <Route path={[
             "/",
             "/reminders",
             "reminders/:reminderId",
@@ -65,13 +62,12 @@ function App() {
           ]}
             exact>
             <RemindersPage />
-          </Route> */}
+          </Route>
           <Route path="/">
             <Errors />
           </Route>
         </Switch>
-      )
-      }
+      )}
     </>
   );
 }

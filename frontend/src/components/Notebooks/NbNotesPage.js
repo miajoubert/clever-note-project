@@ -32,8 +32,7 @@ const NbNotesPage = ({ notebookId }) => {
   return (
     <div className="nb-note-div">
       <nav
-        className="noteList"
-        id="nb-noteList"
+        className={selectNotes.length < 2 ? "nb-noteList-short" : "nb-noteList"}
       >
         {selectNotes?.map((note) => {
           return (
@@ -50,7 +49,7 @@ const NbNotesPage = ({ notebookId }) => {
               >
                 <div className="primary-text"> {note?.title}</div>
                 <div className="secondary-text">
-                  {new Date(note?.updatedAt).getMonth() + 1}/{new Date(note?.updatedAt).getDate()}/{new Date(note?.updatedAt).getFullYear()}
+                  {new Date(note?.createdAt).getMonth() + 1}/{new Date(note?.createdAt).getDate()}/{new Date(note?.createdAt).getFullYear()}
                 </div>
               </div>
             </div>

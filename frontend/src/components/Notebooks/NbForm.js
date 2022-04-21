@@ -4,6 +4,8 @@ import { NavLink, useParams, useHistory } from "react-router-dom";
 
 import { addNotebook } from "../../store/notebooks";
 
+import './NbForm.css'
+
 const NbForm = ({ hideForm }) => {
   const notebooks = useSelector(state => state.notebooks)
   const session = useSelector(state => state.session)
@@ -41,7 +43,7 @@ const NbForm = ({ hideForm }) => {
 
   return (
     <>
-      <div className="note-form-div">
+      <div className="note-form-div" id="nb-form-div">
         <div className="form-title-header">
           <div className="form-title">
             Start from scratch...

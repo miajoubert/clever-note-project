@@ -74,8 +74,11 @@ const NoteDetail = ({ note }) => {
                 <b>{notebook?.title}</b>
               </div>
               <div className="note-timestamp">
+                <div className="updated-at-text">
+                  Updated:
+                </div>
                 <div className="note-date">
-                  {new Date(note?.updatedAt).toDateString().split(" ")[1]} {new Date(note?.updatedAt).toDateString().split(" ")[2]}
+                  {new Date(note?.updatedAt).toDateString().split(" ")[1]} {new Date(note?.updatedAt).toDateString().split(" ")[2]}, {new Date(note?.updatedAt).toDateString().split(" ")[3]}
                 </div>
                 <div className="note-time">
                   {new Date(note?.updatedAt).getHours()}:{new Date(note?.updatedAt).getMinutes()}
@@ -91,7 +94,14 @@ const NoteDetail = ({ note }) => {
     return (
       <div className="select-note-message">
         <span className="fas fa-map-pin"></span>
-        <div className="select-note-text">Select a note!</div>
+        <div className="select-note-text">Select a note or add one!</div>
+        <div className="select-button-div"> Click on
+          <span
+            className="fas fa-plus"
+            id="add-note-note"
+          ></span>
+          to begin.
+        </div>
       </div>
     )
   }

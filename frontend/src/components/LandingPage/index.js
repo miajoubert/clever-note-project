@@ -20,9 +20,7 @@ function LandingPage() {
             <div className='splash-line-small'>Remember everything and tackle any project with your notes and reminders all in one place.</div>
           </div>
         </div>
-        <div>
-          <Footer />
-        </div>
+        <Footer />
       </>
     )
   } else {
