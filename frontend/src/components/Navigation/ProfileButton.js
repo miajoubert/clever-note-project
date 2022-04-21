@@ -4,7 +4,7 @@ import { Redirect, useHistory } from "react-router-dom";
 
 import * as sessionActions from '../../store/session';
 
-import './Navigation.css'
+import './ProfileButton.css'
 
 function ProfileButton({ user }) {
   const sessionUser = useSelector(state => state.session.user)
@@ -46,7 +46,7 @@ function ProfileButton({ user }) {
       {showMenu && (
         <ul className="profile-dropdown">
           <li className="username">{user.username}</li>
-          <li>{user.email}</li>
+          <li className="user-email">{user.email}</li>
           <li className="buttonLi">
             <button
               className="logoutButton"

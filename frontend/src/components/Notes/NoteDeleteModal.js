@@ -9,9 +9,13 @@ import './NoteModals.css'
 
 function NoteDeleteModal({ note }) {
   const [showModal, setShowModal] = useState(false);
-  const { noteId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
+  const { noteParamId } = useParams();
+
+  let noteId
+  if (note) { noteId = note?.id }
+  else { noteId = noteParamId }
 
   async function deleteNoteFunc() {
     await dispatch(deleteNote(noteId))

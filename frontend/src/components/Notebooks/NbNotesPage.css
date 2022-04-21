@@ -9,6 +9,8 @@
   min-width: 252px;
   max-height: 90px;
   overflow-y: auto;
+  /* background-color: #1a1a1aCC;
+  box-shadow: 0px -1px 5px 0 black; */
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
   height: auto;
@@ -18,7 +20,8 @@
 .nb-noteList {
   margin: 5px 0px 0px 5px;
   min-width: 252px;
-  height: 75vh;
+  height: 100%;
+  max-height: 75vh;
   overflow-y: auto;
   background-color: #1a1a1aCC;
   box-shadow: 0px -1px 5px 0 black;

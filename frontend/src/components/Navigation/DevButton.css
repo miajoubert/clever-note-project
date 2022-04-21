@@ -1,19 +1,44 @@
 .dev-dropdown {
-  font-size: 16px;
-  position: absolute;
-  top: 55px;
-  right: 0px;
+  position: fixed;
+  margin-top: 140px;
+  right: 3rem;
   z-index: 2;
+  background-color: rgb(255, 255, 255, .5);
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 gray;
+  padding: 10px;
   text-align: left;
+  font-size: 16px;
   color: #00a82b;
   list-style-type: none;
   text-decoration: none;
 }
 
-.devLi:hover>span {
-  color: black
-}
-
 .devLi {
   color: black
 }
+
+.devLi>span {
+  color: black;
+}
+
+.devLi:hover {
+  color: #00a82b
+}
+
+.devLi:hover>span {
+  color: #00a82b
+}
+
+/* position: fixed;
+margin-top: 155px;
+right: 7rem;
+text-align: right;
+color: #00a82b;
+font-size: 15px;
+list-style-type: none;
+z-index: 2;
+background-color: rgb(255, 255, 255, .5);
+border-radius: 5px;
+box-shadow: 0 0 5px 0 gray;
+padding: 10px */

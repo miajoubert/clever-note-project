@@ -32,7 +32,7 @@ const NbNotesPage = ({ notebookId }) => {
   return (
     <div className="nb-note-div">
       <nav
-        className={selectNotes.length < 2 ? "nb-noteList-short" : "nb-noteList"}
+        className={selectNotes.length < 1 ? "nb-noteList-short" : "nb-noteList"}
       >
         {selectNotes?.map((note) => {
           return (

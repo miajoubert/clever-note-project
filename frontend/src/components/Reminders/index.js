@@ -2,24 +2,24 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route, useParams } from "react-router-dom";
 
-import { listNotes } from "../../store/notes";
+import { listReminders } from "../../store/reminders";
 
 import './Reminders.css'
 
 const RemindersPage = () => {
-  const notes = useSelector(state => state.notes)
+  const reminders = useSelector(state => state.reminders)
   const session = useSelector(state => state.session)
   const dispatch = useDispatch()
 
   const [showForm, setShowForm] = useState(false);
 
   const userId = session.user.id;
-  let { noteId } = useParams();
-  const notesArr = Object.values(notes);
+  let { reminderId } = useParams();
+  const reminderArr = Object.values(reminders);
 
   useEffect(() => {
     if (session.user) {
-      dispatch(listNotes(userId))
+      dispatch(listReminders(userId))
     }
   }, [])
 
@@ -27,23 +27,23 @@ const RemindersPage = () => {
     <main>
       <nav
         className="noteList">
-        {notesArr?.map((note) => {
+        {reminderArr?.map((reminder) => {
           return (
             <NavLink
-              key={note?.id}
-              to={`/notes/${note?.id}`}
+              key={reminder?.id}
+              to={`/notes/${reminder?.id}`}
               onClick={() => setShowForm(false)}
             >
               <div
                 className={
-                  Number.parseInt(noteId) === note?.id
-                    ? "note selected"
-                    : "note"
+                  Number.parseInt(reminderId) === reminder?.id
+                    ? "reminder selected"
+                    : "reminder"
                 }
               >
-                <div className="primary-text">{note?.title}</div>
+                <div className="primary-text">{reminder?.title}</div>
                 <div className="secondary-text">
-                  {new Date(note?.createdAt).getMonth() + 1}/{new Date(note?.createdAt).getDate()}/{new Date(note?.createdAt).getFullYear()}
+                  {new Date(reminder?.createdAt).getMonth() + 1}/{new Date(reminder?.createdAt).getDate()}/{new Date(reminder?.createdAt).getFullYear()}
                 </div>
               </div>
             </NavLink>

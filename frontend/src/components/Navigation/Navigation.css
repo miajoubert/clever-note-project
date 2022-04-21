@@ -62,66 +62,6 @@ a:link {
   transition: all .2s;
 }
 
-.profileButton {
-  font-size: 20px;
-  width: 50px;
-  background-color: #00a82b;
-  color: white;
-  margin: 0px 0px 0px 20px;
-  border: none;
-  border-radius: 5px;
-  padding: 5px;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.profileButtonOpen {
-  font-size: 20px;
-  width: 50px;
-  background-color: rgb(89, 88, 88);
-  color: white;
-  margin: 0px 0px 0px 20px;
-  border: none;
-  border-radius: 5px;
-  padding: 5px;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.profileButton:hover {
-  transition: all .2s;
-  background-color: #04d237;
-}
-
-.profile-dropdown {
-  font-size: 15px;
-  position: fixed;
-  top: 55px;
-  z-index: 2;
-  text-align: right;
-  color: #00a82b;
-  list-style-type: none;
-}
-
-.username {
-  font-weight: bolder;
-}
-
-.logoutButton {
-  background-color: #00a82b;
-  margin: 10px 0px;
-  border: none;
-  border-radius: 3px;
-  padding: 5px 10px;
-  font-size: 15px;
-  font-weight: bold;
-}
-
-.logoutButton:hover {
-  transition: all .2s;
-  background-color: #04d237;
-  color: white
-}
 
 @media screen and (max-width: 915px) {
   a.bar {
