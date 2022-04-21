@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import NotebookEditForm from './NotebookEditForm';
+import NbEditForm from './NbEditForm';
 
-import './index.css'
+import './NbModals.css'
 
-function NotebookEditModal({ notebook, showDetails }) {
+function NbEditModal({ notebook, showDetails }) {
   const [showModal, setShowModal] = useState(false)
 
   return (
     <>
       <button
-        className="editButton"
+        className="note-function-button"
+        id='nb-edit'
         onClick={() => setShowModal(true)}
       >
         Edit Notebook
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <NotebookEditForm
+          <NbEditForm
             hideModal={() => setShowModal(false)}
             notebook={notebook} />
         </Modal>
@@ -26,4 +27,4 @@ function NotebookEditModal({ notebook, showDetails }) {
   )
 }
 
-export default NotebookEditModal;
+export default NbEditModal;

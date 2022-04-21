@@ -16,6 +16,7 @@
 
 #note-errors {
   justify-content: flex-start;
+  height: 20px;
 }
 
 .form-label {
@@ -30,7 +31,7 @@
 .note-form-input {
   margin-bottom: 10px;
   padding: 5px 10px;
-  width: 220px;
+  width: 235px;
   height: 40px;
   box-sizing: border-box;
   border: rgba(128, 128, 128, 0.5) .5px solid;
@@ -44,7 +45,7 @@
 .note-form-text {
   margin-bottom: 10px;
   padding: 10px;
-  width: 220px;
+  width: 235px;
   height: 200px;
   box-sizing: border-box;
   border: rgba(128, 128, 128, 0.5) .5px solid;
@@ -58,7 +59,7 @@
 .note-form-select {
   margin-bottom: 10px;
   padding: 10px;
-  width: 220px;
+  width: 235px;
   height: 40px;
   box-sizing: border-box;
   border: rgba(128, 128, 128, 0.5) .5px solid;

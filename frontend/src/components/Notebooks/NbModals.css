@@ -1,0 +1,23 @@
+#nb-edit,
+#nb-delete {
+  height: 40px;
+  min-width: 80px;
+  padding: 5px;
+  background-color: #1A1A1A;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+#nb-edit:hover,
+#nb-delete:hover {
+  background-color: rgb(0, 120, 43);
+}
+
+#nb-edit {
+  margin-left: 80px
+}
+
+#nb-delete {
+  margin-left: 20px;
+}

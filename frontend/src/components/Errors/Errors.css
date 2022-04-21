@@ -5,27 +5,55 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-left: 180px;
 }
 
-.homePic {
+.errorPic {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  transform: rotate(14deg);
+  position: fixed;
+  top: 100px;
+  width: 500px;
+  z-index: -1;
+
 }
 
 .errors404 {
   position: relative;
-  top: 6.5rem;
-  left: 19rem;
+  top: 4.9rem;
+  left: -3.5rem;
   font-size: 42px;
   height: 1rem;
 }
 
 .errors404-2 {
   position: relative;
-  top: 9.5rem;
-  left: 14rem;
+  top: 8.5rem;
+  left: -8.8rem;
   font-size: 35px;
   height: 5rem;
   width: 3rem;
+}
+
+@media screen and (max-width: 915px) {
+  .homeDiv {
+    margin-left: 200px;
+  }
+
+  .errorPic {
+    top: 10.5rem;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .homeDiv {
+    margin-left: 200px;
+    margin-top: 30px;
+  }
+
+  .errorPic {
+    top: 13rem;
+  }
 }

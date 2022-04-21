@@ -2,7 +2,7 @@
   width: 45vw;
   height: 80vh;
   margin-bottom: 20px;
-  margin-left: 50px;
+  margin-left: 20px;
   background-image: linear-gradient(to bottom right, rgb(250, 250, 136), darkgoldenrod);
   border-radius: 4px;
 }
@@ -22,6 +22,10 @@
   justify-content: space-between;
 }
 
+.fa-book-open {
+  margin-right: 7px
+}
+
 .note-title {
   font-size: 30px;
   align-items: center;
@@ -29,9 +33,13 @@
 
 .fa-bars {
   color: black;
-  font-size: 20px;
-  padding-top: 5px;
+  font-size: 25px;
   cursor: pointer;
+}
+
+.fa-bars:hover {
+  color: white;
+  transition: color .2s;
 }
 
 .note-buttons-dropdown {
@@ -58,6 +66,12 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+}
+
+.nb-title-div {
+  display: flex;
+  align-items: center;
 }
 
 .note-timestamp {
@@ -69,4 +83,33 @@
 
 .note-time {
   margin-left: 20px;
+}
+
+.select-note-message {
+  min-width: 150px;
+  height: 175px;
+  margin: 0px 20px;
+  padding: 0px 20px 20px;
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+  background-image: linear-gradient(to bottom right, rgb(250, 250, 136), darkgoldenrod);
+  border-radius: 3px;
+  box-shadow: 0 0 5px 0px gray;
+}
+
+.fa-map-pin {
+  transform: rotate(30deg);
+  position: absolute;
+  right: 115px;
+  top: 3px;
+  font-size: 35px;
+  text-shadow: 2px 1px 3px rgb(0, 0, 0, .7);
+}
+
+.select-note-text {
+  margin: 30px 0px;
+  padding: 10px
 }

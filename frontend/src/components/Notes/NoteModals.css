@@ -2,6 +2,7 @@
   background-color: #00a82b;
   border: none;
   border-radius: 3px;
+  box-shadow: 0 0 5px 0 gray;
   padding: 5px;
   max-width: 70px;
   min-width: 70px;

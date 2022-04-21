@@ -92,16 +92,8 @@ const notesReducer = (state = initialState, action) => {
       oneState[action.note.id] = action.note;
       return oneState;
     case ADD_NOTE:
-      if (state[action.note.id]) {
-        const addState = {
-          ...state,
-          [action.note.id + 1]: action.note
-        };
-      }
-      const addState = {
-        ...state,
-        [action.note.id]: action.note
-      };
+      const addState = { ...state }
+      addState[action.note?.id] = action.note
       return addState;
     case UPDATE_NOTE:
       return {

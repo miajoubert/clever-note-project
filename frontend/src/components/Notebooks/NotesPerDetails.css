@@ -1,7 +1,0 @@
-.notesOnNotebookBackground {
-  width: auto;
-  height: 640px;
-  margin-left: 40px;
-  background-image: linear-gradient(to bottom right, rgb(250, 250, 136), darkgoldenrod);
-  object-fit: contain;
-}

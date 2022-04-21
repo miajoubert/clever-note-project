@@ -97,16 +97,8 @@ const notebooksReducer = (state = initialState, action) => {
       oneState[action.notebook.id] = action.notebook;
       return oneState;
     case ADD_NOTEBOOK:
-      if (state[action.notebook.id]) {
-        const addState = {
-          ...state,
-          [action.notebook.id + 1]: action.notebook
-        };
-      }
-      const addState = {
-        ...state,
-        [action.notebook.id]: action.notebook
-      };
+      const addState = { ...state }
+      addState[action.notebook?.id] = action.notebook
       return addState;
     case UPDATE_NOTEBOOK:
       return {

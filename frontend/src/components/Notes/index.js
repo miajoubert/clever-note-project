@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route, useParams } from "react-router-dom";
 
-import FloatingButton from "../FloatingButton";
+import NoteFloatingButton from "./NoteFAB";
 import NoteDetail from "./NoteDetail";
 import NoteForm from "./NoteForm";
 import { listNotes } from "../../store/notes";
@@ -56,7 +56,7 @@ const NotesPage = () => {
         )}
       </nav>
 
-      <FloatingButton
+      <NoteFloatingButton
         hidden={showForm}
         onClick={() => setShowForm(true)}
       />

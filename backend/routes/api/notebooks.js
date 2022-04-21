@@ -10,7 +10,9 @@ const router = express.Router();
 const validateNotebookForm = [
   check('title')
     .exists({ checkFalsy: true })
-    .withMessage('Please provide a notebook title.'),
+    .withMessage('Please provide a notebook title.')
+    .isLength({ max: 30 })
+    .withMessage('Please keep title under 30 characters.'),
   handleValidationErrors
 ];
 

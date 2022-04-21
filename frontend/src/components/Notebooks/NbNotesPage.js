@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Route, useParams } from "react-router-dom";
 
-import FloatingButton from "../FloatingButton";
-import NotesPerDetail from "./NotesPerDetails";
-import NotesPerNotebookNewForm from "./NotesPerForm";
+import NoteFloatingButton from "../Notes/NoteFAB";
+import NoteDetail from "../Notes/NoteDetail";
+import NoteForm from "../Notes/NoteForm";
 import { listNotes } from "../../store/notes";
 
-import './NotesPerNotebook.css'
+import './NbNotesPage.css'
 
-const NotesPerNotebook = ({ notebookId }) => {
+const NbNotesPage = ({ notebookId }) => {
   const notes = useSelector(state => state.notes)
   const session = useSelector(state => state.session)
   const dispatch = useDispatch()
@@ -18,24 +17,25 @@ const NotesPerNotebook = ({ notebookId }) => {
   const [noteDetail, setNoteDetail] = useState()
 
   const userId = session.user.id;
-  let { noteId } = useParams();
+
   const notesArr = Object.values(notes);
-  const notesList = notesArr.filter((note) => {
+  const selectNotes = notesArr.filter((note) => {
     return (note.notebookId === +notebookId)
   })
 
   useEffect(() => {
     if (session.user) {
       dispatch(listNotes(userId))
-
     }
   }, [])
 
   return (
-    <main className="mainNotesList">
+    <div className="nb-note-div">
       <nav
-        className="noteList">
-        {notesList?.map((note) => {
+        className="noteList"
+        id="nb-noteList"
+      >
+        {selectNotes?.map((note) => {
           return (
             <div
               key={note?.id}
@@ -48,7 +48,7 @@ const NotesPerNotebook = ({ notebookId }) => {
                     : "note"
                 }
               >
-                <div className="primary-text">{note?.title}</div>
+                <div className="primary-text"> {note?.title}</div>
                 <div className="secondary-text">
                   {new Date(note?.updatedAt).getMonth() + 1}/{new Date(note?.updatedAt).getDate()}/{new Date(note?.updatedAt).getFullYear()}
                 </div>
@@ -58,21 +58,20 @@ const NotesPerNotebook = ({ notebookId }) => {
         }
         )}
       </nav>
-      {/*
-      <FloatingButton
+
+      <NoteFloatingButton
         hidden={showForm}
         onClick={() => setShowForm(true)}
-      /> */}
+      />
 
       {
         showForm ? (
-          <NotesPerNotebookNewForm
+          <NoteForm
             hidden={!showForm}
-            hideForm={() => setShowForm(false)}
-            currNotebookId={notebookId} />
+            hideForm={() => setShowForm(false)} />
         ) : (
           <>
-            <NotesPerDetail
+            <NoteDetail
               hidden={!showForm}
               setShowForm={() => setShowForm(false)}
               note={noteDetail}
@@ -80,8 +79,8 @@ const NotesPerNotebook = ({ notebookId }) => {
           </>
         )
       }
-    </main >
+    </div>
   )
 }
 
-export default NotesPerNotebook;
+export default NbNotesPage;

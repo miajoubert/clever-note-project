@@ -1,0 +1,9 @@
+.nb-note-div {
+  position: fixed;
+  padding: 20px 0px;
+  display: flex;
+}
+
+#nb-noteList {
+  min-width: 252px;
+}

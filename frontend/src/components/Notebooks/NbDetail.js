@@ -2,14 +2,15 @@ import React, { useEffect, useState, Route } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
-import NotebookEditModal from "./NotebookEditModal";
-import NotesPerNotebook from "./NotesPerNotebook";
+import NbEditModal from "./NbEditModal";
+import NbDeleteModal from "./NbDeleteModal";
+import NbNotesPage from "./NbNotesPage";
 
 import { listNotebooks, noteDetails, editNote, deleteNotebook } from "../../store/notebooks";
 
-import './index.css'
+import './Notebooks.css'
 
-const NotebookDetail = () => {
+const NbDetail = () => {
   const { notebookId } = useParams();
 
   const notebooks = useSelector(state => state.notebooks)
@@ -33,38 +34,33 @@ const NotebookDetail = () => {
     dispatch(listNotebooks(notebooks))
   }, [dispatch])
 
-  async function deleteNotebookFunc() {
-    await dispatch(deleteNotebook(notebookId))
-    history.push("/notebooks")
-  }
+
 
   return (
     <>
       <div
-        className="notebookDetails"
-        hidden={hideNotebookDetails}>
-        <div className="buttonDetails">
-          <NotebookEditModal
+        className="notebook-buttons-div"
+        hidden={hideNotebookDetails}
+      >
+        <div className="nb-buttons">
+          <NbEditModal
             notebook={notebook}
           />
-          <button
-            className="deleteButton"
-            onClick={deleteNotebookFunc}
-          >
-            Delete Notebook
-          </button>
+          <NbDeleteModal
+            notebook={notebook}
+          />
         </div>
       </div>
       <div
-        className="notebookNotesPageDiv"
         hidden={hideNotebookDetails}
       >
-        <NotesPerNotebook
+        <NbNotesPage
           hidden={true}
-          notebookId={notebookId} />
+          notebookId={notebookId}
+        />
       </div>
     </>
   )
 }
 
-export default NotebookDetail;
+export default NbDetail;

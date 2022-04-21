@@ -11,7 +11,9 @@ const router = express.Router();
 const validateNoteForm = [
   check('title')
     .exists({ checkFalsy: true })
-    .withMessage('Please provide a note title.'),
+    .withMessage('Please provide a note title.')
+    .isLength({ max: 30 })
+    .withMessage('Please keep title under 30 characters.'),
   check('content')
     .exists({ checkFalsy: true })
     .withMessage('Please provide note content.'),

@@ -17,7 +17,7 @@ const NoteEditForm = ({ note, hideModal, onClose }) => {
 
   const [title, setTitle] = useState(note?.title)
   const [content, setContent] = useState(note?.content)
-  const [notebookId, setNotebookId] = useState(notebooks[note?.notebookId]?.id)
+  const [notebookId, setNotebookId] = useState(notebookList[note?.notebookId]?.id)
   const [errors, setErrors] = useState([]);
 
   const userId = session.user.id;
@@ -63,7 +63,7 @@ const NoteEditForm = ({ note, hideModal, onClose }) => {
     <>
       <div className="noteFormDiv">
         <div className="form-title">Revise your note:</div>
-        <ul className="errorsAuthSignup">
+        <ul className="errorsAuth">
           {errors.map((error, i) => (
             <li
               className="errorLi"
@@ -105,13 +105,15 @@ const NoteEditForm = ({ note, hideModal, onClose }) => {
               className="note-form-select"
               value={notebookId}
               onChange={(e) => setNotebookId(e.target.value)}
+              default={notebookList[note.notebookId].title}
             >
-              {notebooks.map(notebook =>
+              {notebooks?.map(notebook => (
                 <option key={notebook?.id}
                   value={notebook?.id}
                 >
                   {notebook?.title}
-                </option>)}
+                </option>
+              ))}
             </select>
           </label>
           <div className="form-buttons-div">

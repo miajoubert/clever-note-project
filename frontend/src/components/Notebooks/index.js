@@ -2,15 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, NavLink, Route, useParams } from "react-router-dom";
 
-import FloatingNotebookButton from "./FabNotebook";
-import FloatingButton from "../FloatingButton";
-import NotebookDetail from "./NotebookDetail";
-import NotebookForm from "./NotebookForm";
+import NbFloatingButton from "./NbFAB";
+import NbDetail from "./NbDetail";
+import NbForm from "./NbForm";
 import { listNotebooks } from "../../store/notebooks";
 import { listNotes } from "../../store/notes";
 
-
-import './index.css'
+import './Notebooks.css'
 
 const NotesPage = () => {
   const notebooks = useSelector(state => state.notebooks)
@@ -45,17 +43,19 @@ const NotesPage = () => {
               <div
                 className={
                   Number.parseInt(notebookId) === notebook?.id
-                    ? "notebook selected"
+                    ? "notebook nb-selected"
                     : "notebook"
                 }
               >
-                <div className="primary-text">{notebook?.title}</div>
+                <div className="nb-primary-text">
+                  <span className="fas fa-book"></span>
+                  {notebook?.title}
+                </div>
                 <div className="notebookInfo">
-                  <div className="secondary-text">
+                  <div className="nb-secondary-text">
                     {new Date(notebook?.updatedAt).getMonth() + 1}/{new Date(notebook?.updatedAt).getDate()}/{new Date(notebook?.updatedAt).getFullYear()}
                   </div>
                   <div className="notebookImage">
-                    <i class="fas fa-book"></i>
                   </div>
                 </div>
               </div>
@@ -65,28 +65,34 @@ const NotesPage = () => {
         )}
       </nav>
 
-      <FloatingButton
-        hidden={showForm}
-        onClick={() => setShowForm(true)}
-      />
+      <div className="nb-buttons-details">
+        <div className="nb-buttons">
+          <NbFloatingButton
+            hidden={showForm}
+            onClick={() => setShowForm(true)}
+          />
 
-      {
-        showForm ? (
-          <NotebookForm
-            hidden={!showForm}
-            hideForm={() => setShowForm(false)} />
-        ) : (
-          <>
-            <Route path="/notebooks/:notebookId">
-              <NotebookDetail
+          {
+            showForm ? (
+              <NbForm
                 hidden={!showForm}
-                setShowForm={() => setShowForm(false)}
-              />
-            </Route>
-          </>
-        )
-      }
-    </main>
+                hideForm={() => setShowForm(false)} />
+            ) : (
+              <>
+                <div className="nb-buttons-details">
+                  <Route path="/notebooks/:notebookId">
+                    <NbDetail
+                      hidden={!showForm}
+                      setShowForm={() => setShowForm(false)}
+                    />
+                  </Route>
+                </div>
+              </>
+            )
+          }
+        </div>
+      </div>
+    </main >
   )
 }
 

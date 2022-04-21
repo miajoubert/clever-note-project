@@ -1,15 +1,14 @@
-import './FloatingButton.css'
+import './NbFAB.css'
 
-const FloatingButton = props => {
+const NbFloatingButton = props => {
   return (
     <div
       className={props.hidden ? 'fab-button hidden' : 'fab-button'}
       onClick={props.onClick}
     >
-      <span class="fas fa-plus"></span>
+      <span className="fas fa-plus"></span>
     </div>
   )
 }
 
-
-export default FloatingButton;
+export default NbFloatingButton;

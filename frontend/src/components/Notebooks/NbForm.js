@@ -2,12 +2,9 @@ import React, { useEffect, useState, Route } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams, useHistory } from "react-router-dom";
 
-import * as sessionActions from "../../store/session";
 import { addNotebook } from "../../store/notebooks";
 
-import './NotebookForm.css'
-
-const NotebookForm = ({ hideForm }) => {
+const NbForm = ({ hideForm }) => {
   const notebooks = useSelector(state => state.notebooks)
   const session = useSelector(state => state.session)
   const dispatch = useDispatch()
@@ -44,36 +41,50 @@ const NotebookForm = ({ hideForm }) => {
 
   return (
     <>
-      <div className="noteFormDiv">
-        <div>Start from scratch...</div>
-        <ul className="errorsAuthSignup">
-          {errors.map((error, i) => (
-            <li
-              className="errorLi"
-              key={i}
-            >
-              {error}
-            </li>))}
-        </ul>
+      <div className="note-form-div">
+        <div className="form-title-header">
+          <div className="form-title">
+            Start from scratch...
+          </div>
+          <ul className="errorsAuth" id="note-errors">
+            {errors.map((error, i) => (
+              <li
+                className="errorLi"
+                key={i}
+              >
+                {error}
+              </li>))}
+          </ul>
+        </div>
+
         <form className="noteForm">
-          <label>
+          <label className="form-label">
             Title
             <input
+              className="note-form-input"
+              id="create-form"
               type="text"
               placeholder="Title..."
               required
               value={title}
               onChange={(e) => setTitle(e.target.value)} />
           </label>
-          <div className="buttonsForm">
+          <div className="form-buttons-div" id="create-buttons">
             <button
-              className="formButton"
+              className="form-button create"
               type="submit"
               onClick={handleSubmit}
             >
-              Create Notebook
+              Create
             </button>
-            <button className="formButton" type="button" onClick={handleCancel}>Cancel</button>
+            <button
+              className="form-button create"
+              id="cancel-button"
+              type="button"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
           </div>
         </form>
       </div>
@@ -81,4 +92,4 @@ const NotebookForm = ({ hideForm }) => {
   )
 }
 
-export default NotebookForm;
+export default NbForm;
