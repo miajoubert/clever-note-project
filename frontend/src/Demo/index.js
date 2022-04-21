@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 
 import * as sessionActions from '../store/session'
 
@@ -8,10 +8,7 @@ function DemoUser() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    return dispatch(sessionActions.login({
-      credential: "Demo",
-      password: "Pass@1"
-    }));
+    dispatch(sessionActions.demo());
   };
 
   return (
