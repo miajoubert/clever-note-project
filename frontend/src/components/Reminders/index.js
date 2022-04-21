@@ -23,11 +23,13 @@ const RemindersPage = () => {
     }
   }, [])
 
+  // reminderArr = ["nothing here"]
+
   return (
     <main>
       <nav
         className="noteList">
-        {reminderArr?.map((reminder) => {
+        {/* {reminderArr?.map((reminder) => {
           return (
             <NavLink
               key={reminder?.id}
@@ -49,8 +51,17 @@ const RemindersPage = () => {
             </NavLink>
           )
         }
-        )}
+        )} */}
       </nav>
+
+      <div className="under-construction">
+        <div className="construction1"><b>REMINDERS</b> are currently under construction!</div>
+        <div className="tools">
+          <span className="fas fa-wrench"></span>
+          <div className="construction2">Please check back later.</div>
+          <span className="fas fa-screwdriver"></span>
+        </div>
+      </div>
 
       {/* <NoteFloatingButton
         hidden={showForm}
@@ -74,7 +85,7 @@ const RemindersPage = () => {
         //   </>
         // )
       }
-    </main>
+    </main >
   )
 }
 
