@@ -57,11 +57,11 @@ const SearchComponent = ({ hideModal }) => {
     hideModal();
   };
 
-  const handleSelectReminder = (e, noteId) => {
+  const handleSelectReminder = async (e, noteId) => {
     e.preventDefault();
-    history.push(`/notes/${noteId}`);
-    setSearch('');
-    hideModal();
+    await history.push(`/notes/${noteId}`);
+    await setSearch('');
+    await hideModal();
     document.getElementById('open-reminder-modal').click()
   };
 
