@@ -41,8 +41,7 @@ function App() {
             "/notes",
             "/notes/:noteId",
             "/notes/:noteId/edit"
-          ]
-          } exact>
+          ]} exact>
             <NotesPage />
           </Route>
           <Route path={[
@@ -50,8 +49,7 @@ function App() {
             "/notebooks",
             "/notebooks/:notebookId",
             "/notebooks/:notebookId/edit"
-          ]}
-            exact>
+          ]} exact>
             <NotebooksPage />
           </Route>
           <Route path={[
@@ -59,12 +57,8 @@ function App() {
             "/reminders",
             "reminders/:reminderId",
             "reminders/:reminderId/edit"
-          ]}
-            exact>
+          ]} exact>
             <RemindersPage />
-          </Route>
-          <Route >
-
           </Route>
           <Route path="/">
             <Errors />
