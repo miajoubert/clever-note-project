@@ -7,9 +7,10 @@ import * as sessionActions from './store/session'
 import Navigation from './components/Navigation';
 import LandingPage from './components/LandingPage';
 import SignupModal from './components/SignupForm';
-import NotesPage from './components/Notes';
 import NotebooksPage from './components/Notebooks'
+import NotesPage from './components/Notes';
 import RemindersPage from './components/Reminders';
+import ResultsPage from './components/SearchResults/Results';
 import Errors from './components/Errors';
 
 import './index.css';
@@ -59,6 +60,12 @@ function App() {
             "reminders/:reminderId/edit"
           ]} exact>
             <RemindersPage />
+          </Route>
+          <Route path={[
+            "/",
+            "/results",
+            "/results/:searchTerm"]} exact>
+            <ResultsPage />
           </Route>
           <Route path="/">
             <Errors />

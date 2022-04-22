@@ -26,7 +26,7 @@ app.use(csurf({
   cookie: {
     secure: isProduction,
     sameSite: isProduction && 'Lax',
-    httpOnly: true
+    httpOnly: true,
   }
 }))
 

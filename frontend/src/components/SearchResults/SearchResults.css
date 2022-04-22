@@ -1,0 +1,22 @@
+.main-search-div {
+  padding: 20px;
+  text-align: center;
+  height: 90%;
+  background: linear-gradient(white 5%, #1A1A1A 100%);
+  overflow-y: hidden;
+}
+
+
+.resultsList {
+  background-color: rgb(26, 26, 26, .2);
+  box-shadow: 0 0 5px 0 #808080;
+  border-radius: 5px;
+  margin: 0px 20px 20px 20px;
+  padding: 10px;
+  min-width: 320px;
+  height: 83vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}

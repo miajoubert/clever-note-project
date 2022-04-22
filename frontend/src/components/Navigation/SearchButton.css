@@ -1,0 +1,30 @@
+.searchButton {
+  font-size: 20px;
+  width: 50px;
+  background-color: #00a82b;
+  color: white;
+  margin: 0px 0px 0px 20px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.searchButtonOpen {
+  font-size: 20px;
+  width: 50px;
+  background-color: rgb(89, 88, 88);
+  color: white;
+  margin: 0px 0px 0px 20px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.searchButton:hover {
+  background-color: #04d237;
+  transition: all .2s;
+}

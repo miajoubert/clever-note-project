@@ -43,6 +43,7 @@ const NoteReminders = ({ note }) => {
     <>
       <div
         className="reminder-modal-div"
+        id="open-reminder-modal"
         onClick={() => setShowModal(true)}
       >
         <span className="fas fa-clock" />

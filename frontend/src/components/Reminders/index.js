@@ -37,8 +37,9 @@ const RemindersPage = () => {
           <span className="fas fa-screwdriver"></span>
         </div>
       </div> */}
-
-      < ReminderCreateModal />
+      <div className='reminder-fab-div'>
+        < ReminderCreateModal />
+      </div>
 
       <nav
         className="reminderList">
