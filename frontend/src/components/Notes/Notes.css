@@ -74,3 +74,36 @@
   padding: 3px;
   border-radius: 3px;
 }
+
+@media screen and (max-width: 915px) {
+  .noteList {
+    width: 10vw;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .main-div {
+    flex-direction: column;
+    min-height: 90%;
+    height: auto;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .noteList {
+    height: 110px;
+    width: 98%;
+    display: flex;
+    flex-direction: row;
+    overflow-y: hidden;
+    overflow-x: auto;
+    border-radius: 3px;
+    margin: 0px 5px
+  }
+
+  .note {
+    min-width: 13rem;
+    border-radius: 3px;
+    margin-right: 5px;
+  }
+}

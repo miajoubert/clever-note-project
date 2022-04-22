@@ -6,10 +6,9 @@ import { listNotes } from "../../store/notes";
 import ReminderDetails from "./ReminderDetails";
 import ReminderCreateModal from "./ReminderCreate";
 
-import './Reminders.css'
-import './Construction.css'
+import './ReminderNotify.css'
 
-const RemindersPage = () => {
+const RemindersNotify = () => {
   const reminders = useSelector(state => state.reminders)
   const session = useSelector(state => state.session)
   const dispatch = useDispatch()
@@ -20,8 +19,6 @@ const RemindersPage = () => {
     return new Date(a.time).getTime() - new Date(b.time).getTime()
   })
 
-  console.log("THIS IS MY SESSION INFO", session)
-
   useEffect(() => {
     if (userId) {
       dispatch(listReminders(userId))
@@ -29,35 +26,12 @@ const RemindersPage = () => {
     }
   }, [dispatch, userId])
 
-  return (
-    <div className="main-reminder-div">
-      {/* <div className="under-construction">
-        <div className="construction1"><b>REMINDERS</b> are currently under construction!</div>
-        <div className="tools">
-          <span className="fas fa-wrench"></span>
-          <div className="construction2">Please check back later.</div>
-          <span className="fas fa-screwdriver"></span>
-        </div>
-      </div> */}
-      <div className='reminder-fab-div'>
-        < ReminderCreateModal />
-      </div>
+  console.log("THIS IS MY SESSION INFO", session)
 
+  return (
+    <div className="reminder-notification-div">
       <nav
         className="reminderList">
-        <div className="reminder rem-alert">
-          <div className="reminder-text rem-alert">
-            <div className="reminder-date rem-alert-bell">
-              <span className="fas fa-bell" />
-              Coming Soon!
-
-            </div>
-            <div className="reminder-title">
-              Reminder Notifications
-            </div>
-          </div>
-        </div>
-
         {reminderArr?.map((reminder) => {
           return (
             <div className={
@@ -95,10 +69,11 @@ const RemindersPage = () => {
               </ReminderDetails>
             </div>
           )
-        })}
+        }
+        )}
       </nav>
     </div >
   )
 }
 
-export default RemindersPage;
+export default RemindersNotify;

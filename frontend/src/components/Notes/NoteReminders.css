@@ -80,3 +80,7 @@
 .note-reminder>.reminder-text>.reminder-title {
   padding-bottom: 0px;
 }
+
+.rem-Fab-div-on-note {
+  position: absolute;
+}

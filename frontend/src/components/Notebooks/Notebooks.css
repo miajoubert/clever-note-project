@@ -1,8 +1,8 @@
-main {
+.main-nb-div {
   display: flex;
-  height: 86vh;
   flex-direction: row;
-  overflow-x: hidden;
+  height: 88vh;
+  background: linear-gradient(white 5%, #1A1A1A 100%);
 }
 
 .notebookList {
@@ -71,4 +71,68 @@ main {
 .nb-buttons {
   display: flex;
   flex-direction: row;
+}
+
+@media screen and (max-width: 1190px) {
+  .notebookList {
+    width: 10vw;
+  }
+}
+
+@media screen and (max-width: 915px) {
+  .main-nb-div {
+    flex-direction: column;
+    align-items: center;
+    height: 76%;
+    margin-top: 20px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+
+  .notebookList {
+    height: 90px;
+    width: 98%;
+    display: flex;
+    flex-direction: row;
+    overflow-y: hidden;
+    overflow-x: auto;
+    border-radius: 3px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    margin: 0px 5px 10px 5px;
+    background-color: rgb(26, 26, 26, .4);
+  }
+
+  .notebook {
+    font-size: smaller;
+    min-width: 12rem;
+    max-height: 40px;
+    min-height: 40px;
+    border-radius: 3px;
+    margin-right: 5px;
+  }
+
+  .nb-primary-text {
+    font-size: smaller;
+  }
+
+  .nb-secondary-text {
+    margin-top: 0px;
+  }
+
+  #nb-form-div.note-form-div {
+    margin: 0px;
+    padding: 30px;
+  }
+
+  .nb-buttons>.fab-button {
+    margin: 0px;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .main-nb-div {
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
 }

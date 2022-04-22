@@ -34,9 +34,9 @@ const SearchComponent = ({ hideModal }) => {
       .filter((item) => {
         return item?.title.toLowerCase().includes(search.toLowerCase())
       })
-  ]
+  ];
 
-  const resultCount = allItems[0].length + allItems[1].length + allItems[2].length
+  const resultCount = allItems[0].length + allItems[1].length + allItems[2].length;
 
   useEffect(() => {
     inputRef.current?.focus()
@@ -48,7 +48,7 @@ const SearchComponent = ({ hideModal }) => {
       dispatch(listNotes(userId))
       dispatch(listReminders(userId))
     }
-  }, [dispatch, userId])
+  }, [dispatch, userId]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -133,8 +133,8 @@ const SearchComponent = ({ hideModal }) => {
             return (
               <Link
                 // to={`/notes/${item.noteId}`}
-                onClick={(e) => handleSelectReminder(e, item.noteId)}
                 // onClick={hideModal}
+                onClick={(e) => handleSelectReminder(e, item.noteId)}
                 className="search-item-link"
               >
                 <li

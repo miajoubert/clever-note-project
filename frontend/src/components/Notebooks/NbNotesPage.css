@@ -31,3 +31,86 @@
   border-top-left-radius: 5px;
   max-width: 70vh;
 }
+
+@media screen and (max-width: 1190px) {
+  .nb-note-div {
+    width: auto;
+  }
+
+  .nb-noteList {
+    min-width: 15vw;
+    max-width: 15vw;
+  }
+}
+
+@media screen and (max-width: 1030px) {
+  .nb-note-div {
+    width: 75%;
+  }
+
+  .nb-noteList {
+    min-width: 15vw;
+    max-width: 15vw;
+  }
+
+  .fa-map-pin {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 915px) {
+  .nb-note-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 99%;
+    height: 46%;
+    left: 5px;
+    right: 5px;
+    top: 49vh;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    background-color: rgb(255, 255, 255, .6);
+  }
+
+  .nb-noteList {
+    display: flex;
+    flex-direction: row;
+    min-width: 90vw;
+    min-height: 110px;
+    max-height: 110px;
+    border-radius: 3px;
+    overflow-x: auto;
+    margin: 0px 5px 10px 5px;
+  }
+
+  .nb-noteList *.note {
+    min-width: 14rem;
+    max-width: 14rem;
+    border-radius: 3px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    margin-right: 5px;
+  }
+
+  .select-note-message {
+    margin-top: 10px;
+  }
+
+  .fa-map-pin {
+    position: relative;
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+
+  .nb-note-div>.note-fab-button {
+    margin: 0px 0px 10px 0px;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .nb-note-div {
+    top: 55vh
+  }
+}

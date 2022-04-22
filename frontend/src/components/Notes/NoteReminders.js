@@ -54,7 +54,7 @@ const NoteReminders = ({ note }) => {
           className="note-reminder-modal-div"
           onClose={handleCancel}
         >
-          <div>
+          <div className="rem-Fab-div-on-note">
             <ReminderCreateModal
               currNoteId={note?.id}
             />

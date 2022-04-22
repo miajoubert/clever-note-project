@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 
 import { listNotebooks } from "../../store/notebooks";
 import { listNotes } from "../../store/notes";
@@ -9,13 +9,14 @@ import { listReminders } from "../../store/reminders";
 import './SearchResults.css'
 
 const ResultsPage = () => {
-  const session = useSelector(state => state.session)
-  const notebooks = useSelector(state => state.notebooks)
-  const notes = useSelector(state => state.notes)
-  const reminders = useSelector(state => state.reminders)
-  const dispatch = useDispatch()
+  const session = useSelector(state => state.session);
+  const notebooks = useSelector(state => state.notebooks);
+  const notes = useSelector(state => state.notes);
+  const reminders = useSelector(state => state.reminders);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-  const searchTerm = useParams().searchTerm
+  const searchTerm = useParams().searchTerm;
   const userId = session.user.id;
 
   const allItems = [
@@ -32,9 +33,9 @@ const ResultsPage = () => {
       .filter((item) => {
         return item?.title.toLowerCase().includes(searchTerm.toLowerCase())
       })
-  ]
+  ];
 
-  const resultCount = allItems[0].length + allItems[1].length + allItems[2].length
+  const resultCount = allItems[0].length + allItems[1].length + allItems[2].length;
 
   useEffect(() => {
     if (userId) {
@@ -42,7 +43,14 @@ const ResultsPage = () => {
       dispatch(listNotes(userId))
       dispatch(listReminders(userId))
     }
-  }, [dispatch, userId])
+  }, [dispatch, userId]);
+
+  const handleSelectReminder = async (e, noteId) => {
+    e.preventDefault();
+    await history.push(`/notes/${noteId}`);
+    document.getElementById('open-reminder-modal').click()
+  };
+
 
   return (
     <>
@@ -85,7 +93,8 @@ const ResultsPage = () => {
             {allItems[2].map((item) => {
               return (
                 <Link
-                  to={`/notes/${item.noteId}`}
+                  // to={`/notes/${item.noteId}`}
+                  onClick={(e) => handleSelectReminder(e, item.noteId)}
                   className="search-item-link"
                 >
                   <li
