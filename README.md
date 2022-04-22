@@ -46,5 +46,7 @@ A logged-in user can also create reminders on notes, to be referenced, edited, o
 
 ### Search
 A logged-in user can search for their notebooks, notes, and reminders; then be redirected to each item when selected.
-![image](https://user-images.githubusercontent.com/91270578/164729576-40410c70-2cab-4e06-ae09-9f9ba6b672ca.png)
+![image](https://user-images.githubusercontent.com/91270578/164729818-2afce297-0667-4260-b673-2fa92e4a1238.png)
+![image](https://user-images.githubusercontent.com/91270578/164729909-59325508-7580-4b5e-b5b0-eb02d5983afb.png)
+
 
