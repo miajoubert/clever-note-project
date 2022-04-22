@@ -17,6 +17,13 @@ const endSession = (user) => {
   }
 };
 
+const fixSession = (user) => {
+  return {
+    type: RESTORE_SESSION,
+    payload: user
+  }
+}
+
 
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
@@ -48,7 +55,7 @@ export const demo = () => async (dispatch) => {
 export const restoreSession = () => async dispatch => {
   const response = await csrfFetch('/api/session');
   const data = await response.json();
-  dispatch(startSession(data.user));
+  dispatch(fixSession(data.user));
   return response;
 };
 
@@ -84,6 +91,11 @@ const initialState = { user: null };
 const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
     case START_SESSION: {
+      const newState = { ...state };
+      newState.user = action.payload;
+      return newState;
+    }
+    case RESTORE_SESSION: {
       const newState = { ...state };
       newState.user = action.payload;
       return newState;
