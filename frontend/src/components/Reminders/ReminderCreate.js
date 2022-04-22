@@ -4,17 +4,18 @@ import { useHistory, useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 
 import { Modal } from '../../context/Modal';
-import { updateReminder } from '../../store/reminders';
+import { listReminders, addReminder } from '../../store/reminders';
 import { listNotes } from '../../store/notes';
+import ReminderFloatingButton from "./ReminderFAB";
 
-import './ReminderModals.css';
-import './DatePicker.css';
+import './ReminderModals.css'
+import './DatePicker.css'
 import "react-datepicker/dist/react-datepicker.css";
 
-function ReminderUpdateModal({ reminder }) {
-  const session = useSelector(state => state.session);
-  const noteList = useSelector(state => state.notes);
-  const notes = Object.values(noteList);
+function ReminderCreateModal() {
+  const session = useSelector(state => state.session)
+  const noteList = useSelector(state => state.notes)
+  const notes = Object.values(noteList)
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -24,8 +25,8 @@ function ReminderUpdateModal({ reminder }) {
   oneHour.setTime(now.getTime() + 3600000)
 
   const [showModal, setShowModal] = useState(false);
-  const [title, setTitle] = useState(reminder?.title);
-  const [noteId, setNoteId] = useState(noteList[reminder?.noteId]?.id)
+  const [title, setTitle] = useState('')
+  const [noteId, setNoteId] = useState(1)
   const [time, setTime] = useState(new Date(oneHour))
   const [errors, setErrors] = useState([]);
 
@@ -33,17 +34,19 @@ function ReminderUpdateModal({ reminder }) {
 
   useEffect(() => {
     if (userId) {
+      dispatch(listReminders(userId))
       dispatch(listNotes(userId))
     }
   }, [dispatch, userId])
+
 
   async function handleSubmit(e) {
     e.preventDefault();
     setErrors([]);
 
     const payload = {
-      ...reminder,
       title,
+      userId,
       noteId,
       time
     };
@@ -53,39 +56,41 @@ function ReminderUpdateModal({ reminder }) {
       return errors
 
     } else {
-      let updatedReminder = await dispatch(updateReminder(payload))
+      let newReminder = await dispatch(addReminder(payload))
         .catch(async (res) => {
           const data = await res.json();
+
           if (data && data.errors) setErrors(data.errors);
         })
-      if (updatedReminder) {
+
+      if (newReminder) {
         history.push(`/reminders`)
+        setTitle("")
+        setTime(new Date())
         setShowModal(false)
       }
     }
   }
 
+
   const handleCancel = (e) => {
     e.preventDefault();
     setErrors([])
-    setTitle(reminder?.title)
+    setTitle("")
     setTime(new Date(oneHour))
     setShowModal(false)
   };
 
   return (
     <>
-      <button
-        className="note-function-button"
-        id='rem-update-button'
+      <ReminderFloatingButton
         onClick={() => setShowModal(true)}
-      >
-        Update
-      </button>
+      />
+
       {showModal && (
         <Modal onClose={handleCancel}>
           <div className="noteFormDiv">
-            <div className="form-title">Revise your reminder:</div>
+            <div className="form-title">Remember:</div>
             <ul className="errorsAuth"
               id="reminder-errors"
             >
@@ -132,7 +137,7 @@ function ReminderUpdateModal({ reminder }) {
                   className="note-form-select"
                   value={noteId}
                   onChange={(e) => setNoteId(e.target.value)}
-                  default={noteList[reminder.noteId].title}
+                // default={noteList[noteId].title}
                 >
                   {notes?.map(note => (
                     <option key={note?.id}
@@ -149,7 +154,7 @@ function ReminderUpdateModal({ reminder }) {
                   type="submit"
                   onClick={handleSubmit}
                 >
-                  Update
+                  Create
                 </button>
                 <button
                   className="form-button"
@@ -168,4 +173,4 @@ function ReminderUpdateModal({ reminder }) {
   )
 }
 
-export default ReminderUpdateModal;
+export default ReminderCreateModal;

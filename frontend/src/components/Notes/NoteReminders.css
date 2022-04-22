@@ -1,0 +1,47 @@
+.reminders-on-noteDetails {
+  background-color: rgb(128, 128, 128, .3);
+}
+
+.fa-clock {
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.reminder-modal-div {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 10px;
+  margin-right: 25px;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.reminder-modal-div:hover {
+  background-color: rgb(26, 26, 26, .2);
+  color: white
+}
+
+.exit-button {
+  background-color: #1A1A1Abb;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 0 3px 0 gray;
+  padding: 10px;
+  max-width: 80px;
+  min-width: 80px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.exit-button:hover {
+  background-color: white;
+  color: #1A1A1A;
+  box-shadow: 0 2px 9px rgb(0, 0, 0, 0.7);
+  transition: all .2s;
+}

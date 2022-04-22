@@ -13,9 +13,6 @@ const validateReminderForm = [
     .withMessage('Please provide a reminder title.')
     .isLength({ max: 30 })
     .withMessage('Please keep title under 30 characters.'),
-  check('time')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a time.'),
   handleValidationErrors
 ];
 
@@ -25,7 +22,7 @@ router.get('/',
 
     const reminders = await Reminder.findAll({
       where: { userId },
-      order: [['updatedAt', 'DESC']]
+      order: [['time', 'DESC']]
     });
 
     return res.json(reminders)

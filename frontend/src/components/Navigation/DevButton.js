@@ -30,51 +30,51 @@ function DevButton() {
 
   return (
     <>
-      <button
-        className={!showMenu ? "profileButton" : "profileButtonOpen"}
-        onClick={openMenu}>
-        <i className="fas fa-laptop-code" />
-      </button>
-      {showMenu && (
-        <ul className="dev-dropdown">
-          <li className="username">
-            <a
-              href='https://github.com/miajoubert'
-              target='_blank'
-              rel='noopener noreferrer'
-              className="tooltip devLi"
-            >
-              {/* <span className='tooltiptext'>Developer GitHub</span> */}
-              <span className="fab fa-github" />
-              Mia Joubert
-            </a>
-          </li>
-          <li className="username">
-            <a
-              href='https://www.linkedin.com/in/miajoubert/'
-              target='_blank'
-              rel='noopener noreferrer'
-              className="tooltip devLi"
-            >
-              {/* <span className='tooltiptext'>Developer Linked In</span> */}
-              <span className="fab fa-linkedin" />
-              Mia Joubert
-            </a>
-          </li>
-          <li className="username">
-            <a
-              href='https://github.com/miajoubert/clevernote-project'
-              target='_blank'
-              rel='noopener noreferrer'
-              className="tooltip devLi"
-            >
-              {/* <span className='tooltiptext'>Application GitHub</span> */}
-              <span className="fab fa-github tooltip" />
-              Clevernote
-            </a>
-          </li>
-        </ul>
-      )}
+      <div className="dropdown-div">
+        <button
+          className={!showMenu ? "profileButton" : "profileButtonOpen"}
+          onClick={openMenu}>
+          <i className="fas fa-laptop-code" />
+        </button>
+        {showMenu && (
+          <ul className="dev-dropdown">
+            <li className="devLi">
+              <a
+                href='https://github.com/miajoubert'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                {/* <span className='tooltiptext'>Developer GitHub</span> */}
+                <span className="fab fa-github" />
+                Mia's GitHub
+              </a>
+            </li>
+            <li className="devLi">
+              <a
+                href='https://www.linkedin.com/in/miajoubert/'
+                target='_blank'
+                rel='noopener noreferrer'
+
+              >
+                {/* <span className='tooltiptext'>Developer Linked In</span> */}
+                <span className="fab fa-linkedin" />
+                Mia's LinkedIn
+              </a>
+            </li>
+            <li className="devLi">
+              <a
+                href='https://github.com/miajoubert/clevernote-project'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                {/* <span className='tooltiptext'>Application GitHub</span> */}
+                <span className="fab fa-github tooltip" />
+                Clevernote
+              </a>
+            </li>
+          </ul>
+        )}
+      </div>
     </>
   );
 }

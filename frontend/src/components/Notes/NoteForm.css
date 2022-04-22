@@ -7,6 +7,7 @@
 .form-title-header {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .form-title {
@@ -16,7 +17,8 @@
 
 #note-errors {
   justify-content: flex-start;
-  height: 20px;
+  height: 40px;
+  margin: 0px;
 }
 
 .form-label {

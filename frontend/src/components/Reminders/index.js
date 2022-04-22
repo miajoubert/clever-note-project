@@ -1,25 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Route, useParams } from "react-router-dom";
 
-import { listReminders, updateReminder } from "../../store/reminders";
+import { listReminders } from "../../store/reminders";
 import { listNotes } from "../../store/notes";
 import ReminderDetails from "./ReminderDetails";
-import DatePickerPage from "./DatePicker";
+import ReminderCreateModal from "./ReminderCreate";
 
 import './Reminders.css'
 import './Construction.css'
 
 const RemindersPage = () => {
   const reminders = useSelector(state => state.reminders)
-  const noteList = useSelector(state => state.notes)
   const session = useSelector(state => state.session)
   const dispatch = useDispatch()
 
-  const [startDate, setStartDate] = useState(new Date())
-
   const userId = session.user.id;
-  let { reminderId } = useParams();
   const reminderArr = Object.values(reminders);
 
   useEffect(() => {
@@ -28,14 +23,6 @@ const RemindersPage = () => {
       dispatch(listNotes(userId))
     }
   }, [dispatch])
-
-  console.log("reminders", reminders)
-  console.log("notessssssss", noteList)
-
-  // const handleDateChange = () => {
-  //   if (!showMenu) return;
-  //   setShowMenu(false);
-  // };
 
   return (
     <main className="main-reminder-div">
@@ -48,14 +35,40 @@ const RemindersPage = () => {
         </div>
       </div> */}
 
-      <DatePickerPage />
+      <ReminderCreateModal />
 
       <nav
         className="reminderList">
         {reminderArr?.map((reminder) => {
           return (
-            <div className="reminder">
-              <div className="prim-text">{reminder?.title}</div>
+            <div className={
+              +new Date(reminder?.time).getTime() < +new Date().getTime() ?
+                "reminder overdue-reminder" :
+                "reminder"}
+            >
+              <div className="reminder-text">
+                <div className="reminder-date">
+                  <div className="reminder-time">
+                    {new Date(reminder?.time).getHours() < 13
+                      ?
+                      new Date(reminder?.time).getHours()
+                      :
+                      (new Date(reminder?.time).getHours() - 12)}
+                    :{new Date(reminder?.time).getMinutes() < 10
+                      ?
+                      `0${(new Date(reminder?.time).getMinutes())}`
+                      :
+                      new Date(reminder?.time).getMinutes()}
+                    {new Date(reminder?.time).getHours() > 12
+                      ? "PM" : "AM"}
+                  </div>
+                  <div className="on-sign">
+                    on
+                  </div>
+                  {new Date(reminder?.time).toDateString().split(" ")[1]} {new Date(reminder?.time).toDateString().split(" ")[2]}
+                </div>
+                <div className="reminder-title">{reminder?.title}</div>
+              </div>
 
               <ReminderDetails
                 reminder={reminder}

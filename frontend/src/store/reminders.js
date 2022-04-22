@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 const LIST_REMINDERS = 'reminders/LIST';
-const LIST_REMINDER = 'reminders/ONE'
+// const LIST_REMINDER = 'reminders/ONE'
 const ADD_REMINDER = 'reminders/ADD_REMINDER';
 const UPDATE_REMINDER = 'reminders/UPDATE_REMINDER';
 const DELETE_REMINDER = 'reminders/DELETE_REMINDER';
@@ -11,10 +11,10 @@ const list = (reminders) => ({
   reminders
 })
 
-const one = (reminder) => ({
-  type: LIST_REMINDER,
-  reminder
-})
+// const one = (reminder) => ({
+//   type: LIST_REMINDER,
+//   reminder
+// })
 
 const add = (reminder) => ({
   type: ADD_REMINDER,
@@ -43,11 +43,11 @@ export const listReminders = (userId) => async (dispatch) => {
   dispatch(list(reminders))
 }
 
-export const reminderDetails = (reminderId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/reminders/${reminderId}`)
-  const reminder = await response.json();
-  dispatch(one(reminder))
-}
+// export const reminderDetails = (reminderId) => async (dispatch) => {
+//   const response = await csrfFetch(`/api/reminders/${reminderId}`)
+//   const reminder = await response.json();
+//   dispatch(one(reminder))
+// }
 
 export const addReminder = (payload) => async (dispatch) => {
   const response = await csrfFetch(`/api/reminders`, {
@@ -57,11 +57,12 @@ export const addReminder = (payload) => async (dispatch) => {
     },
     body: JSON.stringify(payload)
   });
+
   const reminder = await response.json();
 
   dispatch(add(reminder));
 
-  return reminder;
+  return reminder
 }
 
 export const updateReminder = (payload) => async (dispatch) => {
@@ -82,8 +83,6 @@ export const deleteReminder = (reminderId) => async (dispatch) => {
     { method: "DELETE" }
   );
 
-  console.log("Made it into my delete")
-
   dispatch(remove(reminderId));
 }
 
@@ -97,10 +96,10 @@ const remindersReducer = (state = initialState, action) => {
         newState[reminder.id] = reminder;
       });
       return newState;
-    case LIST_REMINDER:
-      const oneState = { ...state };
-      oneState[action.reminder.id] = action.reminder;
-      return oneState;
+    // case LIST_REMINDER:
+    //   const oneState = { ...state };
+    //   oneState[action.reminder.id] = action.reminder;
+    //   return oneState;
     case ADD_REMINDER:
       const addState = { ...state }
       addState[action.reminder?.id] = action.reminder

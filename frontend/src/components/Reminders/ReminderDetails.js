@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route, useParams } from "react-router-dom";
 
 import { Modal } from "../../context/Modal";
-import { reminderDetails, updateReminder, deleteReminder } from "../../store/reminders";
 import { listNotes } from "../../store/notes";
-import DatePickerPage from "./DatePicker";
 import ReminderDeleteModal from "./ReminderDelete";
 import ReminderUpdateModal from "./ReminderUpdate";
 
@@ -20,11 +18,9 @@ const ReminderDetails = ({ reminder }) => {
   const [showModal, setShowModal] = useState(false);
 
   const userId = session.user.id;
-  let { reminderId } = useParams();
 
   useEffect(() => {
     if (session.user) {
-      dispatch(reminderDetails(reminderId))
       dispatch(listNotes(userId))
     }
   }, [dispatch])
@@ -65,17 +61,29 @@ const ReminderDetails = ({ reminder }) => {
                 @
               </div>
               <div className="time-div">
-                {new Date(reminder?.time).getHours()}:{new Date(reminder?.time).getMinutes()}
+                {new Date(reminder?.time).getHours() < 13
+                  ?
+                  new Date(reminder?.time).getHours()
+                  :
+                  (new Date(reminder?.time).getHours() - 12)}
+                :{new Date(reminder?.time).getMinutes() < 10
+                  ?
+                  `0${(new Date(reminder?.time).getMinutes())}`
+                  :
+                  new Date(reminder?.time).getMinutes()}
+                {new Date(reminder?.time).getHours() > 12
+                  ? "PM" : "AM"}
               </div>
             </div>
-
 
             <div className="rem-det-buttons-div">
               <ReminderUpdateModal
                 reminder={reminder}
+                onClose={() => setShowModal(false)}
               />
               <ReminderDeleteModal
                 reminder={reminder}
+                onClose={() => setShowModal(false)}
               />
               <button
                 className="note-function-button"

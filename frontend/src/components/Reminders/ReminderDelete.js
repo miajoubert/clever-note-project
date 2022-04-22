@@ -16,6 +16,7 @@ function ReminderDeleteModal({ reminder, onClose }) {
   async function handleDelete() {
     await dispatch(deleteReminder(reminder.id))
     setShowModal(false)
+    onClose()
     history.push("/reminders")
   }
 

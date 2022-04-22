@@ -4,7 +4,8 @@ import { useParams } from "react-router-dom";
 
 import NoteEditModal from "./NoteEditModal";
 import NoteDeleteModal from "./NoteDeleteModal";
-import { listNotes, editNote, deleteNote } from "../../store/notes";
+import NoteReminders from "./NoteReminders";
+import { listNotes } from "../../store/notes";
 import { listNotebooks } from "../../store/notebooks";
 
 import './NoteDetail.css'
@@ -68,13 +69,23 @@ const NoteDetail = ({ note }) => {
             </div>
 
             <div className="bottomNoteDetails">
-              <div className="nb-title-div">
-                <span className="fas fa-book-open"></span>
-                <b>{notebook?.title}</b>
+              <a
+                className="nb-title-div"
+                href={`/notebooks/${notebook?.id}`}
+              >
+                <div >
+                  <span className="fas fa-book-open" />
+                  <b>{notebook?.title}</b>
+                </div>
+              </a>
+
+              <div className="note-reminder-div">
+                <NoteReminders />
               </div>
+
               <div className="note-timestamp">
                 <div className="updated-at-text">
-                  Updated:
+                  <span className="fas fa-history" />
                 </div>
                 <div className="note-date">
                   {new Date(note?.updatedAt).toDateString().split(" ")[1]} {new Date(note?.updatedAt).toDateString().split(" ")[2]}, {new Date(note?.updatedAt).toDateString().split(" ")[3]}

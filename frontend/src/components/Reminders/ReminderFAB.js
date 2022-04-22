@@ -3,10 +3,10 @@ import './ReminderFAB.css'
 const ReminderFloatingButton = props => {
   return (
     <div
-      className={props.hidden ? 'note-fab-button hidden' : 'note-fab-button'}
+      className={props.hidden ? 'rem-fab-button hidden' : 'rem-fab-button'}
       onClick={props.onClick}
     >
-      <span className="fas fa-plus"></span>
+      <span className="fas fa-plus" id="rem"></span>
     </div>
   )
 }

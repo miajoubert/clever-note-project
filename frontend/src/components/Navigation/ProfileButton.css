@@ -29,10 +29,11 @@
   background-color: #04d237;
 }
 
+
 .profile-dropdown {
   position: fixed;
-  margin-top: 155px;
-  right: 7rem;
+  margin-top: 5px;
+  align-self: center;
   text-align: right;
   color: #00a82b;
   font-size: 15px;
@@ -55,6 +56,7 @@
 
 .logoutButton {
   background-color: #00a82b;
+  color: white;
   margin: 10px 0px;
   border: none;
   border-radius: 3px;
@@ -66,5 +68,5 @@
 .logoutButton:hover {
   transition: all .2s;
   background-color: #04d237;
-  color: white
+  color: black
 }

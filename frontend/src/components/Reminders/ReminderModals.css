@@ -5,3 +5,8 @@
 #rem-delete-button:hover {
   background-color: darkred;
 }
+
+#reminder-errors {
+  height: 25px;
+  margin: 5px
+}
