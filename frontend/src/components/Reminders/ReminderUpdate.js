@@ -11,7 +11,7 @@ import './ReminderModals.css';
 import './DatePicker.css';
 import "react-datepicker/dist/react-datepicker.css";
 
-function ReminderUpdateModal({ reminder }) {
+function ReminderUpdateModal({ reminder, onClose }) {
   const session = useSelector(state => state.session);
   const noteList = useSelector(state => state.notes);
   const notes = Object.values(noteList);
@@ -19,14 +19,19 @@ function ReminderUpdateModal({ reminder }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  let now = new Date()
-  let oneHour = new Date()
-  oneHour.setTime(now.getTime() + 3600000)
+  let useTime = new Date()
+
+  if (new Date(reminder?.time).getTime() - new Date().getTime() > 0) {
+    useTime = new Date(reminder?.time)
+  } else {
+    let now = new Date()
+    useTime.setTime(now.getTime() + 3600000)
+  }
 
   const [showModal, setShowModal] = useState(false);
   const [title, setTitle] = useState(reminder?.title);
   const [noteId, setNoteId] = useState(noteList[reminder?.noteId]?.id)
-  const [time, setTime] = useState(new Date(oneHour))
+  const [time, setTime] = useState(new Date(useTime))
   const [errors, setErrors] = useState([]);
 
   const userId = session.user.id;
@@ -60,6 +65,7 @@ function ReminderUpdateModal({ reminder }) {
         })
       if (updatedReminder) {
         setShowModal(false)
+        onClose()
       }
     }
   }
@@ -68,7 +74,7 @@ function ReminderUpdateModal({ reminder }) {
     e.preventDefault();
     setErrors([])
     setTitle(reminder?.title)
-    setTime(new Date(oneHour))
+    setTime(new Date(useTime))
     setShowModal(false)
   };
 

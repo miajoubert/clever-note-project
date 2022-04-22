@@ -80,7 +80,9 @@ const NoteDetail = ({ note }) => {
               </a>
 
               <div className="note-reminder-div">
-                <NoteReminders />
+                <NoteReminders
+                  note={note}
+                />
               </div>
 
               <div className="note-timestamp">

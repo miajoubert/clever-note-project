@@ -21,7 +21,7 @@ function Navigation({ isLoaded }) {
         <NavLink className='notes' to="/notebooks">Notebooks</NavLink>
         <NavLink className='notes' to="/notes">Notes</NavLink>
         <NavLink className='notes' to="/reminders">Reminders</NavLink>
-        {/* <SearchButton /> */}
+        <SearchButton />
         <ProfileButton user={sessionUser} />
         <DevButton />
       </div >

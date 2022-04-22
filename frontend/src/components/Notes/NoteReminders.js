@@ -11,18 +11,17 @@ import ReminderCreateModal from "../Reminders/ReminderCreate";
 import '../Reminders/Reminders.css'
 import './NoteReminders.css'
 
-const NoteReminders = () => {
+const NoteReminders = ({ note }) => {
   const reminders = useSelector(state => state.reminders);
   const session = useSelector(state => state.session);
   const dispatch = useDispatch();
 
   const [showModal, setShowModal] = useState(false);
 
-  const noteId = useParams()
   const userId = session.user.id;
   const allReminders = Object.values(reminders);
   const reminderArr = allReminders.filter((reminder) => {
-    return reminder.noteId === +noteId.noteId
+    return reminder.noteId === +note.id
   })
   reminderArr.sort(function (a, b) {
     return new Date(a.time).getTime() - new Date(b.time).getTime()
@@ -57,7 +56,7 @@ const NoteReminders = () => {
         >
           <div>
             <ReminderCreateModal
-              currNoteId={noteId?.noteId}
+              currNoteId={note?.id}
             />
           </div>
 

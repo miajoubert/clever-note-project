@@ -77,7 +77,6 @@ function ReminderCreateModal({ currNoteId }) {
     }
   }
 
-
   const handleCancel = (e) => {
     e.preventDefault();
     setErrors([])
@@ -85,10 +84,6 @@ function ReminderCreateModal({ currNoteId }) {
     setTime(new Date(oneHour))
     setShowModal(false)
   };
-
-  console.log(noteList)
-  console.log(noteId)
-  console.log(noteList[+noteId])
 
   return (
     <>

@@ -32,10 +32,10 @@ function SearchButton() {
         <i className="fas fa-search" />
       </button>
       {showSearch && (
-        <ul className="search-dropdown">
-          <li className="username">
-            <input className="searchInput" type="search"></input>
-          </li>
+        <div className="search-dropdown">
+
+          <input className="searchInput" type="search"></input>
+
           <li className="buttonLi">
             <button
               className="searchingButton"
@@ -44,7 +44,7 @@ function SearchButton() {
               Search
             </button>
           </li>
-        </ul>
+        </div>
       )}
     </>
   );
