@@ -45,7 +45,7 @@ function SearchButton() {
             <li className="buttonLi">
               <button
                 className="searchingButton"
-                onClick={search}
+                onClick={handleSearch}
               >
                 Search
               </button>
