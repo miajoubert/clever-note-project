@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 import { Modal } from "../../context/Modal";
 import { listReminders } from "../../store/reminders";
@@ -17,8 +18,12 @@ const NoteReminders = () => {
 
   const [showModal, setShowModal] = useState(false);
 
+  const noteId = useParams()
   const userId = session.user.id;
-  const reminderArr = Object.values(reminders);
+  const allReminders = Object.values(reminders);
+  const reminderArr = allReminders.filter((reminder) => {
+    return reminder.noteId === +noteId.noteId
+  })
 
   useEffect(() => {
     if (userId) {
@@ -46,10 +51,11 @@ const NoteReminders = () => {
       </div>
 
       {showModal && (
-        <Modal onClose={handleCancel}>
-          <div >
-            <ReminderCreateModal />
-
+        <Modal
+          className="note-reminder-modal-div"
+          onClose={handleCancel}
+        >
+          <div className="note-rem-modal-button-div">
             <button
               className="exit-button"
               type="button"
@@ -57,49 +63,57 @@ const NoteReminders = () => {
             >
               Cancel
             </button>
+
+            <ReminderCreateModal
+              currNoteId={noteId?.noteId}
+            />
           </div>
 
           <nav
-            className="reminders-on-noteDetails"
+            className="reminderList-on-noteDetails"
           >
-            {reminderArr?.map((reminder) => {
-              return (
-                <div className={
-                  +new Date(reminder?.time).getTime() < +new Date().getTime() ?
-                    "reminder overdue-reminder" :
-                    "reminder"}
-                >
-                  <div className="reminder-text">
-                    <div className="reminder-date">
-                      <div className="reminder-time">
-                        {new Date(reminder?.time).getHours() < 13
-                          ?
-                          new Date(reminder?.time).getHours()
-                          :
-                          (new Date(reminder?.time).getHours() - 12)}
-                        :{new Date(reminder?.time).getMinutes() < 10
-                          ?
-                          `0${(new Date(reminder?.time).getMinutes())}`
-                          :
-                          new Date(reminder?.time).getMinutes()}
-                        {new Date(reminder?.time).getHours() > 12
-                          ? "PM" : "AM"}
+            {!reminderArr.length ?
+              <div> Add a reminder for this note.</div>
+              :
+              reminderArr?.map((reminder) => {
+                return (
+                  <div className={
+                    +new Date(reminder?.time).getTime() < +new Date().getTime() ?
+                      "note-reminder overdue-reminder" :
+                      "note-reminder"}
+                  >
+                    <div className="reminder-text">
+                      <div className="reminder-date">
+                        <div className="reminder-time">
+                          {new Date(reminder?.time).getHours() < 13
+                            ?
+                            new Date(reminder?.time).getHours()
+                            :
+                            (new Date(reminder?.time).getHours() - 12)}
+                          :{new Date(reminder?.time).getMinutes() < 10
+                            ?
+                            `0${(new Date(reminder?.time).getMinutes())}`
+                            :
+                            new Date(reminder?.time).getMinutes()}
+                          {new Date(reminder?.time).getHours() > 12
+                            ? "PM" : "AM"}
+                        </div>
+                        <div className="on-sign">
+                          on
+                        </div>
+                        {new Date(reminder?.time).toDateString().split(" ")[1]} {new Date(reminder?.time).toDateString().split(" ")[2]}
                       </div>
-                      <div className="on-sign">
-                        on
-                      </div>
-                      {new Date(reminder?.time).toDateString().split(" ")[1]} {new Date(reminder?.time).toDateString().split(" ")[2]}
+                      <div className="reminder-title">{reminder?.title}</div>
                     </div>
-                    <div className="reminder-title">{reminder?.title}</div>
+
+                    <ReminderDetails
+                      reminder={reminder}
+                    />
+
                   </div>
-
-                  <ReminderDetails
-                    reminder={reminder}
-                  />
-
-                </div>
-              )
-            })}
+                )
+              })
+            }
           </nav>
         </Modal>
       )}

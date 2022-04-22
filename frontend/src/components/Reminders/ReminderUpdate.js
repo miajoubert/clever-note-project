@@ -59,7 +59,6 @@ function ReminderUpdateModal({ reminder }) {
           if (data && data.errors) setErrors(data.errors);
         })
       if (updatedReminder) {
-        history.push(`/reminders`)
         setShowModal(false)
       }
     }

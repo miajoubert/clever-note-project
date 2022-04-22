@@ -4,6 +4,7 @@
 
 #rem-delete-button:hover {
   background-color: darkred;
+  transition: all .2s;
 }
 
 #reminder-errors {

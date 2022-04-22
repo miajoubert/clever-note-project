@@ -22,6 +22,7 @@
 .note-fab-button:hover {
   box-shadow: 0 6px 8px rgb(0, 0, 0, 0.7);
   background-color: #04d237;
+  transition: all .2s;
 }
 
 .fa-plus {

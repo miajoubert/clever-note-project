@@ -56,6 +56,7 @@
 .github-footer:hover {
   background-color: #00000090;
   box-shadow: 0 0 5px 0 darkgray;
+  transition: all .2s;
 }
 
 
@@ -75,6 +76,7 @@
 
 .tooltip:hover .tooltiptext {
   opacity: 1;
+  transition: all .2s;
 }
 
 .footer-copyright {

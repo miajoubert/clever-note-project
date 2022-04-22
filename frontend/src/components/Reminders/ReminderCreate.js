@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 
 import { Modal } from '../../context/Modal';
@@ -12,21 +11,25 @@ import './ReminderModals.css'
 import './DatePicker.css'
 import "react-datepicker/dist/react-datepicker.css";
 
-function ReminderCreateModal() {
+function ReminderCreateModal({ currNoteId }) {
   const session = useSelector(state => state.session)
   const noteList = useSelector(state => state.notes)
   const notes = Object.values(noteList)
 
   const dispatch = useDispatch();
-  const history = useHistory();
 
   let now = new Date()
   let oneHour = new Date()
   oneHour.setTime(now.getTime() + 3600000)
 
+  if (!currNoteId) {
+    currNoteId = 1
+  }
+
+
   const [showModal, setShowModal] = useState(false);
   const [title, setTitle] = useState('')
-  const [noteId, setNoteId] = useState(1)
+  const [noteId, setNoteId] = useState(currNoteId)
   const [time, setTime] = useState(new Date(oneHour))
   const [errors, setErrors] = useState([]);
 
@@ -39,6 +42,9 @@ function ReminderCreateModal() {
     }
   }, [dispatch, userId])
 
+  useEffect(() => {
+    setNoteId(currNoteId)
+  }, [currNoteId])
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -64,9 +70,8 @@ function ReminderCreateModal() {
         })
 
       if (newReminder) {
-        history.push(`/reminders`)
         setTitle("")
-        setTime(new Date())
+        setTime(new Date(oneHour))
         setShowModal(false)
       }
     }
@@ -80,6 +85,10 @@ function ReminderCreateModal() {
     setTime(new Date(oneHour))
     setShowModal(false)
   };
+
+  console.log(noteList)
+  console.log(noteId)
+  console.log(noteList[+noteId])
 
   return (
     <>
@@ -137,7 +146,7 @@ function ReminderCreateModal() {
                   className="note-form-select"
                   value={noteId}
                   onChange={(e) => setNoteId(e.target.value)}
-                // default={noteList[noteId].title}
+                  default={noteList[noteId]?.title}
                 >
                   {notes?.map(note => (
                     <option key={note?.id}

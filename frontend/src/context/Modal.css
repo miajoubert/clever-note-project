@@ -23,4 +23,6 @@
   background-color: white;
   padding: 40px;
   border-radius: 7px;
+  max-height: 85vh;
+  min-width: fit-content;
 }

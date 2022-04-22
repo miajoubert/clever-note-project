@@ -35,5 +35,6 @@
 }
 
 .devLi:hover a>span {
-  color: #00a82b
+  color: #00a82b;
+  transition: all .2s;
 }

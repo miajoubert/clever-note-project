@@ -20,7 +20,7 @@
 }
 
 .rem-fab-button:hover {
-  box-shadow: 0 2px 9px rgb(0, 0, 0, 0.7);
+  box-shadow: 0 2px 10px rgb(0, 0, 0);
   background-color: white;
   transition: all .2s;
 }
