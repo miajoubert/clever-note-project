@@ -18,7 +18,7 @@ function SearchButton() {
     setShowSearch(!showSearch);
   };
 
-  const search = (e) => {
+  const handleSearch = (e) => {
     e.preventDefault();
     dispatch(sessionActions());
     history.push("/results")
@@ -26,26 +26,33 @@ function SearchButton() {
 
   return (
     <>
-      <button
-        className={!showSearch ? "searchButton profileButton" : "searchButtonOpen"}
-        onClick={openSearch}>
-        <i className="fas fa-search" />
-      </button>
-      {showSearch && (
-        <div className="search-dropdown">
+      <div className="dropdown-div">
+        <button
+          className={!showSearch ? "searchButton profileButton" : "searchButtonOpen"}
+          onClick={openSearch}>
+          <i className="fas fa-search" />
+        </button>
+        {showSearch && (
+          <div className="search-dropdown">
 
-          <input className="searchInput" type="search"></input>
+            <input
+              className="searchInput"
+              type="search"
+              placeholder="Search..."
+              onSubmit={handleSearch}
+            ></input>
 
-          <li className="buttonLi">
-            <button
-              className="searchingButton"
-              onClick={search}
-            >
-              Search
-            </button>
-          </li>
-        </div>
-      )}
+            <li className="buttonLi">
+              <button
+                className="searchingButton"
+                onClick={search}
+              >
+                Search
+              </button>
+            </li>
+          </div>
+        )}
+      </div>
     </>
   );
 }

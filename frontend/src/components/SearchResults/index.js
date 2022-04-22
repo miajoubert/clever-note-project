@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import './SearchResults.css'
-const RemindersPage = () => {
+
+const ResultsPage = () => {
   const reminders = useSelector(state => state.reminders)
   const session = useSelector(state => state.session)
   const dispatch = useDispatch()
@@ -19,17 +20,6 @@ const RemindersPage = () => {
 
   return (
     <main className="main-reminder-div">
-      {/* <div className="under-construction">
-        <div className="construction1"><b>REMINDERS</b> are currently under construction!</div>
-        <div className="tools">
-          <span className="fas fa-wrench"></span>
-          <div className="construction2">Please check back later.</div>
-          <span className="fas fa-screwdriver"></span>
-        </div>
-      </div> */}
-
-      <ReminderCreateModal />
-
       <nav
         className="reminderList">
         {reminderArr?.map((reminder) => {
@@ -76,4 +66,4 @@ const RemindersPage = () => {
   )
 }
 
-export default RemindersPage;
+export default ResultsPage;
