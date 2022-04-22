@@ -92,9 +92,11 @@ function ReminderCreateModal({ currNoteId }) {
 
   return (
     <>
-      <ReminderFloatingButton
-        onClick={() => setShowModal(true)}
-      />
+      <div className='reminder-fab-div'>
+        <ReminderFloatingButton
+          onClick={() => setShowModal(true)}
+        />
+      </div>
 
       {showModal && (
         <Modal onClose={handleCancel}>

@@ -24,6 +24,9 @@ const NoteReminders = () => {
   const reminderArr = allReminders.filter((reminder) => {
     return reminder.noteId === +noteId.noteId
   })
+  reminderArr.sort(function (a, b) {
+    return new Date(a.time).getTime() - new Date(b.time).getTime()
+  })
 
   useEffect(() => {
     if (userId) {
@@ -34,9 +37,6 @@ const NoteReminders = () => {
 
   const handleCancel = (e) => {
     e.preventDefault();
-    // setErrors([])
-    // setTitle("")
-    // setTime(new Date(oneHour))
     setShowModal(false)
   };
 
@@ -55,6 +55,13 @@ const NoteReminders = () => {
           className="note-reminder-modal-div"
           onClose={handleCancel}
         >
+          <div>
+            <ReminderCreateModal
+              currNoteId={noteId?.noteId}
+            />
+          </div>
+
+
           <div className="note-rem-modal-button-div">
             <button
               className="exit-button"
@@ -63,10 +70,6 @@ const NoteReminders = () => {
             >
               Cancel
             </button>
-
-            <ReminderCreateModal
-              currNoteId={noteId?.noteId}
-            />
           </div>
 
           <nav

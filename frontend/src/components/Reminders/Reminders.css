@@ -1,18 +1,19 @@
 .main-reminder-div {
-  box-sizing: border-box;
-  width: 100%;
   padding: 20px;
   text-align: center;
+  height: 90%;
+  background: linear-gradient(white 5%, #1A1A1A 100%);
+  overflow-y: hidden;
 }
 
 .reminderList {
   background-color: rgb(26, 26, 26, .2);
   box-shadow: 0 0 5px 0 #808080;
   border-radius: 5px;
-  margin: 0px 20px 0px 40px;
+  margin: 0px 20px 0px 100px;
   padding: 10px;
-  width: 100%;
-  min-width: 260px;
+  min-width: 320px;
+  height: 83vh;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -56,4 +57,26 @@
 .reminder-title {
   font-size: 16px;
   padding: 5px 0px;
+}
+
+@media screen and (max-width: 838px) {
+  .reminderList {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    min-width: 340px;
+    max-width: 340px;
+    overflow-y: auto;
+    margin: 0px;
+  }
+
+  .main-reminder-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .rem-fab-button {
+    position: relative;
+    margin: 0px 10px
+  }
 }

@@ -16,6 +16,9 @@ const RemindersPage = () => {
 
   const userId = session.user.id;
   const reminderArr = Object.values(reminders);
+  reminderArr.sort(function (a, b) {
+    return new Date(a.time).getTime() - new Date(b.time).getTime()
+  })
 
   useEffect(() => {
     if (session.user) {
@@ -25,7 +28,7 @@ const RemindersPage = () => {
   }, [dispatch])
 
   return (
-    <main className="main-reminder-div">
+    <div className="main-reminder-div">
       {/* <div className="under-construction">
         <div className="construction1"><b>REMINDERS</b> are currently under construction!</div>
         <div className="tools">
@@ -35,7 +38,7 @@ const RemindersPage = () => {
         </div>
       </div> */}
 
-      <ReminderCreateModal />
+      < ReminderCreateModal />
 
       <nav
         className="reminderList">
@@ -79,7 +82,7 @@ const RemindersPage = () => {
         }
         )}
       </nav>
-    </main >
+    </div >
   )
 }
 

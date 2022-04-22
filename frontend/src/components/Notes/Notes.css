@@ -1,8 +1,8 @@
-main {
+.main-div {
   display: flex;
   flex-direction: row;
   background: linear-gradient(white 5%, #1A1A1A 100%);
-  height: 90vh;
+  height: 90%;
 }
 
 .noteList {

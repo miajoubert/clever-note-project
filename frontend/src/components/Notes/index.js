@@ -28,7 +28,7 @@ const NotesPage = () => {
   }, [])
 
   return (
-    <main>
+    <div className="main-div">
       <nav
         className="noteList">
         {notesArr?.map((note) => {
@@ -77,7 +77,7 @@ const NotesPage = () => {
           </>
         )
       }
-    </main>
+    </div>
   )
 }
 

@@ -30,7 +30,7 @@ const NotesPage = () => {
   }, [userId])
 
   return (
-    <main>
+    <div className="main-div">
       <nav
         className="notebookList">
         {notebooksArr.map((notebook) => {
@@ -92,7 +92,7 @@ const NotesPage = () => {
           }
         </div>
       </div>
-    </main >
+    </div >
   )
 }
 

@@ -11,3 +11,14 @@
   height: 25px;
   margin: 5px
 }
+
+
+.reminder-fab-div {
+  margin-left: 20px;
+}
+
+@media screen and (max-width: 838px) {
+  .reminder-fab-div {
+    margin: 0px;
+  }
+}

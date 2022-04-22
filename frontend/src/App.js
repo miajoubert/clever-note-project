@@ -63,6 +63,9 @@ function App() {
             exact>
             <RemindersPage />
           </Route>
+          <Route >
+
+          </Route>
           <Route path="/">
             <Errors />
           </Route>
