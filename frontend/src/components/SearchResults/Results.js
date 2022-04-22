@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import { listNotebooks } from "../../store/notebooks";
 import { listNotes } from "../../store/notes";
@@ -14,7 +14,6 @@ const ResultsPage = () => {
   const notes = useSelector(state => state.notes)
   const reminders = useSelector(state => state.reminders)
   const dispatch = useDispatch()
-  const history = useHistory()
 
   const searchTerm = useParams().searchTerm
   const userId = session.user.id;
@@ -38,12 +37,12 @@ const ResultsPage = () => {
   const resultCount = allItems[0].length + allItems[1].length + allItems[2].length
 
   useEffect(() => {
-    if (session.user) {
+    if (userId) {
       dispatch(listNotebooks(userId))
       dispatch(listNotes(userId))
       dispatch(listReminders(userId))
     }
-  }, [dispatch])
+  }, [dispatch, userId])
 
   return (
     <>

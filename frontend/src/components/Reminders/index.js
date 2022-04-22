@@ -21,11 +21,11 @@ const RemindersPage = () => {
   })
 
   useEffect(() => {
-    if (session.user) {
+    if (userId) {
       dispatch(listReminders(userId))
       dispatch(listNotes(userId))
     }
-  }, [dispatch])
+  }, [dispatch, userId])
 
   return (
     <div className="main-reminder-div">

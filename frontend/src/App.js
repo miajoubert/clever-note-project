@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 
 import * as sessionActions from './store/session'
@@ -17,7 +17,6 @@ import './index.css';
 
 function App() {
   const dispatch = useDispatch();
-  const session = useSelector(state => state.session)
 
   const [isLoaded, setIsLoaded] = useState(false);
 

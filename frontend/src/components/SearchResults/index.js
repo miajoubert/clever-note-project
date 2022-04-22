@@ -43,12 +43,12 @@ const SearchComponent = ({ hideModal }) => {
   }, [search]);
 
   useEffect(() => {
-    if (session.user) {
+    if (userId) {
       dispatch(listNotebooks(userId))
       dispatch(listNotes(userId))
       dispatch(listReminders(userId))
     }
-  }, [dispatch])
+  }, [dispatch, userId])
 
   const handleSearch = (e) => {
     e.preventDefault();

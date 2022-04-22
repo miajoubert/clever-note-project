@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 
 import { Modal } from "../../context/Modal";
 import { listReminders } from "../../store/reminders";
@@ -32,7 +31,7 @@ const NoteReminders = ({ note }) => {
       dispatch(listReminders(userId))
       dispatch(listNotes(userId))
     }
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   const handleCancel = (e) => {
     e.preventDefault();
